@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>木子米软件大全 - 作品集与下载</title>
+<meta name="description" content="木子米的个人作品门户：语音盒、互动游戏、邦多利系列软件，一次劳动三端卖（安卓/iOS/鸿蒙），离线单文件永不变砖。">
+<meta name="keywords" content="木子米,语音盒,邦多利,肥嘟嘟,开黑盒,亲亲盒,HTML游戏,APK">
+<meta name="author" content="木子米">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="dark light">
+<!-- og 卡片（stand.homes 没做，我们必须有：B站/QQ 分享出预览图） -->
+<meta property="og:title" content="木子米软件大全">
+<meta property="og:description" content="语音盒 × 互动游戏 × 邦多利系列。离线单文件，永不变砖。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://but321.github.io/showcase/assets/og-cover.png">
+<meta property="og:url" content="https://but321.github.io/showcase/">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  --bg:#09090b; --bg2:#111113; --card:rgba(39,39,42,.6); --card-solid:#18181b;
+  --border:rgba(255,255,255,.08); --text:#fafafa; --text2:#a1a1aa; --text3:#71717a;
+  --brand:#3b82f6; --brand2:#60a5fa; --accent:#f59e0b; --cyan:#06b6d4; --pink:#ec4899; --green:#10b981;
+  --radius:1.25rem;
+}
+html[data-theme="light"]{
+  --bg:#fafafa; --bg2:#f4f4f5; --card:rgba(255,255,255,.7); --card-solid:#ffffff;
+  --border:rgba(0,0,0,.08); --text:#18181b; --text2:#52525b; --text3:#a1a1aa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",-apple-system,sans-serif;
+  min-height:100vh; transition:background .3s,color .3s;
+  background-image:var(--bgimg,none); background-size:cover; background-attachment:fixed; background-position:center;
+}
+body.with-bg > .page::before{content:"";position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:-1}
+html[data-theme="light"] body.with-bg > .page::before{background:rgba(255,255,255,.5)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.container{max-width:72rem;margin:0 auto;padding:0 1rem}
+.page{display:none;animation:fadein .25s ease}
+.page.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ===== 导航 ===== */
+nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 75%,transparent);border-bottom:1px solid var(--border)}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:3.5rem}
+.logo{font-weight:900;font-size:1.15rem;letter-spacing:.05em;background:linear-gradient(135deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:.25rem}
+.nav-links a{padding:.45rem .85rem;border-radius:.75rem;font-size:.875rem;color:var(--text2);font-weight:600;transition:.2s}
+.nav-links a:hover{color:var(--text);background:var(--card)}
+.nav-links a.on{color:var(--brand2);background:rgba(59,130,246,.12)}
+.nav-right{display:flex;gap:.5rem;align-items:center}
+.icon-btn{width:2.2rem;height:2.2rem;border-radius:.75rem;border:1px solid var(--border);background:var(--card);color:var(--text2);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.2s}
+.icon-btn:hover{color:var(--text);transform:scale(1.06)}
+
+/* ===== 首页 ===== */
+.hero-wrap{display:flex;flex-direction:column;gap:2.5rem;padding:4rem 0 2rem}
+@media(min-width:768px){.hero-wrap{flex-direction:row;align-items:center;padding:5.5rem 0 3rem}}
+.hero-left{flex:1}
+.hero-name{font-size:clamp(2.5rem,8vw,4.5rem);font-weight:900;letter-spacing:-.03em;line-height:1.05;background:linear-gradient(135deg,var(--brand2),#93c5fd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.typewriter{margin:1.1rem 0 1.6rem;font-size:1.05rem;color:var(--text2);min-height:1.6em;font-weight:600}
+.cursor{display:inline-block;width:.55em;animation:blink 1s step-end infinite;color:var(--brand2)}
+@keyframes blink{50%{opacity:0}}
+.soc-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.soc-btn{display:flex;align-items:center;gap:.45rem;padding:.55rem 1rem;border-radius:.9rem;border:1px solid var(--border);background:var(--card);backdrop-filter:blur(12px);font-size:.85rem;font-weight:700;color:var(--text2);transition:.2s}
+.soc-btn:hover{transform:translateY(-2px);color:var(--text);border-color:var(--brand)}
+.soc-btn.qq{color:#12b7f5}.soc-btn.tg{color:#2aabee}.soc-btn.bl{color:#fb7299}
+.soc-btn small{font-weight:400;color:var(--text3)}
+/* bento */
+.bento{flex:1;display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(72px,auto);gap:.9rem}
+.b-card{border-radius:var(--radius);border:1px solid var(--border);background:var(--card);backdrop-filter:blur(16px);padding:1.1rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.3rem;position:relative;overflow:hidden;transition:.25s;cursor:pointer}
+.b-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.2)}
+.b-card .b-ico{font-size:1.6rem;margin-bottom:auto}
+.b-card h3{font-size:1rem;font-weight:800}
+.b-card p{font-size:.75rem;color:var(--text2)}
+.b-apps{grid-column:span 4;grid-row:span 2;background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(96,165,250,.06))}
+.b-updates{grid-column:span 2;grid-row:span 2;background:linear-gradient(135deg,rgba(6,182,212,.16),transparent)}
+.b-sub{grid-column:span 2;grid-row:span 2;background:linear-gradient(135deg,rgba(249,115,22,.16),transparent)}
+.b-about{grid-column:span 2;grid-row:span 2;background:linear-gradient(135deg,rgba(236,72,153,.14),transparent)}
+.dot{position:absolute;top:.9rem;right:.9rem;width:.55rem;height:.55rem;border-radius:50%;background:#ef4444;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+@media(max-width:767px){.bento{grid-template-columns:repeat(2,1fr)}.b-apps{grid-column:span 2}}
+footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3em;color:var(--text3);font-weight:700}
+
+/* ===== Apps 列表 ===== */
+.page-head{padding:3.5rem 0 1.6rem}
+.page-head h1{font-size:2rem;font-weight:900;letter-spacing:-.02em}
+.page-head p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.grid-apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;padding-bottom:3rem}
+.app-card{border-radius:var(--radius);border:1px solid var(--border);background:var(--card);backdrop-filter:blur(12px);padding:1.15rem;display:flex;gap:.9rem;align-items:flex-start;transition:.22s;cursor:pointer}
+.app-card:hover{transform:translateY(-3px);border-color:var(--brand);box-shadow:0 12px 32px -12px rgba(59,130,246,.25)}
+.app-icon{width:56px;height:56px;border-radius:1rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.8rem;background:linear-gradient(135deg,rgba(59,130,246,.25),rgba(147,197,253,.08));border:1px solid var(--border)}
+.app-card h3{font-size:.98rem;font-weight:800}
+.app-card .desc{font-size:.78rem;color:var(--text2);margin-top:.25rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.app-meta{display:flex;gap:.9rem;margin-top:.5rem;font-size:.68rem;color:var(--text3)}
+.tag-row{display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap}
+.tag{font-size:.62rem;font-weight:700;padding:.15rem .5rem;border-radius:.5rem;background:rgba(59,130,246,.12);color:var(--brand2)}
+.tag.new{background:rgba(245,158,11,.14);color:var(--accent)}
+.tag.hot{background:rgba(236,72,153,.12);color:var(--pink)}
+
+/* ===== 详情页 ===== */
+.detail-wrap{display:grid;grid-template-columns:1fr;gap:1.4rem;padding-bottom:3rem}
+@media(min-width:900px){.detail-wrap{grid-template-columns:8fr 4fr}}
+.d-main{border-radius:var(--radius);border:1px solid var(--border);background:var(--card);backdrop-filter:blur(12px);padding:1.6rem}
+.d-head{display:flex;gap:1rem;align-items:center;margin-bottom:1.2rem}
+.d-head .app-icon{width:72px;height:72px;font-size:2.2rem;border-radius:1.2rem}
+.d-head h1{font-size:1.45rem;font-weight:900}
+.d-ver{font-size:.72rem;color:var(--brand2);font-weight:700;background:rgba(59,130,246,.12);padding:.15rem .6rem;border-radius:1rem;display:inline-block;margin-top:.35rem}
+.d-desc{color:var(--text2);line-height:1.8;font-size:.9rem;white-space:pre-line}
+.d-shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.7rem;margin-top:1.3rem}
+.shot{aspect-ratio:9/16;border-radius:.9rem;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:.72rem;background:var(--bg2);overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:cover}
+/* 侧栏获取面板 */
+.d-side{position:sticky;top:4.5rem;align-self:start;display:flex;flex-direction:column;gap:.9rem}
+.panel{border-radius:var(--radius);border:1px solid var(--border);background:var(--card-solid);padding:1.2rem}
+.panel h3{font-size:.95rem;font-weight:800;margin-bottom:.9rem;display:flex;align-items:center;gap:.45rem}
+.dl-row{display:flex;align-items:center;gap:.7rem;padding:.75rem .9rem;border:1px solid var(--border);border-radius:.85rem;margin-bottom:.55rem;transition:.2s;background:var(--bg2)}
+.dl-row:hover{border-color:var(--brand);transform:translateX(3px)}
+.dl-logo{width:1.6rem;height:1.6rem;border-radius:.45rem;flex-shrink:0}
+.dl-row .n{font-weight:700;font-size:.85rem;flex:1}
+.dl-row .go{font-size:.72rem;font-weight:800;color:var(--brand2)}
+.save-tip{margin-top:.8rem;font-size:.72rem;line-height:1.7;color:var(--accent);background:rgba(245,158,11,.08);border:1px dashed rgba(245,158,11,.35);border-radius:.75rem;padding:.65rem .8rem}
+.group-banner{margin-top:.15rem;text-align:center}
+.group-banner .qq{font-size:1.05rem;font-weight:900;color:#12b7f5;letter-spacing:.03em}
+.group-banner p{font-size:.72rem;color:var(--text2);margin:.3rem 0 .7rem}
+.btn-qq{display:block;width:100%;padding:.7rem;border-radius:.85rem;border:none;background:linear-gradient(135deg,#12b7f5,#0ea5e9);color:#fff;font-weight:800;font-size:.85rem;transition:.2s}
+.btn-qq:hover{transform:translateY(-2px);box-shadow:0 8px 20px -6px rgba(18,183,245,.5)}
+.plat-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem}
+
+/* ===== 更新/投稿时间轴 ===== */
+.tl{padding:0 0 3rem;max-width:46rem}
+.tl-item{position:relative;padding:0 0 1.8rem 1.8rem;border-left:2px dashed var(--border)}
+.tl-item::before{content:"";position:absolute;left:-.4rem;top:.2rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--brand)}
+.tl-item.done::before{background:var(--green)}
+.tl-item.doing::before{background:var(--brand);animation:pulse 1.6s infinite}
+.tl-date{font-size:.72rem;color:var(--text3);font-weight:700;letter-spacing:.05em}
+.tl-item h3{font-size:.95rem;font-weight:800;margin:.25rem 0 .35rem}
+.tl-item p{font-size:.8rem;color:var(--text2);line-height:1.7}
+.tl-badge{font-size:.62rem;font-weight:800;padding:.12rem .5rem;border-radius:.5rem;margin-left:.4rem;vertical-align:middle}
+.tl-badge.done{background:rgba(16,185,129,.14);color:var(--green)}
+.tl-badge.doing{background:rgba(59,130,246,.14);color:var(--brand2)}
+.tl-badge.wait{background:rgba(161,161,170,.14);color:var(--text2)}
+
+/* ===== 弹窗 ===== */
+.modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:60;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-mask.show{display:flex}
+.modal{width:min(26rem,100%);border-radius:1.4rem;border:1px solid var(--border);background:var(--card-solid);padding:1.5rem;animation:fadein .2s ease}
+.modal h3{font-size:1.05rem;font-weight:900;margin-bottom:1rem}
+.group-row{display:flex;align-items:center;gap:.7rem;padding:.75rem .9rem;border:1px solid var(--border);border-radius:.85rem;margin-bottom:.55rem}
+.group-row .gi{font-size:1.2rem}
+.group-row .info{flex:1}
+.group-row .info b{font-size:.85rem}
+.group-row .info span{display:block;font-size:.72rem;color:var(--text3);letter-spacing:.05em}
+.copy-btn{padding:.4rem .8rem;border-radius:.6rem;border:none;background:rgba(59,130,246,.15);color:var(--brand2);font-size:.72rem;font-weight:800;transition:.15s}
+.copy-btn:hover{background:var(--brand);color:#fff}
+.copy-btn.join{background:rgba(18,183,245,.15);color:#12b7f5}
+.copy-btn.join:hover{background:#12b7f5;color:#fff}
+
+/* ===== 软件大全打包横幅（页面最顶部） ===== */
+.allpack{margin-top:1.2rem;border-radius:var(--radius);border:1px solid rgba(59,130,246,.35);background:linear-gradient(135deg,rgba(59,130,246,.16),rgba(96,165,250,.05));padding:1.1rem 1.3rem;display:flex;flex-wrap:wrap;align-items:center;gap:.9rem}
+.allpack .t{flex:1;min-width:200px}
+.allpack .t b{font-size:1rem;font-weight:900}
+.allpack .t p{font-size:.75rem;color:var(--text2);margin-top:.2rem}
+.allpack .btns{display:flex;gap:.5rem;flex-wrap:wrap}
+.pk-btn{display:flex;align-items:center;gap:.4rem;padding:.55rem .95rem;border-radius:.8rem;border:1px solid var(--border);background:var(--card-solid);font-size:.8rem;font-weight:800;color:var(--text);transition:.2s}
+.pk-btn:hover{transform:translateY(-2px)}
+.pk-btn img{width:1.1rem;height:1.1rem;border-radius:.35rem}
+@media(max-width:640px){.allpack{flex-direction:column;align-items:stretch;text-align:center}.allpack .btns{justify-content:center}}
+
+/* ===== 移动端底部 TabBar ===== */
+.tabbar{position:fixed;bottom:0;left:0;right:0;z-index:50;display:none;backdrop-filter:blur(20px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-top:1px solid var(--border)}
+.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.55rem 0 calc(.55rem + env(safe-area-inset-bottom,0px));font-size:.62rem;font-weight:800;color:var(--text3);text-transform:uppercase}
+.tabbar a.on{color:var(--brand2)}
+.tabbar a span:first-child{font-size:1.15rem}
+@media(max-width:767px){
+  .tabbar{display:flex}
+  nav .nav-links{display:none}
+  body{padding-bottom:4.2rem}
+  footer{padding-bottom:6rem}
+  .d-side{position:static}
+  .hero-name{font-size:2.6rem}
+  .app-card{padding:.9rem}
+  .app-icon{width:64px;height:64px}
+  .soc-btn{padding:.7rem 1rem;font-size:.9rem}
+  .page-head{padding:2.2rem 0 1.2rem}
+  .page-head h1{font-size:1.6rem}
+  .d-main,.panel{padding:1.1rem}
+  .dl-row{padding:.9rem}
+  .modal{margin:0 1rem}
+}
+.modal .close{width:100%;margin-top:.6rem;padding:.6rem;border-radius:.75rem;border:1px solid var(--border);background:transparent;color:var(--text2);font-weight:700;font-size:.8rem}
+.tg-line{margin-top:.9rem;text-align:center;font-size:.72rem;color:var(--text3)}
+.tg-line a{color:#2aabee;font-weight:700}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--brand);color:#fff;padding:.55rem 1.2rem;border-radius:.85rem;font-size:.8rem;font-weight:700;opacity:0;transition:.25s;z-index:99;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%)}
+
+/* 雪花画布 */
+#snow{position:fixed;inset:0;pointer-events:none;z-index:30}
+</style>
+</head>
+<body>
+<canvas id="snow"></canvas>
+<nav>
+  <div class="container">
+    <a href="#/" class="logo">木子米软件大全</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#/" data-r="/">首页</a>
+      <a href="#/apps" data-r="/apps">软件大全</a>
+      <a href="#/updates" data-r="/updates">更新与投稿</a>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn" id="btnSnow" title="雪花开关">❄</button>
+      <button class="icon-btn" id="btnBg" title="背景图开关">🖼</button>
+      <button class="icon-btn" id="btnTheme" title="主题切换">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 首页 ============ -->
+<div class="page" id="page-home">
+  <div class="container">
+  <div class="allpack">
+    <div class="t"><b>📦 软件大全 · 全部打包</b><p>一个链接拿走全部软件，安卓APK + iPhone/鸿蒙HTML全都有 · 先转存到自己网盘=永久保存</p></div>
+    <div class="btns" id="allpackBtns"></div>
+  </div>
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <div class="hero-name">木子米<br>软件大全</div>
+      <div class="typewriter"><span id="tw"></span><span class="cursor">ˍ</span></div>
+      <div class="soc-row">
+        <button class="soc-btn qq" onclick="joinQQ()">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C8.7 2 6.5 4.4 6.5 7.2c0 .8-.3 1.4-.8 2.2-.7 1.1-1.5 2.4-1.5 4.2 0 .5.4.9.9.7l2-.7c.6 1.2 1.7 2.2 3 2.7-.7.5-1.6 1.4-1.6 2.4 0 .3.2.5.5.5h6c.3 0 .5-.2.5-.5 0-1-.9-1.9-1.6-2.4 1.3-.5 2.4-1.5 3-2.7l2 .7c.5.2.9-.2.9-.7 0-1.8-.8-3.1-1.5-4.2-.5-.8-.8-1.4-.8-2.2C17.5 4.4 15.3 2 12 2z"/></svg>
+          QQ粉丝群 <small>点击直接加群</small>
+        </button>
+        <a class="soc-btn bl" href="https://space.bilibili.com/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.8 4.7l2-2.4c.2-.3.1-.6-.2-.6h-1.9c-.2 0-.4.1-.5.2l-1.7 2.1h-7L6.8 1.9c-.1-.1-.3-.2-.5-.2H4.4c-.3 0-.4.3-.2.6l2 2.4C3.9 5.6 2.5 7.6 2.5 10.4c0 4.4 2.7 7.4 7.3 7.4h1.2v3.4c0 .3.2.5.5.5h1c.3 0 .5-.2.5-.5v-3.4h1.2c4.6 0 7.3-3 7.3-7.4 0-2.8-1.4-4.8-4.7-5.7zM6.6 8.1c.8 0 1.4.9 1.4 2.1s-.6 2.1-1.4 2.1-1.4-.9-1.4-2.1.6-2.1 1.4-2.1zm10.8 0c.8 0 1.4.9 1.4 2.1s-.6 2.1-1.4 2.1-1.4-.9-1.4-2.1.6-2.1 1.4-2.1z"/></svg>
+          B站 <small>视频首发</small>
+        </a>
+        <a class="soc-btn" href="#/apps">📦 软件大全</a>
+      </div>
+    </div>
+    <div class="bento">
+      <a class="b-card b-apps" href="#/apps"><span class="b-ico">📦</span><h3>软件大全</h3><p>语音盒 × 互动游戏，全平台可用</p></a>
+      <a class="b-card b-updates" href="#/updates" id="bUpdates"><span class="dot" id="updateDot" style="display:none"></span><span class="b-ico">📝</span><h3>更新日志</h3><p>最新版本动态</p></a>
+      <a class="b-card b-sub" href="#/updates"><span class="b-ico">📮</span><h3>投稿排期</h3><p>你的点子我来做</p></a>
+      <a class="b-card b-about" href="#/updates"><span class="b-ico">💛</span><h3>关于</h3><p>离线单文件 · 永不变砖</p></a>
+    </div>
+  </div>
+  <footer>COPYRIGHT © 2025-2026 木子米</footer>
+</div>
+
+<!-- ============ Apps 列表 ============ -->
+<div class="page" id="page-apps">
+  <div class="container">
+    <div class="allpack" style="margin-top:0;margin-bottom:.2rem">
+      <div class="t"><b>📦 软件大全 · 全部打包</b><p>一个链接拿走全部软件 · 先转存到自己网盘=永久保存</p></div>
+      <div class="btns" id="allpackBtns2"></div>
+    </div>
+    <div class="page-head"><h1>软件大全</h1><p>全部离线运行 · 安卓装APK / iPhone·鸿蒙用浏览器打开HTML · 不联网不盗链永不变砖</p></div>
+    <div class="grid-apps" id="appsGrid"></div>
+  </div>
+  <footer>COPYRIGHT © 2025-2026 木子米</footer>
+</div>
+
+<!-- ============ 详情 ============ -->
+<div class="page" id="page-detail">
+  <div class="container" id="detailBody"></div>
+  <footer>COPYRIGHT © 2025-2026 木子米</footer>
+</div>
+
+<!-- ============ 更新/投稿 ============ -->
+<div class="page" id="page-updates">
+  <div class="container">
+    <div class="page-head"><h1>更新与投稿</h1><p>最新动态 & 投稿制作排期（你的点子我来做，进群投稿）</p></div>
+    <div class="tl" id="tlBody"></div>
+  </div>
+  <footer>COPYRIGHT © 2025-2026 木子米</footer>
+</div>
+
+<!-- QQ群弹窗 -->
+<div class="modal-mask" id="groupModal" onclick="if(event.target===this)closeGroups()">
+  <div class="modal">
+    <h3>💬 加入粉丝群</h3>
+    <div id="groupList"></div>
+    <button class="close" onclick="closeGroups()">关闭</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<nav class="tabbar" id="tabbar">
+  <a href="#/" data-r="/"><span>🏠</span><span>首页</span></a>
+  <a href="#/apps" data-r="/apps"><span>📦</span><span>大全</span></a>
+  <a href="#/updates" data-r="/updates"><span>📝</span><span>更新</span></a>
+  <a href="javascript:void(0)" onclick="openGroups()"><span>💬</span><span>群</span></a>
+</nav>
+
+<script>
+/* ============ 数据区（改内容只动这里） ============ */
+const DATA = {
+  groups: [
+    {name:"一群", id:"318283066"},
+    {name:"二群", id:"575703180"},
+    {name:"三群", id:"1071472123"}
+  ],
+  tgChannel: "",  // 频道建好后填（当前隐藏入口）
+  biliSpace: "https://space.bilibili.com/638676336",
+  mainGroup: "575703180",
+  /* 网盘真实链接（来自 pan_config.json，2026-09 现网有效） */
+  pan: {
+    all:      { quark:"https://pan.quark.cn/s/7b9e42526033",
+                uc:"https://drive.uc.cn/s/70b29a038c114",
+                baidu:"https://pan.baidu.com/s/1T7noogAjv5x1xGQci8HMIw", baiduCode:"00ct" },
+    bangduori:{ quark:"https://pan.quark.cn/s/48c50d509ef3",
+                uc:"https://drive.uc.cn/s/516c84da87f74",
+                baidu:"https://pan.baidu.com/s/1W7Ngyk8igVIAtxbRb5vylQ", baiduCode:"xyzh" },
+    qinqinhe: { quark:"https://pan.quark.cn/s/b16484e63e54",
+                uc:"https://drive.uc.cn/s/51fe2bbf36ba4",
+                baidu:"https://pan.baidu.com/s/1qDiNyuT3LdZwsPdNedUSnA", baiduCode:"eh16" },
+    mijia:    { quark:"https://pan.quark.cn/s/14161b2c5ee9",
+                uc:"https://drive.uc.cn/s/6014e91973c64",
+                baidu:"https://pan.baidu.com/s/1MZdVUJ_E9TEj1JB6iGr18Q", baiduCode:"ipnz" }
+  },
+  slogans: [
+    "一次劳动，三端通用。",
+    "离线单文件，永不变砖。",
+    "语音盒 × 互动游戏 × 整活神器。",
+    "纯血鸿蒙也能用，浏览器打开就行。",
+    "全部免费，进群抢先版。"
+  ],
+  apps: [
+    {
+      id:"bangduori", icon:"🎸", name:"邦多利·看哭114514亿邦邦人", ver:"v5.2", date:"2026-09-12", size:"2.5MB/单文件83MB",
+      desc:"52个棉花娃娃×36首曲子的邦邦人整活神器。布置模式、换娃自动抠图、四档连击特效、老人机省电模式。",
+      plat:["安卓","iOS","鸿蒙"], tags:["new","hot"], shot:"shots/bangduori.png",
+      longDesc:"把整个邦多利乐队装进一个离线文件：52个棉花娃娃自由布置（支持缩放/固定/持久化），36首曲子懒加载秒开，特效四档连击，双击返回防误触。\n安卓直接装APK；iPhone/纯血鸿蒙用Safari/浏览器打开HTML版即可，同一份文件零额外劳动。\nv5.2终极版：中文化+纯娃娃替换+白膜终局全量落地（59号手册换皮流水线成果）。",
+      dls:[
+        {name:"夸克网盘", type:"quark", url:"TODO", code:""},
+        {name:"UC网盘", type:"uc", url:"TODO", code:""},
+        {name:"百度网盘", type:"baidu", url:"TODO", code:"xyzh"}
+      ]
+    },
+    {
+      id:"qinqinhe", icon:"😘", name:"邦多利·亲亲盒", ver:"v1.1", date:"2026-09-09", size:"2.83MB",
+      desc:"51个棉花娃娃的亲亲盒。修好了鸿蒙3导入bug，三网盘发版。",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/qinqinhe.png",
+      longDesc:"邦多利亲亲盒族第二产品：51娃全量、香澄置顶、嘴位统一构图一致、全small雾化、webp压到2.83MB。\nv1.1修复了Android WebView的file input静默无反应问题（鸿蒙3真机中招），网盘区换成三网盘弹窗。",
+      dls:[
+        {name:"夸克网盘", type:"quark", url:"TODO", code:""},
+        {name:"UC网盘", type:"uc", url:"TODO", code:""},
+        {name:"百度网盘", type:"baidu", url:"TODO", code:"xyzh"}
+      ]
+    },
+    {
+      id:"feidudu", icon:"🍔", name:"肥嘟嘟语音盒", ver:"v2.0", date:"2026-08-29", size:"1.02MB",
+      desc:"47条语音全内嵌的语音盒，离线可用，装完即玩。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/feidudu.png",
+      longDesc:"零外部依赖铁律的第一代代表作：47条语音Base64全内嵌，断网可用，永不变砖。手表版同步推出。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"kaixiahe", icon:"🎮", name:"木子米开黑盒", ver:"v1.5", date:"2026-08-29", size:"533KB",
+      desc:"71条开黑语音，开黑必备整活神器。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/kaixiahe.png",
+      longDesc:"71条开黑语音全内嵌，533KB小到没朋友。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"mozhiliao", icon:"🦗", name:"莫知了", ver:"v1.0", date:"2026-08-24", size:"3.47MB",
+      desc:"睦知了姊妹篇，蝉鸣整活盒。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mozhiliao.png",
+      longDesc:"莫知了：按一下叫一声，整活整到停不下来。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"mucheng", icon:"🪁", name:"睦从天降", ver:"v1.0", date:"2026-08-24", size:"5.33MB",
+      desc:"睦从天降小游戏，接住从天而降的睦睦。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mucheng.png",
+      longDesc:"睦从天降：体感+反应类小游戏。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"mijia", icon:"💐", name:"米家亲亲盒", ver:"v1.0", date:"2026-08-28", size:"3.45MB",
+      desc:"米家亲亲盒，mua一下。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mijia.png",
+      longDesc:"米家mua盒：亲亲盒族第一产品。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"ball", icon:"⚽", name:"木子米小球", ver:"v1.0", date:"2026-08-26", size:"0.78MB",
+      desc:"休闲小球小游戏。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/ball.png",
+      longDesc:"木子米小球：轻松休闲小品。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"rainbowring", icon:"🌈", name:"木子米彩虹环", ver:"v5", date:"2026-08-27", size:"0.86MB",
+      desc:"彩虹环休闲小游戏，迭代到第5版。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/rainbowring.png",
+      longDesc:"彩虹环休闲小游戏，v5为当前最新备份。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"tengduzi", icon:"😶", name:"藤都子压抑盒", ver:"v1.0", date:"2026-08-29", size:"1.69MB",
+      desc:"压抑系整活盒，点开就知道。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/tengduzi.png",
+      longDesc:"藤都子压抑盒。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"naochi", icon:"🍚", name:"闹吃与古振兴", ver:"v1.0", date:"2026-08-30", size:"3.09MB",
+      desc:"闹吃与古振兴对轰整活盒。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/naochi.png",
+      longDesc:"闹吃与古振兴：对轰整活。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"tiansuoluo", icon:"👶", name:"天素罗宝宝", ver:"v1.0", date:"2026-09-05", size:"9.05MB",
+      desc:"天素罗宝宝整活盒。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/tiansuoluo.png",
+      longDesc:"天素罗宝宝。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"shekonghe", icon:"😳", name:"邦邦社恐盒", ver:"v1.0", date:"2026-08-29", size:"1.47MB",
+      desc:"邦邦人社恐整活盒，iOS鸿蒙通用。",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/shekonghe.png",
+      longDesc:"邦邦社恐盒。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    },
+    {
+      id:"chibaobao", icon:"🍔", name:"吃汉堡木子米", ver:"v1.0", date:"2026-08-22", size:"6.57MB",
+      desc:"初代经典：吃汉堡出红框整活，iOS鸿蒙同样是它。",
+      plat:["安卓","iOS","鸿蒙"], tags:["hot"], shot:"shots/chibaobao.png",
+      longDesc:"初代模板作品，一切语音盒的原点。",
+      dls:[{name:"夸克网盘", type:"quark", url:"TODO", code:""}]
+    }
+  ],
+  updates: [
+    {date:"2026-09-11", items:[
+      {t:"更新", d:"邦多利·看哭20亿邦邦人 v4.4：布置模式/换娃抠图/四档特效/老人机省电，14坑全修"},
+      {t:"修复", d:"v4.4a真机热修：applyAll字段连杀、移动端file input手势栈、返回键双击退出"}
+    ]},
+    {date:"2026-09-09", items:[
+      {t:"更新", d:"邦多利·亲亲盒 v1.1 发布：鸿蒙3导入修复 + 三网盘发版"}
+    ]},
+    {date:"2026-09-07", items:[
+      {t:"更新", d:"看哭20亿邦邦人 v4.0→v4.3：摇一摇、FPS徽章、35曲崇皇时王、永久保存转存弹窗"}
+    ]}
+  ],
+  submissions: [
+    {name:"下一个语音盒点子", status:"wait", date:"征集中"},
+    {name:"看哭20亿邦邦人 v4.5", status:"doing", date:"2026-09"},
+    {name:"亲亲盒 v1.1", status:"done", date:"2026-09-09"},
+    {name:"看哭20亿邦邦人 v4.4", status:"done", date:"2026-09-11"}
+  ]
+};
+/* 网盘 logo（base64 内联，零外部依赖） */
+const DL_LOGO = {
+  quark:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#6f5cf0"/><text x="16" y="22" font-size="15" text-anchor="middle" fill="#fff" font-weight="bold">夸</text></svg>'),
+  uc:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#ff7a1a"/><text x="16" y="22" font-size="15" text-anchor="middle" fill="#fff" font-weight="bold">UC</text></svg>'),
+  baidu:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#2932e1"/><text x="16" y="22" font-size="14" text-anchor="middle" fill="#fff" font-weight="bold">度</text></svg>')
+};
+
+/* ============ 设置三件套（对齐 stand.homes 的 persist store） ============ */
+const S = {theme:localStorage.getItem("mzm_theme")||"dark",
+           snow:localStorage.getItem("mzm_snow")!=="0",
+           bg:localStorage.getItem("mzm_bg")==="1",
+           lastUpdate:localStorage.getItem("mzm_lastUpdate")||""};
+function saveS(){localStorage.setItem("mzm_theme",S.theme);localStorage.setItem("mzm_snow",S.snow?"1":"0");localStorage.setItem("mzm_bg",S.bg?"1":"0")}
+function applyTheme(){
+  document.documentElement.setAttribute("data-theme",S.theme);
+  document.documentElement.classList.toggle("dark",S.theme==="dark");
+  document.getElementById("btnTheme").textContent = S.theme==="dark"?"🌙":"☀️";
+}
+document.getElementById("btnTheme").onclick=()=>{S.theme=S.theme==="dark"?"light":"dark";applyTheme();saveS()};
+document.getElementById("btnSnow").onclick=function(){S.snow=!S.snow;this.style.opacity=S.snow?1:.35;saveS()};
+document.getElementById("btnBg").onclick=function(){S.bg=!S.bg;document.body.classList.toggle("with-bg",S.bg);this.style.opacity=S.bg?1:.35;saveS()};
+document.getElementById("btnSnow").style.opacity=S.snow?1:.35;
+document.getElementById("btnBg").style.opacity=S.bg?1:.35;
+applyTheme();
+/* 背景图：默认关（原站默认开LoliAPI外链，我们零外部依赖默认关，留接口） */
+if(S.bg){document.body.classList.add("with-bg");
+  document.body.style.setProperty("--bgimg","url(assets/bg.jpg)");}
+
+/* ============ 打字机 ============ */
+(function(){
+  const el=document.getElementById("tw");let si=0,ci=0,del=false;
+  function tick(){
+    const s=DATA.slogans[si];
+    if(!del){ci++;if(ci===s.length){del=true;return setTimeout(tick,3000)}}
+    else{ci--;if(ci===0){del=false;si=(si+1)%DATA.slogans.length}}
+    el.textContent=s.slice(0,ci);
+    setTimeout(tick,del?100:200);
+  }
+  tick();
+})();
+
+/* ============ 雪花（canvas 版，改进自原站 100 DOM 粒子） ============ */
+(function(){
+  const cv=document.getElementById("snow"),ctx=cv.getContext("2d");
+  let W,H,P=[],mx=-999,my=-999;
+  function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+  rs();addEventListener("resize",rs);
+  addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
+  addEventListener("touchmove",e=>{mx=e.touches[0].clientX;my=e.touches[0].clientY},{passive:true});
+  for(let i=0;i<60;i++)P.push({x:Math.random()*W,y:Math.random()*H,s:2+Math.random()*5,v:.6+Math.random()*2,sw:.5+Math.random()*2,o:.4+Math.random()*.5});
+  (function loop(){
+    ctx.clearRect(0,0,W,H);
+    if(S.snow)for(const p of P){
+      const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy);
+      if(d<120){p.x+=dx/d*3;p.y+=dy/d*3}
+      p.y+=p.v;p.x+=Math.sin(p.y*.01*p.sw)*.6;
+      if(p.y>H+10){p.y=-10;p.x=Math.random()*W}
+      ctx.globalAlpha=p.o;ctx.fillStyle="#fff";
+      ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,7);ctx.fill();
+    }
+    ctx.globalAlpha=1;requestAnimationFrame(loop);
+  })();
+})();
+
+/* ============ QQ 加群：点击直接跳（mqqapi 深链，手机装了QQ直接弹加群卡） ============ */
+function joinQQ(groupId){
+  const gid = groupId || DATA.mainGroup;
+  const isMobile = /Android|iPhone|iPad|HarmonyOS/i.test(navigator.userAgent);
+  if(isMobile){
+    location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin="+gid+"&card_type=group&source=qrcode";
+    /* 深链失败兜底：2秒后还在本页则弹窗给群号 */
+    setTimeout(()=>{ if(document.visibilityState==="visible") openGroups(); }, 2200);
+  }else{
+    /* 桌面端：尝试唤起QQ客户端，失败弹窗 */
+    const f = document.createElement("iframe");
+    f.style.display="none"; f.src="mqqapi://card/show_pslcard?src_type=internal&version=1&uin="+gid+"&card_type=group&source=qrcode";
+    document.body.appendChild(f);
+    setTimeout(()=>{ f.remove(); if(document.visibilityState==="visible") openGroups(); }, 1500);
+  }
+}
+
+/* ============ QQ群弹窗 ============ */
+function openGroups(){
+  const box=document.getElementById("groupList");
+  box.innerHTML=DATA.groups.map((g,i)=>`
+    <div class="group-row"><span class="gi">👥</span>
+      <div class="info"><b>${g.name}</b><span>${g.id}</span></div>
+      <button class="copy-btn" style="margin-right:.4rem" onclick="copyId('${g.id}',this)">复制群号</button>
+      <button class="copy-btn join" onclick="joinQQ('${g.id}')">加群</button>
+    </div>`).join("");
+  document.getElementById("groupModal").classList.add("show");
+}
+function closeGroups(){document.getElementById("groupModal").classList.remove("show")}
+function copyId(id,btn){
+  const done=()=>{toast("已复制 "+id);btn.textContent="✓ 已复制";setTimeout(()=>btn.textContent="复制群号",1500)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(id).then(done).catch(()=>{fallback()})}
+  else fallback();
+  function fallback(){const t=document.createElement("textarea");t.value=id;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();done()}
+}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800)}
+/* TG 入口当前隐藏（DATA.tgChannel 为空时不渲染） */
+if(DATA.tgChannel){
+  const a=document.createElement("a");
+  a.className="soc-btn tg"; a.target="_blank"; a.rel="noopener"; a.href=DATA.tgChannel;
+  a.innerHTML="✈️ TG频道 <small>备用</small>";
+  document.querySelector(".soc-row").appendChild(a);
+}
+document.querySelectorAll("a.soc-btn.bl").forEach(a=>a.href=DATA.biliSpace);
+
+/* ============ 软件大全打包横幅渲染 ============ */
+function panButtons(pack){
+  const baiduUrl = pack.baiduCode ? pack.baidu+"?pwd="+pack.baiduCode : pack.baidu;
+  return `
+    <a class="pk-btn" href="${pack.quark}" target="_blank" rel="noopener"><img src="${DL_LOGO.quark}" alt="">夸克网盘</a>
+    <a class="pk-btn" href="${pack.uc}" target="_blank" rel="noopener"><img src="${DL_LOGO.uc}" alt="">UC网盘</a>
+    <a class="pk-btn" href="${baiduUrl}" target="_blank" rel="noopener"><img src="${DL_LOGO.baidu}" alt="">百度网盘${pack.baiduCode?'<small style="color:var(--text3)">'+pack.baiduCode+'</small>':""}</a>`;
+}
+function renderAllpack(){
+  const html=panButtons(DATA.pan.all);
+  const b1=document.getElementById("allpackBtns");if(b1)b1.innerHTML=html;
+  const b2=document.getElementById("allpackBtns2");if(b2)b2.innerHTML=html;
+}
+
+/* ============ 更新红点（对齐原站 updates store） ============ */
+(function(){
+  const latest=DATA.updates[0]?.date||"";
+  if(latest && S.lastUpdate!==latest){
+    document.getElementById("updateDot").style.display="block";
+  }
+})();
+
+/* ============ Apps 列表渲染 ============ */
+function tagHtml(tags){
+  return tags.map(t=>t==="new"?'<span class="tag new">NEW</span>':t==="hot"?'<span class="tag hot">🔥 热门</span>':"").join("");
+}
+function renderApps(){
+  document.getElementById("appsGrid").innerHTML=DATA.apps.map(a=>`
+    <div class="app-card" onclick="location.hash='#/app/${a.id}'">
+      <div class="app-icon">${a.shot?`<img src="${a.shot}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit" alt="">`:a.icon}</div>
+      <div style="flex:1;min-width:0">
+        <h3>${a.name}</h3>
+        <div class="desc">${a.desc}</div>
+        <div class="tag-row">${tagHtml(a.tags)}</div>
+        <div class="app-meta"><span>📅 ${a.date}</span><span>💾 ${a.size}</span></div>
+      </div>
+    </div>`).join("");
+}
+
+/* ============ 详情渲染 ============ */
+function renderDetail(id){
+  const a=DATA.apps.find(x=>x.id===id);
+  const box=document.getElementById("detailBody");
+  if(!a){box.innerHTML='<div class="page-head"><h1>404</h1></div>';return}
+  document.title=`${a.name} - 木子米软件大全`;
+  const shotImgs=a.shot?[`<div class="shot"><img src="${a.shot}" alt=""></div>`]:[];
+  const shots=shotImgs.length?shotImgs.join(""):"";
+  /* 链接解析：产品有自己的盘链接就用自己的（DATA.pan[id]），否则用软件大全总链接兜底 */
+  const pack = DATA.pan[a.id] || DATA.pan.all;
+  const baiduUrl = pack.baiduCode ? pack.baidu+"?pwd="+pack.baiduCode : pack.baidu;
+  const dls=[
+    {name:"夸克网盘", type:"quark", url:pack.quark},
+    {name:"UC网盘", type:"uc", url:pack.uc},
+    {name:"百度网盘", type:"baidu", url:baiduUrl, code:pack.baiduCode||""}
+  ].map(d=>`
+    <a class="dl-row" href="${d.url}" target="_blank" rel="noopener">
+      <img class="dl-logo" src="${DL_LOGO[d.type]}" alt="">
+      <span class="n">${d.name}${d.code?` <small style="color:var(--text3)">提取码 ${d.code}</small>`:""}</span>
+      <span class="go">获取 →</span></a>`).join("");
+  box.innerHTML=`
+  <div class="page-head"><h1>${a.name}</h1><p><a href="#/apps" style="color:var(--brand2)">← 返回大全</a></p></div>
+  <div class="detail-wrap">
+    <div class="d-main">
+      <div class="d-head">
+        <div class="app-icon">${a.icon}</div>
+        <div><h1 style="font-size:1.2rem">${a.name}</h1><span class="d-ver">${a.ver} · ${a.date} · ${a.size}</span>
+        <div class="plat-row">${a.plat.map(p=>`<span class="tag">${p}</span>`).join("")}</div></div>
+      </div>
+      <div class="d-desc">${a.longDesc}</div>
+      <div class="d-shots">${shots}</div>
+    </div>
+    <div class="d-side">
+      <div class="panel">
+        <h3>⬇️ 获取</h3>
+        ${dls}
+        <div class="save-tip">⚠️ 分享链接容易被封 · <b>先转存到自己网盘=永久保存</b>，网盘里点"转存"即可</div>
+      </div>
+      <div class="panel group-banner">
+        <p>新版抢先发 · 缺歌来投稿 · 链接失效秒更新</p>
+        <div class="qq">${DATA.groups[1].id}</div>
+        <p style="margin-top:.5rem">QQ群：${DATA.groups.map(g=>g.id).join(" / ")}</p>
+        <button class="btn-qq" onclick="openGroups()">💬 进群抢新版</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ============ 更新+投稿渲染 ============ */
+function renderUpdates(){
+  const ups=DATA.updates.map(u=>`
+    <div class="tl-item done">
+      <div class="tl-date">${u.date}</div>
+      ${u.items.map(i=>`<h3>${i.t}</h3><p>${i.d}</p>`).join("")}
+    </div>`).join("");
+  const subs=DATA.submissions.map(s=>{
+    const cls=s.status==="done"?"done":s.status==="doing"?"doing":"";
+    const badge=s.status==="done"?'<span class="tl-badge done">已完成</span>':s.status==="doing"?'<span class="tl-badge doing">制作中</span>':'<span class="tl-badge wait">征集中</span>';
+    return `<div class="tl-item ${cls}"><div class="tl-date">${s.date}</div><h3>${s.name} ${badge}</h3></div>`;
+  }).join("");
+  document.getElementById("tlBody").innerHTML=`
+    <h2 style="font-size:1.1rem;font-weight:900;margin-bottom:1.2rem">📝 更新日志</h2>${ups}
+    <h2 style="font-size:1.1rem;font-weight:900;margin:1.5rem 0 1.2rem">📮 投稿排期（进群投稿你的点子）</h2>${subs}`;
+}
+
+/* ============ Hash 路由 ============ */
+function route(){
+  const h=location.hash||"#/";
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".nav-links a").forEach(a=>a.classList.remove("on"));
+  document.querySelectorAll(".tabbar a").forEach(a=>a.classList.remove("on"));
+  renderAllpack();
+  let m;
+  if(h==="#/"||h===""){
+    document.getElementById("page-home").classList.add("active");
+    document.querySelector('[data-r="/"]').classList.add("on");
+    document.title="木子米软件大全 - 作品集与下载";
+  }else if(h==="#/apps"){
+    renderApps();document.getElementById("page-apps").classList.add("active");
+    document.querySelector('[data-r="/apps"]').classList.add("on");
+    document.title="软件大全 - 木子米";
+  }else if(m=h.match(/^#\/app\/(.+)$/)){
+    renderDetail(m[1]);document.getElementById("page-detail").classList.add("active");
+    document.querySelector('[data-r="/apps"]').classList.add("on");
+  }else if(h==="#/updates"){
+    renderUpdates();document.getElementById("page-updates").classList.add("active");
+    document.querySelector('[data-r="/updates"]').classList.add("on");
+    document.title="更新与投稿 - 木子米";
+    S.lastUpdate=DATA.updates[0]?.date||"";localStorage.setItem("mzm_lastUpdate",S.lastUpdate);
+    document.getElementById("updateDot").style.display="none";
+  }else{
+    document.getElementById("page-home").classList.add("active");
+  }
+  /* TabBar 高亮镜像自顶部导航 */
+  const onLink=document.querySelector(".nav-links a.on");
+  if(onLink){const r=onLink.getAttribute("data-r");document.querySelectorAll('.tabbar a[data-r="'+r+'"]').forEach(a=>a.classList.add("on"))}
+  scrollTo(0,0);
+}
+addEventListener("hashchange",route);
+route();
+</script>
+</body>
+</html>
