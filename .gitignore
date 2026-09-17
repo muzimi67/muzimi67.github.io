@@ -3,10 +3,5 @@ shots.ps1
 shots_click.py
 verify.py
 preview_mobile.png
-
-# 系统垃圾
-.DS_Store
-Thumbs.db
-desktop.ini
-deploy.bat
 *.bat
+push.bat

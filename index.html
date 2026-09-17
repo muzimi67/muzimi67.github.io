@@ -57,6 +57,48 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 
 /* ===== 首页 ===== */
 .hero-wrap{display:flex;flex-direction:column;gap:2.5rem;padding:4rem 0 2rem}
+
+/* ===== 吃汉堡木子米：首屏背景 + 果冻飘浮 ===== */
+.burger-stage{
+  position:relative;width:100%;max-width:520px;height:230px;margin:0 0 -1rem;
+  pointer-events:none;user-select:none;
+}
+.burger-img{
+  position:absolute;bottom:0;height:210px;width:auto;
+  filter:drop-shadow(0 12px 28px rgba(0,0,0,.45));
+  will-change:transform;
+  opacity:0;
+}
+/* 三张交叠站位 */
+.burger-img.b1{left:0;     z-index:3; animation:jellyFloat 4.2s ease-in-out infinite, popIn .7s cubic-bezier(.34,1.56,.64,1) .05s forwards}
+.burger-img.b2{left:120px; z-index:2; height:186px; animation:jellyFloat 5.1s ease-in-out .35s infinite, popIn .7s cubic-bezier(.34,1.56,.64,1) .2s forwards}
+.burger-img.b3{left:238px; z-index:1; height:170px; animation:jellyFloat 4.6s ease-in-out .7s infinite, popIn .7s cubic-bezier(.34,1.56,.64,1) .35s forwards}
+
+/* 果冻飘浮：上下浮 + 轻微拉伸压缩（弹簧感） */
+@keyframes jellyFloat{
+  0%   {transform:translateY(0)     scaleY(1)    scaleX(1)}
+  22%  {transform:translateY(-14px) scaleY(1.05) scaleX(.97)}
+  50%  {transform:translateY(2px)   scaleY(.96)  scaleX(1.03)}
+  72%  {transform:translateY(-9px)  scaleY(1.03) scaleX(.98)}
+  100% {transform:translateY(0)     scaleY(1)    scaleX(1)}
+}
+/* 弹入 */
+@keyframes popIn{
+  0%  {opacity:0;transform:translateY(38px) scale(.55)}
+  60% {opacity:1;transform:translateY(-8px) scale(1.08)}
+  100%{opacity:1;transform:translateY(0)   scale(1)}
+}
+
+@media(max-width:767px){
+  .burger-stage{height:170px;max-width:100%;margin-bottom:-.6rem}
+  .burger-img{height:150px}
+  .burger-img.b2{left:88px;height:134px}
+  .burger-img.b3{left:172px;height:122px}
+}
+@media(prefers-reduced-motion:reduce){
+  .burger-img{animation:popIn .3s ease-out forwards !important}
+}
+
 @media(min-width:768px){.hero-wrap{flex-direction:row;align-items:center;padding:5.5rem 0 3rem}}
 .hero-left{flex:1}
 .hero-name{font-size:clamp(2.5rem,8vw,4.5rem);font-weight:900;letter-spacing:-.03em;line-height:1.05;background:linear-gradient(135deg,var(--brand2),#93c5fd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -227,6 +269,12 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
   </div>
   <div class="hero-wrap">
     <div class="hero-left">
+      <!-- 吃汉堡木子米：3 张立绘轮播（果冻飘浮 + 弹入） -->
+      <div class="burger-stage" id="burgerStage">
+        <img class="burger-img b1" src="burger/burger_01.webp" alt="" draggable="false">
+        <img class="burger-img b2" src="burger/burger_02.webp" alt="" draggable="false">
+        <img class="burger-img b3" src="burger/burger_03.webp" alt="" draggable="false">
+      </div>
       <div class="hero-name">木子米<br>软件大全</div>
       <div class="typewriter"><span id="tw"></span><span class="cursor">ˍ</span></div>
       <div class="soc-row">
@@ -497,27 +545,170 @@ if(S.bg){document.body.classList.add("with-bg");
   tick();
 })();
 
-/* ============ 雪花（canvas 版，改进自原站 100 DOM 粒子） ============ */
+/* ============ 娃娃飘落（替换原雪花）+ 果冻弹簧 + 可点击拖动 ============ */
 (function(){
   const cv=document.getElementById("snow"),ctx=cv.getContext("2d");
-  let W,H,P=[],mx=-999,my=-999;
+  if(!cv)return;
+  const N=51, IMG=[], P=[];
+  let W,H,mx=-1e4,my=-1e4,ready=0;
+
+  for(let i=0;i<N;i++){
+    const im=new Image();
+    im.onload=()=>ready++;
+    im.src="dolls/v22_"+String(i).padStart(2,"0")+".webp";
+    IMG[i]=im;
+  }
+
   function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}
   rs();addEventListener("resize",rs);
-  addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
-  addEventListener("touchmove",e=>{mx=e.touches[0].clientX;my=e.touches[0].clientY},{passive:true});
-  for(let i=0;i<60;i++)P.push({x:Math.random()*W,y:Math.random()*H,s:2+Math.random()*5,v:.6+Math.random()*2,sw:.5+Math.random()*2,o:.4+Math.random()*.5});
+
+  function mkP(top){
+    return {
+      i:Math.floor(Math.random()*N),
+      x:Math.random()*W,
+      y:top?(-80-Math.random()*260):Math.random()*H,
+      s:24+Math.random()*22,
+      v:.45+Math.random()*1.25,
+      sw:.4+Math.random()*1.6,
+      rot:(Math.random()-.5)*.55,
+      vr:(Math.random()-.5)*.012,
+      o:.55+Math.random()*.42,
+      sq:1, sv:0
+    };
+  }
+  for(let i=0;i<26;i++)P.push(mkP(false));
+
+  /* ---------- 音效 ---------- */
+  let SAudio=null, clickT=0, lastClick=null;
+  function clickSfx(){
+    const now=Date.now(); if(now-clickT<70)return; clickT=now;
+    if(!SAudio) SAudio=[new Audio("sfx/oye.ogg"),new Audio("sfx/oho.ogg")];
+    const a=SAudio[Math.random()<.5?0:1];
+    try{a.currentTime=0;a.volume=.55;a.play().catch(()=>{})}catch(e){}
+  }
+  function kSfx(vol){
+    const a=new Audio("sfx/audio_k"+String(1+Math.floor(Math.random()*71)).padStart(2,"0")+".mp3");
+    a.volume=vol||.62; a.play().catch(()=>{});
+  }
+
+  /* ---------- 交互 ---------- */
+  let drag=null, hover=null;
+  const pick=(x,y)=>{
+    for(let i=P.length-1;i>=0;i--){
+      const p=P[i];
+      if(Math.hypot(p.x-x,p.y-(p.y))<1) continue;
+      const img=IMG[p.i];
+      const h=img&&img.naturalWidth?p.s*(img.naturalHeight/img.naturalWidth):p.s;
+      if(Math.abs(p.x-x)<p.s*.5 && Math.abs(p.y-h*.5-y)<h*.5) return p;
+    }
+    return null;
+  };
+  const pos=e=>{const t=e.touches?e.touches[0]:e;return{x:t.clientX,y:t.clientY}};
+
+  cv.style.pointerEvents="auto";
+  cv.style.cursor="grab";
+
+  cv.addEventListener("pointerdown",e=>{
+    const {x,y}=pos(e);
+    const p=pick(x,y);
+    if(p){
+      drag={p,ox:x-p.x,oy:y-p.y};
+      p.sv=1.5; p.sq=1.4;
+      cv.style.cursor="grabbing";
+      kSfx(.5);
+      e.preventDefault();
+    }else{
+      clickSfx();
+    }
+  });
+
+  addEventListener("pointermove",e=>{
+    const {x,y}=pos(e); mx=x; my=y;
+    if(drag){
+      drag.p.x=x-drag.ox; drag.p.y=y-drag.oy;
+      drag.p.sv=Math.max(drag.p.sv-0.06,-1.1);
+    }else{
+      const h=pick(x,y);
+      if(h!==hover){hover=h;cv.style.cursor=h?"grab":"default"}
+    }
+  },{passive:true});
+
+  addEventListener("pointerup",()=>{
+    if(!drag)return;
+    drag.p.sv=-1.7;          /* 松手回弹 */
+    drag.p.sq=Math.min(drag.p.sq,1.2);
+    drag=null; cv.style.cursor="grab";
+    if(Math.random()<.5) kSfx(.58);
+  });
+
+  /* ---------- 主循环 ---------- */
   (function loop(){
     ctx.clearRect(0,0,W,H);
     if(S.snow)for(const p of P){
-      const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy);
-      if(d<120){p.x+=dx/d*3;p.y+=dy/d*3}
-      p.y+=p.v;p.x+=Math.sin(p.y*.01*p.sw)*.6;
-      if(p.y>H+10){p.y=-10;p.x=Math.random()*W}
-      ctx.globalAlpha=p.o;ctx.fillStyle="#fff";
-      ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,7);ctx.fill();
+      const held = drag && drag.p===p;
+      if(!held){
+        const dx=p.x-mx, dy=p.y-my, d=Math.hypot(dx,dy);
+        if(d<110&&d>.01){p.x+=dx/d*2.4;p.y+=dy/d*2.4}
+        p.y+=p.v;
+        p.x+=Math.sin(p.y*.008*p.sw)*.5;
+        p.rot+=p.vr;
+        if(p.y>H+80) Object.assign(p,mkP(true));
+        if(p.x<-100)p.x=W+70;
+        if(p.x>W+100)p.x=-70;
+      }
+      /* 果冻弹簧（阻尼谐振子） */
+      p.sv+=(1-p.sq)*.2;
+      p.sv*=.80;
+      p.sq+=p.sv;
+      if(Math.abs(p.sq-1)<.002&&Math.abs(p.sv)<.002){p.sq=1;p.sv=0}
+      p.sq=Math.max(.6,Math.min(1.7,p.sq));
+
+      const img=IMG[p.i];
+      if(!img||!img.complete||!img.naturalWidth) continue;
+      const sw=p.s, sh=p.s*(img.naturalHeight/img.naturalWidth);
+      const k=p.sq;
+      ctx.save();
+      ctx.globalAlpha=p.o;
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot);
+      ctx.translate(0,-sh/2);
+      ctx.scale(1/k,k);   /* 体积守恒的果冻形变 */
+      ctx.drawImage(img,-sw/2,0,sw,sh);
+      ctx.restore();
     }
-    ctx.globalAlpha=1;requestAnimationFrame(loop);
+    requestAnimationFrame(loop);
   })();
+
+  /* 暴露可用性（调试用） */
+  window.__dollReady=()=>ready;
+})();
+
+/* ============ 首屏汉堡立绘：点击也出音效 + 果冻弹跳 ============ */
+(function(){
+  const st=document.getElementById("burgerStage");
+  if(!st)return;
+  st.style.pointerEvents="auto";
+  const imgs=st.querySelectorAll(".burger-img");
+  imgs.forEach(el=>{
+    el.style.cursor="pointer";
+    el.addEventListener("click",()=>{
+      /* 果冻弹跳 */
+      el.style.transition="none";
+      el.style.transform="translateY(-26px) scaleX(1.12) scaleY(.88)";
+      setTimeout(()=>{
+        el.style.transition="transform .55s cubic-bezier(.34,1.56,.64,1)";
+        el.style.transform="";
+      },16);
+      /* 随机放出 oye/oho 或木子米音效 */
+      if(Math.random()<.5){
+        const a=new Audio("sfx/"+(Math.random()<.5?"oye.ogg":"oho.ogg"));
+        a.volume=.5; a.play().catch(()=>{});
+      }else{
+        const a=new Audio("sfx/audio_k"+String(1+Math.floor(Math.random()*71)).padStart(2,"0")+".mp3");
+        a.volume=.6; a.play().catch(()=>{});
+      }
+    });
+  });
 })();
 
 /* ============ QQ 加群：点击直接跳（mqqapi 深链，手机装了QQ直接弹加群卡） ============ */
