@@ -37,6 +37,10 @@ body{
 }
 body.with-bg > .page::before{content:"";position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:-1}
 html[data-theme="light"] body.with-bg > .page::before{background:rgba(255,255,255,.5)}
+/* 拖动雪花娃娃时锁定页面滚动：娃娃画在 pointer-events:none 的 canvas 上，
+   touch-action 无处可加，只能在按住娃娃期间临时给 body 加锁。
+   注意必须用完即删，否则整个站点在手机上无法滚动。 */
+body.dragging-doll{touch-action:none;overscroll-behavior:contain;overflow:hidden}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer}
 .container{max-width:72rem;margin:0 auto;padding:0 1rem}
@@ -571,7 +575,17 @@ if(S.bg){document.body.classList.add("with-bg");
     setTimeout(loadRestDolls,200);
   }
 
-  function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+  /* rs(): W/H 是"逻辑像素"(CSS px)的逻辑尺寸，用于物理计算与命中测试；
+     cv.width/height 是"物理像素"，按 DPR 放大以消除高 DPI 屏的模糊。
+     之后在 loop() 里用 setTransform(DPR,0,0,DPR,0,0) 把绘制坐标重新映射回逻辑像素，
+     所以所有绘制/物理代码仍然使用 W/H 这套逻辑坐标，无需任何改动。 */
+  function rs(){
+    W=innerWidth; H=innerHeight;
+    const DPR=Math.min(devicePixelRatio||1,3); /* 上限 3：4K 屏再高会白烧 GPU */
+    cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
+    cv.style.width=W+"px"; cv.style.height=H+"px";
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
   rs();addEventListener("resize",rs);
 
   function mkP(top){
@@ -633,7 +647,12 @@ if(S.bg){document.body.classList.add("with-bg");
   }
 
   /* ---------- 交互 ---------- */
-  let drag=null, hover=null;
+  /* pending：手指/鼠标已按在娃娃上，但还没移动够 6px，尚未确定是“拖”还是“点”。
+     关键：按下时绝不 preventDefault —— 那会取消随后的 click，
+     导致娃娃飘在按钮上方时点按钮“只出声、不跳转”。
+     只有位移越过阈值才升级为拖动并开始拦截。 */
+  let drag=null, hover=null, pending=null;
+  const DRAG_TH=6;
   const pick=(x,y)=>{
     for(let i=P.length-1;i>=0;i--){
       const p=P[i];
@@ -645,22 +664,47 @@ if(S.bg){document.body.classList.add("with-bg");
   };
   const pos=e=>{const t=e.touches?e.touches[0]:e;return{x:t.clientX,y:t.clientY}};
 
-  cv.style.pointerEvents="auto";
+  /* 注意：#snow 是 position:fixed;inset:0;z-index:30 的全屏画布。
+     绝不能给它设 pointer-events:auto —— 那会在整页之上盖一层透明罩，
+     吞掉 z-index<30 的网盘按钮(.pk-btn)、产品卡片(.app-card)、下载行(.dl-row)的点击。
+     保持 CSS 的 pointer-events:none，改为在 window 上做命中测试。 */
   cv.style.cursor="grab";
 
-  cv.addEventListener("pointerdown",e=>{
+  /* 判断该点是否落在真正可交互的元素上（按钮/链接/卡片）——
+     若落在其上就不播空白处音效，也不拦截事件，让它正常冒泡到目标元素 */
+  const onInteractive=t=>!!(t&&t.closest&&t.closest('a,button,.app-card,.b-card,.dl-row,input,select,textarea,[onclick]'));
+
+  addEventListener("pointerdown",e=>{
     const {x,y}=pos(e);
     const p=pick(x,y);
     if(p){
-      drag={p,ox:x-p.x,oy:y-p.y};
-      p.sv=1.5; p.sq=1.4;
-      cv.style.cursor="grabbing";
-      kSfx(.5);
-      e.preventDefault();
-    }else{
+      /* 先只记录，不动画、不发声、不 preventDefault ——
+         此刻还不知道用户是想拖娃娃还是想点它底下的按钮。 */
+      pending={p,sx:x,sy:y,pt:e.pointerType||"mouse"};
+    }else if(!onInteractive(e.target)){
+      /* 点真正的空白处才发声效；点在按钮/链接/卡片上则不响，交给元素自己处理 */
       clickSfx();
     }
   });
+
+  /* 位移越过阈值：确认是拖娃娃，此刻才拦截默认行为 */
+  addEventListener("pointermove",e=>{
+    if(!pending)return;
+    const {x,y}=pos(e);
+    if(Math.hypot(x-pending.sx,y-pending.sy)<DRAG_TH)return;
+    const {p,sx,sy}=pending;
+    pending=null;
+    drag={p,ox:sx-p.x,oy:sy-p.y};
+    p.sv=1.5; p.sq=1.4;
+    cv.style.cursor="grabbing";
+    kSfx(.5);
+    /* 手机关键：锁住页面滚动，否则拖娃娃会同时把页面拖上下 */
+    document.body.classList.add("dragging-doll");
+  },{passive:true});
+
+  /* 未越阈值就松手 = 普通点击：不拦，让 click 正常冒泡到按钮/卡片 */
+  addEventListener("pointerup",()=>{pending=null});
+  addEventListener("pointercancel",()=>{pending=null});
 
   addEventListener("pointermove",e=>{
     const {x,y}=pos(e); mx=x; my=y;
@@ -671,15 +715,20 @@ if(S.bg){document.body.classList.add("with-bg");
       const h=pick(x,y);
       if(h!==hover){hover=h;cv.style.cursor=h?"grab":"default"}
     }
-  },{passive:true});
+  });
 
-  addEventListener("pointerup",()=>{
+  const endDrag=()=>{
+    document.body.classList.remove("dragging-doll");
     if(!drag)return;
     drag.p.sv=-1.7;          /* 松手回弹 */
     drag.p.sq=Math.min(drag.p.sq,1.2);
     drag=null; cv.style.cursor="grab";
     if(Math.random()<.5) kSfx(.58);
-  });
+  };
+  addEventListener("pointerup",endDrag);
+  /* 手指滑出屏幕/被系统打断时要解锁，否则页面永久卡死不可滚动 */
+  addEventListener("pointercancel",endDrag);
+  addEventListener("blur",endDrag);
 
   /* ---------- 主循环 ---------- */
   (function loop(){
