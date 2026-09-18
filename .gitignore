@@ -1,7 +1,13 @@
-# 工具脚本（不上传）
-shots.ps1
-shots_click.py
+# 本地审计/截图工具（不发布）
+dom_map.py
+mobile_audit.py
+mobile_layout.py
+mobile_report.json
+tabbar_probe.py
+tabbar_probe2.py
 verify.py
-preview_mobile.png
-*.bat
+shots_click.py
+shots.ps1
 push.bat
+preview_mobile.png
+shots/

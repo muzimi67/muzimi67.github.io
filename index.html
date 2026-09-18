@@ -28,6 +28,7 @@ html[data-theme="light"]{
   --border:rgba(0,0,0,.08); --text:#18181b; --text2:#52525b; --text3:#a1a1aa;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg)}
 body{
   background:var(--bg); color:var(--text);
   font-family:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",-apple-system,sans-serif;
@@ -44,8 +45,8 @@ button{font-family:inherit;cursor:pointer}
 @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
 /* ===== 导航 ===== */
-nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 75%,transparent);border-bottom:1px solid var(--border)}
-nav .container{display:flex;align-items:center;justify-content:space-between;height:3.5rem}
+nav:not(.tabbar){position:sticky;top:0;z-index:40;backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 75%,transparent);border-bottom:1px solid var(--border)}
+nav:not(.tabbar) .container{display:flex;align-items:center;justify-content:space-between;height:3.5rem}
 .logo{font-weight:900;font-size:1.15rem;letter-spacing:.05em;background:linear-gradient(135deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:.25rem}
 .nav-links a{padding:.45rem .85rem;border-radius:.75rem;font-size:.875rem;color:var(--text2);font-weight:600;transition:.2s}
@@ -58,45 +59,38 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 /* ===== 首页 ===== */
 .hero-wrap{display:flex;flex-direction:column;gap:2.5rem;padding:4rem 0 2rem}
 
-/* ===== 吃汉堡木子米：首屏背景 + 果冻飘浮 ===== */
+/* ===== 吃汉堡木子米：首屏立绘 + 真弹簧物理（JS 驱动） ===== */
 .burger-stage{
-  position:relative;width:100%;max-width:520px;height:230px;margin:0 0 -1rem;
-  pointer-events:none;user-select:none;
+  position:relative;width:100%;max-width:520px;height:238px;margin:.5rem 0 -1.4rem;
+  user-select:none;pointer-events:auto;touch-action:none;
 }
 .burger-img{
-  position:absolute;bottom:0;height:210px;width:auto;
-  filter:drop-shadow(0 12px 28px rgba(0,0,0,.45));
+  position:absolute;bottom:0;height:212px;width:auto;
+  filter:drop-shadow(0 14px 30px rgba(0,0,0,.5));
   will-change:transform;
+  cursor:grab;
+  pointer-events:auto;
+  touch-action:none;
+  -webkit-user-drag:none;
   opacity:0;
+  transition:opacity .5s ease-out;
+  transform-origin:50% 82%;
+  z-index:5;
 }
-/* 三张交叠站位 */
-.burger-img.b1{left:0;     z-index:3; animation:jellyFloat 4.2s ease-in-out infinite, popIn .7s cubic-bezier(.34,1.56,.64,1) .05s forwards}
-.burger-img.b2{left:120px; z-index:2; height:186px; animation:jellyFloat 5.1s ease-in-out .35s infinite, popIn .7s cubic-bezier(.34,1.56,.64,1) .2s forwards}
-.burger-img.b3{left:238px; z-index:1; height:170px; animation:jellyFloat 4.6s ease-in-out .7s infinite, popIn .7s cubic-bezier(.34,1.56,.64,1) .35s forwards}
-
-/* 果冻飘浮：上下浮 + 轻微拉伸压缩（弹簧感） */
-@keyframes jellyFloat{
-  0%   {transform:translateY(0)     scaleY(1)    scaleX(1)}
-  22%  {transform:translateY(-14px) scaleY(1.05) scaleX(.97)}
-  50%  {transform:translateY(2px)   scaleY(.96)  scaleX(1.03)}
-  72%  {transform:translateY(-9px)  scaleY(1.03) scaleX(.98)}
-  100% {transform:translateY(0)     scaleY(1)    scaleX(1)}
-}
-/* 弹入 */
-@keyframes popIn{
-  0%  {opacity:0;transform:translateY(38px) scale(.55)}
-  60% {opacity:1;transform:translateY(-8px) scale(1.08)}
-  100%{opacity:1;transform:translateY(0)   scale(1)}
-}
+.burger-img.on{opacity:1}
+/* 三张交叠站位（高度递减造成景深） */
+.burger-img.b1{left:0;     z-index:3; height:212px}
+.burger-img.b2{left:124px; z-index:2; height:188px}
+.burger-img.b3{left:246px; z-index:1; height:170px}
 
 @media(max-width:767px){
-  .burger-stage{height:170px;max-width:100%;margin-bottom:-.6rem}
-  .burger-img{height:150px}
-  .burger-img.b2{left:88px;height:134px}
-  .burger-img.b3{left:172px;height:122px}
+  .burger-stage{height:176px;max-width:100%;margin-bottom:-1rem}
+  .burger-img{height:154px}
+  .burger-img.b2{left:92px;height:138px}
+  .burger-img.b3{left:180px;height:126px}
 }
 @media(prefers-reduced-motion:reduce){
-  .burger-img{animation:popIn .3s ease-out forwards !important}
+  .burger-img{transition:opacity .2s}
 }
 
 @media(min-width:768px){.hero-wrap{flex-direction:row;align-items:center;padding:5.5rem 0 3rem}}
@@ -212,7 +206,7 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 @media(max-width:640px){.allpack{flex-direction:column;align-items:stretch;text-align:center}.allpack .btns{justify-content:center}}
 
 /* ===== 移动端底部 TabBar ===== */
-.tabbar{position:fixed;bottom:0;left:0;right:0;z-index:50;display:none;backdrop-filter:blur(20px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-top:1px solid var(--border)}
+.tabbar{position:fixed;top:auto;bottom:0;left:0;right:0;z-index:50;display:none;backdrop-filter:blur(20px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-top:1px solid var(--border);border-bottom:0}
 .tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.55rem 0 calc(.55rem + env(safe-area-inset-bottom,0px));font-size:.62rem;font-weight:800;color:var(--text3);text-transform:uppercase}
 .tabbar a.on{color:var(--brand2)}
 .tabbar a span:first-child{font-size:1.15rem}
@@ -278,9 +272,9 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
       <div class="hero-name">木子米<br>软件大全</div>
       <div class="typewriter"><span id="tw"></span><span class="cursor">ˍ</span></div>
       <div class="soc-row">
-        <button class="soc-btn qq" onclick="joinQQ()">
+        <button class="soc-btn qq" onclick="openGroups()">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C8.7 2 6.5 4.4 6.5 7.2c0 .8-.3 1.4-.8 2.2-.7 1.1-1.5 2.4-1.5 4.2 0 .5.4.9.9.7l2-.7c.6 1.2 1.7 2.2 3 2.7-.7.5-1.6 1.4-1.6 2.4 0 .3.2.5.5.5h6c.3 0 .5-.2.5-.5 0-1-.9-1.9-1.6-2.4 1.3-.5 2.4-1.5 3-2.7l2 .7c.5.2.9-.2.9-.7 0-1.8-.8-3.1-1.5-4.2-.5-.8-.8-1.4-.8-2.2C17.5 4.4 15.3 2 12 2z"/></svg>
-          QQ粉丝群 <small>点击直接加群</small>
+          QQ粉丝群 <small>3 个群可选</small>
         </button>
         <a class="soc-btn bl" href="https://space.bilibili.com/" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.8 4.7l2-2.4c.2-.3.1-.6-.2-.6h-1.9c-.2 0-.4.1-.5.2l-1.7 2.1h-7L6.8 1.9c-.1-.1-.3-.2-.5-.2H4.4c-.3 0-.4.3-.2.6l2 2.4C3.9 5.6 2.5 7.6 2.5 10.4c0 4.4 2.7 7.4 7.3 7.4h1.2v3.4c0 .3.2.5.5.5h1c.3 0 .5-.2.5-.5v-3.4h1.2c4.6 0 7.3-3 7.3-7.4 0-2.8-1.4-4.8-4.7-5.7zM6.6 8.1c.8 0 1.4.9 1.4 2.1s-.6 2.1-1.4 2.1-1.4-.9-1.4-2.1.6-2.1 1.4-2.1zm10.8 0c.8 0 1.4.9 1.4 2.1s-.6 2.1-1.4 2.1-1.4-.9-1.4-2.1.6-2.1 1.4-2.1z"/></svg>
@@ -297,6 +291,7 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
     </div>
   </div>
   <footer>COPYRIGHT © 2025-2026 木子米</footer>
+</div>
 </div>
 
 <!-- ============ Apps 列表 ============ -->
@@ -552,11 +547,28 @@ if(S.bg){document.body.classList.add("with-bg");
   const N=51, IMG=[], P=[];
   let W,H,mx=-1e4,my=-1e4,ready=0;
 
-  for(let i=0;i<N;i++){
+  /* 优先加载前 12 只（首屏立即看到），其余空闲时补 */
+  let SAudio=null;
+  const IMMEDIATE=12;
+  function loadDoll(i){
     const im=new Image();
     im.onload=()=>ready++;
     im.src="dolls/v22_"+String(i).padStart(2,"0")+".webp";
     IMG[i]=im;
+  }
+  for(let i=0;i<IMMEDIATE;i++)loadDoll(i);
+  /* 其余 39 只等空闲再拉，避免和首屏抢带宽 */
+  let restDoll=0;
+  const loadRestDolls=()=>{
+    if(restDoll>=N-IMMEDIATE) return;
+    loadDoll(IMMEDIATE+restDoll);
+    restDoll++;
+    if(restDoll<N-IMMEDIATE){nextIdle(loadRestDolls);}
+  };
+  if(window.requestIdleCallback){
+    requestIdleCallback(loadRestDolls, {timeout:800});
+  }else{
+    setTimeout(loadRestDolls,200);
   }
 
   function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}
@@ -576,10 +588,30 @@ if(S.bg){document.body.classList.add("with-bg");
       sq:1, sv:0
     };
   }
+  /* 统一降级：支持则用 rIC，否则 setTimeout 兜底 */
+  function nextIdle(fn){
+    if(window.requestIdleCallback) requestIdleCallback(fn, {timeout:800});
+    else setTimeout(fn,200);
+  }
   for(let i=0;i<26;i++)P.push(mkP(false));
 
-  /* ---------- 音效 ---------- */
-  let SAudio=null, clickT=0, lastClick=null;
+  /* ---------- 音效（懒加载，不预载 71 个） ---------- */
+  const SFX_POOL=[];
+  let poolInited=false;
+  function initPool(){
+    if(poolInited) return; poolInited=true;
+    for(let i=1;i<=71;i++){
+      const a=new Audio();
+      a.preload="none";
+      a.src="sfx/audio_k"+String(i).padStart(2,"0")+".mp3";
+      a.volume=.62;
+      SFX_POOL.push(a);
+    }
+  }
+  /* 首次绘制后再建池，避免首次点击时主线程卡顿 */
+  if(window.requestIdleCallback) requestIdleCallback(initPool, {timeout:1200});
+  else setTimeout(initPool,300);
+  let clickT=0, lastUsed=-1, kT=0;
   function clickSfx(){
     const now=Date.now(); if(now-clickT<70)return; clickT=now;
     if(!SAudio) SAudio=[new Audio("sfx/oye.ogg"),new Audio("sfx/oho.ogg")];
@@ -587,8 +619,17 @@ if(S.bg){document.body.classList.add("with-bg");
     try{a.currentTime=0;a.volume=.55;a.play().catch(()=>{})}catch(e){}
   }
   function kSfx(vol){
-    const a=new Audio("sfx/audio_k"+String(1+Math.floor(Math.random()*71)).padStart(2,"0")+".mp3");
-    a.volume=vol||.62; a.play().catch(()=>{});
+    const now=Date.now(); if(now-kT<70)return; kT=now;
+    if(!SFX_POOL.length){
+      initPool();
+      if(!SFX_POOL.length){clickSfx();return}
+    }
+    let i=Math.floor(Math.random()*SFX_POOL.length);
+    if(i===lastUsed) i=(i+1)%SFX_POOL.length;
+    lastUsed=i;
+    const a=SFX_POOL[i];
+    a.volume=vol||.62;
+    try{a.currentTime=0;a.play().catch(()=>{})}catch(e){}
   }
 
   /* ---------- 交互 ---------- */
@@ -596,9 +637,8 @@ if(S.bg){document.body.classList.add("with-bg");
   const pick=(x,y)=>{
     for(let i=P.length-1;i>=0;i--){
       const p=P[i];
-      if(Math.hypot(p.x-x,p.y-(p.y))<1) continue;
       const img=IMG[p.i];
-      const h=img&&img.naturalWidth?p.s*(img.naturalHeight/img.naturalWidth):p.s;
+      const h=img&&img.naturalWidth&&img.naturalHeight?p.s*(img.naturalHeight/img.naturalWidth):p.s;
       if(Math.abs(p.x-x)<p.s*.5 && Math.abs(p.y-h*.5-y)<h*.5) return p;
     }
     return null;
@@ -683,31 +723,203 @@ if(S.bg){document.body.classList.add("with-bg");
   window.__dollReady=()=>ready;
 })();
 
-/* ============ 首屏汉堡立绘：点击也出音效 + 果冻弹跳 ============ */
+/* ============ 首屏汉堡立绘：弹簧物理 + 拖动甩飞回弹 ============ */
 (function(){
   const st=document.getElementById("burgerStage");
   if(!st)return;
-  st.style.pointerEvents="auto";
-  const imgs=st.querySelectorAll(".burger-img");
-  imgs.forEach(el=>{
-    el.style.cursor="pointer";
-    el.addEventListener("click",()=>{
-      /* 果冻弹跳 */
+  const imgs=[...st.querySelectorAll(".burger-img")];
+  if(!imgs.length)return;
+
+  const RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* 入 kSfx / clickSfx 从外层拉不到（各自 IIFE），这里自建一个随机音效源 */
+  let pool=null, lastK=-1, lastT=0;
+  /* 点击音效只建一次，复用（照抄外层 SAudio 缓存写法，避免每次新建 Audio 泄漏） */
+  const clickA=[new Audio("sfx/oye.ogg"),new Audio("sfx/oho.ogg")];
+  function initPool(){
+    if(pool) return pool;
+    pool=[];
+    for(let i=1;i<=71;i++){
+      const a=new Audio(); a.preload="none";
+      a.src="sfx/audio_k"+String(i).padStart(2,"0")+".mp3";
+      pool.push(a);
+    }
+    return pool;
+  }
+  /* 首次绘制后再建池，避免首次拖动时主线程卡顿（同外层 IIFE 做法） */
+  if(window.requestIdleCallback) requestIdleCallback(initPool,{timeout:1200});
+  else setTimeout(initPool,300);
+  function hit(){
+    const now=Date.now(); if(now-lastT<80)return; lastT=now;
+    if(Math.random()<.45){
+      const a=clickA[Math.random()<.5?0:1];
+      a.volume=.5;
+      try{a.currentTime=0;a.play().catch(()=>{})}catch(e){}
+      return;
+    }
+    const p=pool||initPool();
+    let i=Math.floor(Math.random()*p.length);
+    if(i===lastK) i=(i+1)%p.length;
+    lastK=i;
+    const a=p[i]; a.volume=.6;
+    try{a.currentTime=0;a.play().catch(()=>{})}catch(e){}
+  }
+
+  /* ---- 弹簧参数（阻尼谐振子） ---- */
+  const K=.16;      /* 弹簧拉回力 */
+  const D=.74;      /* 阻尼（越接近 1 振荡越久） */
+  const MAXV=90;    /* 限速，防穿透 */
+  const DEG=Math.PI/180;
+
+  /* 每张图独立一个质点 */
+  const bodies=imgs.map((el,idx)=>({
+    el,
+    home:{x:0,y:0,r:0},
+    x:0,y:0,r:0,          /* 当前位移 */
+    vx:0,vy:0,vr:0,       /* 速度 */
+    press:0,              /* 按压形变 */
+    jolt:0,               /* 二次抖动计时（回弹过零瞬间的小脉冲） */
+    crossed:0,            /* 已触发过的过零次数，防止连续抖动 */
+    drag:false,
+    px:0,py:0,
+    delay:idx*90,
+    born:performance.now()+idx*110,
+    released:false
+  }));
+
+  /* 先让三张图淡入（错开） */
+  bodies.forEach(b=>{
+    b.el.style.opacity="";
+    b.el.classList.remove("on");
+    setTimeout(()=>b.el.classList.add("on"), 60+b.delay);
+  });
+
+  function pointer(e){ return e.touches?e.touches[0]||e.changedTouches[0]:e; }
+
+  bodies.forEach(b=>{
+    const el=b.el;
+    const down=(ev)=>{
+      if(b.drag) return;
+      const p=pointer(ev);
+      b.drag=true; b.px=p.clientX; b.py=p.clientY;
+      b.press=1;
+      b.vx=b.vy=0;
+      b.crossed=0; b.jolt=0;   /* 新一次施力，重新计抖动次数 */
+      if(ev.cancelable) ev.preventDefault();
+      hit();
+      /* 被拖的抬到最上层 */
+      el.style.zIndex="40";
       el.style.transition="none";
-      el.style.transform="translateY(-26px) scaleX(1.12) scaleY(.88)";
-      setTimeout(()=>{
-        el.style.transition="transform .55s cubic-bezier(.34,1.56,.64,1)";
-        el.style.transform="";
-      },16);
-      /* 随机放出 oye/oho 或木子米音效 */
-      if(Math.random()<.5){
-        const a=new Audio("sfx/"+(Math.random()<.5?"oye.ogg":"oho.ogg"));
-        a.volume=.5; a.play().catch(()=>{});
-      }else{
-        const a=new Audio("sfx/audio_k"+String(1+Math.floor(Math.random()*71)).padStart(2,"0")+".mp3");
-        a.volume=.6; a.play().catch(()=>{});
+      el.style.cursor="grabbing";
+    };
+    const move=(ev)=>{
+      if(!b.drag) return;
+      const p=pointer(ev);
+      const dx=p.clientX-b.px, dy=p.clientY-b.py;
+      b.px=p.clientX; b.py=p.clientY;
+      b.x+=dx; b.y+=dy;
+      /* 速度采样（带惯性） */
+      b.vx=b.vx*.4+dx*22; b.vy=b.vy*.4+dy*22;
+      b.r+=dx*.25;
+      b.vr=b.vr*.5+dx*1.1;
+      if(ev.cancelable) ev.preventDefault();
+    };
+    const up=()=>{
+      if(!b.drag) return;
+      b.drag=false; b.press=0;
+      el.style.cursor="pointer";
+      /* 限速后放飞，弹簧自己收回 */
+      b.vx=Math.max(-MAXV,Math.min(MAXV,b.vx));
+      b.vy=Math.max(-MAXV,Math.min(MAXV,b.vy));
+      b.vr=Math.max(-12,Math.min(12,b.vr));
+      b.crossed=0;             /* 松手放飞：允许这轮再抖两下 */
+      /* 甩得猛 = 弹得更野（只放大速度，不改参数，保证不会越弹越远） */
+      const mag=Math.hypot(b.vx,b.vy);
+      if(mag>3) hit();
+      setTimeout(()=>{ el.style.zIndex="" },1200);
+    };
+    el.addEventListener("mousedown",down);
+    el.addEventListener("touchstart",down,{passive:false});
+    window.addEventListener("mousemove",move,{passive:false});
+    window.addEventListener("touchmove",move,{passive:false});
+    window.addEventListener("mouseup",up);
+    window.addEventListener("touchend",up);
+    window.addEventListener("touchcancel",up);
+  });
+
+  let last=performance.now(), running=true;
+  function frame(now){
+    const dt=Math.min(3, (now-last)/16.667) || 1;
+    last=now;
+    if(now>40000) running=false;   /* 40s 后停帧，省电 */
+
+    bodies.forEach(b=>{
+      if(b.drag){
+        /* 拖动中：真实跟随指针（含抓取挤压 + 姿势倾斜） */
+        b.press=Math.min(1,b.press+.1*dt);
+        const grabSq=1-b.press*.05;
+        b.el.style.transform=
+          "translate3d("+b.x.toFixed(2)+"px,"+b.y.toFixed(2)+"px,0)"+
+          " rotate("+b.r.toFixed(2)+"deg)"+
+          " scale("+(1+grabSq*.55).toFixed(3)+","+grabSq.toFixed(3)+")";
+        return;
       }
+      /* 松手瞬间：按下压缩形变快速归零 */
+      if(b.press>0){ b.press=Math.max(0,b.press-.12*dt); }
+      /* 弹簧：F = -k*x （目标 0） */
+      b.vx += (-K*b.x)*dt;
+      b.vy += (-K*b.y)*dt;
+      b.vr += (-K*b.r)*dt;
+
+      /* 落地二次抖动：位移过零点(=回到原位那一瞬)且速度够快，补一次反向小脉冲 */
+      if(!RM){
+        if(b.crossed<2){
+          const near0 = Math.abs(b.x)<1.6 && Math.abs(b.y)<1.6;
+          const speedy = Math.hypot(b.vx,b.vy)>4.5;
+          if(near0 && speedy){
+            b.crossed++;
+            b.vx -= b.vx*.52; b.vy -= b.vy*.52;   /* 反向回弹 */
+            b.vx += (Math.random()-.5)*1.6;
+            b.vy += (Math.random()-.5)*1.6;
+            b.jolt=.22;
+          }
+        }
+        if(b.jolt>0) b.jolt=Math.max(0,b.jolt-.03*dt);
+      }
+      b.vx*=Math.pow(D,dt); b.vy*=Math.pow(D,dt); b.vr*=Math.pow(D,dt);
+      b.x+=b.vx*dt; b.y+=b.vy*dt; b.r+=b.vr*dt;
+
+      /* 浮力：悬停时轻微上下飘 */
+      if(!RM && now>b.born && now<40000){
+        const t=(now-b.born)/1000;
+        b.y += Math.sin(t*1.6 + b.delay*.01) * .32 * dt;
+        b.x += Math.cos(t*1.05 + b.delay*.013) * .13 * dt;
+      }
+
+      /* 速度 -> 拉伸形变（弹簧最重要的一步） */
+      const sp=Math.min(1, Math.hypot(b.vx,b.vy)/26);
+      const sq=1+sp*.10;      /* 沿运动方向拉长 */
+      const an=Math.atan2(b.vy,b.vx)/DEG;
+      const jl = b.jolt*b.jolt;      /* 小抖动叠加，尾段更弹 */
+      const stretch = RM?1:(sq+jl*.16);
+      const squash = RM?1:(1-sp*.055-jl*.14);
+
+      b.el.style.transform =
+        "translate3d("+b.x.toFixed(2)+"px,"+b.y.toFixed(2)+"px,0)"+
+        " rotate("+(b.r).toFixed(2)+"deg)"+
+        " rotate("+an.toFixed(1)+"deg)"+
+        " scale("+stretch.toFixed(3)+","+squash.toFixed(3)+")"+
+        " rotate("+(-an).toFixed(1)+"deg)";
     });
+
+    if(running) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* 页面不可见时暂停 */
+  document.addEventListener("visibilitychange",()=>{
+    if(document.hidden){ running=false; }
+    else if(!running && performance.now()<40000){ running=true; last=performance.now(); requestAnimationFrame(frame); }
   });
 })();
 
