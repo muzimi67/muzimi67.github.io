@@ -10,3 +10,6 @@ shots_click.py
 shots.ps1
 push.bat
 preview_mobile.png
+.wrangler/
+seo_gen.py
+i18n_inject.py
