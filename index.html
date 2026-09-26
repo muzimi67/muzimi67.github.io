@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN" data-theme="dark">
 <head>
 <meta charset="UTF-8">
@@ -425,6 +425,12 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 .sub-thread .bub.owner{align-self:flex-start;background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(59,130,246,.06));border:1px solid rgba(59,130,246,.35)}
 .sub-thread .bub i{display:block;font-style:normal;font-size:.65rem;color:var(--text3);margin-top:.28rem}
 .sub-ticket{display:inline-flex;align-items:center;gap:.45rem;margin-top:.5rem;font-weight:900;color:var(--brand);background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);border-radius:.7rem;padding:.35rem .7rem;cursor:pointer;font-size:.85rem;letter-spacing:.06em}
+/* 品牌图标（内联 SVG，高清零外部请求） */
+.brand{display:inline-flex;width:1.15em;height:1.15em;flex-shrink:0;vertical-align:-.18em}
+.brand svg{width:100%;height:100%;fill:currentColor;display:block}
+/* 双站互挂（页脚备用地址） */
+.foot-stat a{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.06em;color:var(--brand);background:var(--card);border:1px solid var(--border);border-radius:999px;padding:.22rem .7rem}
+.foot-stat a:hover{border-color:var(--brand)}
 
 /* ===== Apps 列表 ===== */
 .page-head{padding:3.5rem 0 1.6rem}
@@ -458,11 +464,11 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 .d-side{position:sticky;top:4.5rem;align-self:start;display:flex;flex-direction:column;gap:.9rem}
 .panel{border-radius:var(--radius);border:1px solid var(--border);background:var(--card-solid);padding:1.2rem}
 .panel h3{font-size:.95rem;font-weight:800;margin-bottom:.9rem;display:flex;align-items:center;gap:.45rem}
-.dl-row{display:flex;align-items:center;gap:.7rem;padding:.75rem .9rem;border:1px solid var(--border);border-radius:.85rem;margin-bottom:.55rem;transition:.2s;background:var(--bg2)}
+.dl-row{display:flex;align-items:center;gap:.8rem;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:.9rem;margin-bottom:.6rem;transition:.2s;background:var(--bg2)}
 .dl-row:hover{border-color:var(--brand);transform:translateX(3px)}
-.dl-logo{width:1.6rem;height:1.6rem;border-radius:.45rem;flex-shrink:0}
-.dl-row .n{font-weight:700;font-size:.85rem;flex:1}
-.dl-row .go{font-size:.72rem;font-weight:800;color:var(--brand2)}
+.dl-logo{width:2.2rem;height:2.2rem;border-radius:.55rem;flex-shrink:0}
+.dl-row .n{font-weight:700;font-size:1rem;flex:1}
+.dl-row .go{font-size:.85rem;font-weight:800;color:var(--brand2)}
 .save-tip{margin-top:.8rem;font-size:.72rem;line-height:1.7;color:var(--accent);background:rgba(245,158,11,.08);border:1px dashed rgba(245,158,11,.35);border-radius:.75rem;padding:.65rem .8rem}
 .group-banner{margin-top:.15rem;text-align:center}
 .group-banner .qq{font-size:1.05rem;font-weight:900;color:#12b7f5;letter-spacing:.03em}
@@ -507,9 +513,9 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 .allpack .t b{font-size:1rem;font-weight:900}
 .allpack .t p{font-size:.75rem;color:var(--text2);margin-top:.2rem}
 .allpack .btns{display:flex;gap:.5rem;flex-wrap:wrap}
-.pk-btn{display:flex;align-items:center;gap:.4rem;padding:.55rem .95rem;border-radius:.8rem;border:1px solid var(--border);background:var(--card-solid);font-size:.8rem;font-weight:800;color:var(--text);transition:.2s}
+.pk-btn{display:flex;align-items:center;gap:.55rem;padding:.8rem 1.25rem;border-radius:.9rem;border:1px solid var(--border);background:var(--card-solid);font-size:.95rem;font-weight:800;color:var(--text);transition:.2s}
 .pk-btn:hover{transform:translateY(-2px)}
-.pk-btn img{width:1.1rem;height:1.1rem;border-radius:.35rem}
+.pk-btn img{width:1.5rem;height:1.5rem;border-radius:.4rem}
 @media(max-width:640px){.allpack{flex-direction:column;align-items:stretch;text-align:center}.allpack .btns{justify-content:center}}
 
 /* ===== 移动端底部 TabBar ===== */
@@ -581,11 +587,11 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
       <div class="typewriter"><span id="tw"></span><span class="cursor">ˍ</span></div>
       <div class="soc-row">
         <button class="soc-btn qq" onclick="openGroups()">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C8.7 2 6.5 4.4 6.5 7.2c0 .8-.3 1.4-.8 2.2-.7 1.1-1.5 2.4-1.5 4.2 0 .5.4.9.9.7l2-.7c.6 1.2 1.7 2.2 3 2.7-.7.5-1.6 1.4-1.6 2.4 0 .3.2.5.5.5h6c.3 0 .5-.2.5-.5 0-1-.9-1.9-1.6-2.4 1.3-.5 2.4-1.5 3-2.7l2 .7c.5.2.9-.2.9-.7 0-1.8-.8-3.1-1.5-4.2-.5-.8-.8-1.4-.8-2.2C17.5 4.4 15.3 2 12 2z"/></svg>
+          <span class="brand" data-logo="qq"></span>
           <span data-i18n="qqFans">QQ粉丝群</span> <small data-i18n="qqGroupsN">3 个群可选</small>
         </button>
         <a class="soc-btn bl" id="biliLink" href="https://space.bilibili.com/638676336" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.8 4.7l2-2.4c.2-.3.1-.6-.2-.6h-1.9c-.2 0-.4.1-.5.2l-1.7 2.1h-7L6.8 1.9c-.1-.1-.3-.2-.5-.2H4.4c-.3 0-.4.3-.2.6l2 2.4C3.9 5.6 2.5 7.6 2.5 10.4c0 4.4 2.7 7.4 7.3 7.4h1.2v3.4c0 .3.2.5.5.5h1c.3 0 .5-.2.5-.5v-3.4h1.2c4.6 0 7.3-3 7.3-7.4 0-2.8-1.4-4.8-4.7-5.7zM6.6 8.1c.8 0 1.4.9 1.4 2.1s-.6 2.1-1.4 2.1-1.4-.9-1.4-2.1.6-2.1 1.4-2.1zm10.8 0c.8 0 1.4.9 1.4 2.1s-.6 2.1-1.4 2.1-1.4-.9-1.4-2.1.6-2.1 1.4-2.1z"/></svg>
+          <span class="brand" data-logo="bili"></span>
           B站 <small data-i18n="biliVideo">视频首发</small>
         </a>
         <a class="soc-btn" href="#/apps">📦 <span data-i18n="bApps">软件大全</span></a>
@@ -632,8 +638,8 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
   <div class="container">
     <div class="page-head"><h1>更新与投稿</h1><p data-i18n="updatesHeadDesc">最近做了什么，接下来做什么。有想玩的点子进群玩玩，或者直接在下面投稿——想定制什么也能说。</p>
       <div class="soc-row" style="margin-top:.9rem">
-        <button class="soc-btn qq" onclick="openGroups()">💬 <span data-i18n="qqFans">QQ粉丝群</span> <small data-i18n="qqGroupsN">3 个群可选</small></button>
-        <a class="soc-btn bl" href="https://space.bilibili.com/638676336" target="_blank" rel="noopener">📺 <span data-i18n="biliFollow">B站 点个关注</span></a>
+        <button class="soc-btn qq" onclick="openGroups()"><span class="brand" data-logo="qq"></span> <span data-i18n="qqFans">QQ粉丝群</span> <small data-i18n="qqGroupsN">3 个群可选</small></button>
+        <a class="soc-btn bl" href="https://space.bilibili.com/638676336" target="_blank" rel="noopener"><span class="brand" data-logo="bili"></span> <span data-i18n="biliFollow">B站 点个关注</span></a>
       </div>
     </div>
     <div class="sub-box" id="subBox">
@@ -1985,6 +1991,37 @@ async function sendFollowup(){
     setTimeout(ensureTurnstile, 1200);
   }
 })();
+
+/* ============ 品牌图标（内联高清 SVG，零外部请求）+ 双站互挂 ============ */
+const BRAND_PATH = {
+  /* 腾讯 QQ（simple-icons tencentqq） */
+  qq: 'M21.395 15.035a40 40 0 0 0-.803-2.264l-1.079-2.695c.001-.032.014-.562.014-.836C19.526 4.632 17.351 0 12 0S4.474 4.632 4.474 9.241c0 .274.013.804.014.836l-1.08 2.695a39 39 0 0 0-.802 2.264c-1.021 3.283-.69 4.643-.438 4.673.54.065 2.103-2.472 2.103-2.472 0 1.469.756 3.387 2.394 4.771-.612.188-1.363.479-1.845.835-.434.32-.379.646-.301.778.343.578 5.883.369 7.482.189 1.6.18 7.14.389 7.483-.189.078-.132.132-.458-.301-.778-.483-.356-1.233-.646-1.846-.836 1.637-1.384 2.393-3.302 2.393-4.771 0 0 1.563 2.537 2.103 2.472.251-.03.581-1.39-.438-4.673',
+  /* 哔哩哔哩（simple-icons bilibili） */
+  bili: 'M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373Z',
+};
+function paintBrand(){
+  document.querySelectorAll("[data-logo]").forEach(el => {
+    const d = BRAND_PATH[el.getAttribute("data-logo")];
+    if(!d || el.getAttribute("data-painted")) return;
+    el.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + d + '"/></svg>';
+    el.setAttribute("data-painted", "1");
+  });
+}
+/* 双站互挂：在 github.io 上指向 pages.dev，反之亦然（一个打不开就换另一个） */
+function paintMirror(){
+  const onGH = location.hostname.indexOf("github.io") >= 0;
+  const other = onGH
+    ? {u:"https://muzimi67.pages.dev/", n:"muzimi67.pages.dev"}
+    : {u:"https://muzimi67.github.io/", n:"muzimi67.github.io"};
+  document.querySelectorAll("footer .foot-stat").forEach(box => {
+    if(box.querySelector("a.mirror")) return;
+    const a = document.createElement("a");
+    a.className = "mirror"; a.href = other.u; a.rel = "noopener";
+    a.textContent = (L === "en" ? "Mirror: " : "备用地址：") + other.n;
+    box.appendChild(a);
+  });
+}
+paintBrand(); paintMirror();
 </script>
 
 <!-- 访问量统计（不蒜子 JSONP，免注册永久免费）：一次请求→填充全站所有页脚；脚本挂了只是不显示，站点功能零影响 -->
