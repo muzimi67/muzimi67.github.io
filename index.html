@@ -800,7 +800,16 @@ const DATA = {
                 baidu:"https://pan.baidu.com/s/1MZdVUJ_E9TEj1JB6iGr18Q", baiduCode:"ipnz" },
     tiaozhanzhe:{ quark:"https://pan.quark.cn/s/7b21dd53ad25",
                 uc:"https://drive.uc.cn/s/ecd4d55057cc4",
-                baidu:"https://pan.baidu.com/s/12vi_hRH_ji9PAtamkr4bVg", baiduCode:"vty2" }
+                baidu:"https://pan.baidu.com/s/12vi_hRH_ji9PAtamkr4bVg", baiduCode:"vty2" },
+    fanyingdui:{ quark:"https://pan.quark.cn/s/ded79be98bcc",
+                uc:"https://drive.uc.cn/s/adaf2f57c1674",
+                baidu:"https://pan.baidu.com/s/14TYq1vLUqU1uoKVHEgVFQg", baiduCode:"ojdp" },
+    nmlq:     { quark:"https://pan.quark.cn/s/8b7c90a99f83",
+                uc:"https://drive.uc.cn/s/bdacca182c9c4",
+                baidu:"https://pan.baidu.com/s/1gUWljXPLx-KGxRE58fxv8g", baiduCode:"3fk8" },
+    ykn:      { quark:"https://pan.quark.cn/s/2175c0a58f0a",
+                uc:"https://drive.uc.cn/s/16d0368001694",
+                baidu:"https://pan.baidu.com/s/18ZgGSw1IIOw3mMY0wnQZ6Q", baiduCode:"fbxa" }
   },
   slogans: [
     "警告：点开就停不下来，全都是免费的。",
@@ -810,6 +819,24 @@ const DATA = {
     "全都免费，进群先拿新版。"
   ],
   apps: [
+    {
+      id:"fanyingdui", icon:"⚛️", name:"邦多利反应堆·娃娃版", ver:"v1.0", date:"2026-09-25", size:"APK 6.28MB / 网页 8.86MB",
+      desc:"709 个娃娃铺成一座堆芯，音乐一放整座跟着起伏。换一批、弹一下，全看你怎么折腾。",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/fanyingdui.webp",
+      longDesc:"把娃娃密密麻麻铺成一个反应堆，音乐一起，整座堆芯跟着节奏呼吸——鼓点砸下来就亮得高，安静的地方压下去。\n可以整批换娃娃、点一下把它们弹飞，视角随便拖着转，全屏看更过瘾。内置几首曲子，点播放就开。\n安卓装 APK，iPhone 和鸿蒙用浏览器打开 HTML，同一份东西三端都能玩。"
+    },
+    {
+      id:"nmlq", icon:"🎹", name:"你怎么两清·识图点唱", ver:"v1.0", date:"2026-09-23", size:"APK 5.86MB / 网页 5.72MB",
+      desc:"三首歌、三个角色，点谁谁唱。一首唱完自动接下一首，三首完事从头再来。",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/nmlq.webp",
+      longDesc:"《你怎么两清》《难道非要耗尽》《爱情这场游戏》三首连着排好，每首点一个角色来唱——香澄、友希那、弦卷心，点谁谁开口，唱到一半换人就是重唱。\n屏幕上没有按钮也没有菜单，就一幅画加三个热区：点角色开唱，唱完自动进下一首，第三首唱完回到第一首，一直循环下去。\n安卓装 APK，iPhone 和鸿蒙用浏览器打开 HTML。"
+    },
+    {
+      id:"ykn", icon:"🎤", name:"ykn又三郎", ver:"v1.0", date:"2026-09-20", size:"APK 3.59MB / 网页 5.70MB",
+      desc:"友希那唱《又三郎》，歌词一句句跟着蹦。点一下从头重放，循环到你会背。",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/ykn.webp",
+      longDesc:"整首《又三郎》完整版 3:46，配上友希那的立绘，歌词一句句跳出来，节奏卡得很准。\n播放中点一下就从头上重放，没人管你循环多少遍。安卓装 APK，iPhone 和鸿蒙用浏览器打开 HTML。"
+    },
     {
       id:"tiaozhanzhe", icon:"🥊", name:"你才是挑战者", ver:"v2.7", date:"2026-09-20", size:"APK 3.65MB / 网页 4.92MB",
       desc:"点屏幕出拳，把对手打飞。攒满气势会出黑闪暴击，数字大得夸张，越打越上头。",
@@ -902,6 +929,9 @@ const DATA = {
     }
   ],
   updates: [
+    {date:"2026-09-26", items:[
+      {t:"更新", d:"一口气上三个新的：邦多利反应堆·娃娃版（709 个娃娃跟着音乐起伏）、你怎么两清·识图点唱（三首歌三个角色，点谁谁唱）、ykn又三郎（友希那唱《又三郎》，歌词跟着蹦）"}
+    ]},
     {date:"2026-09-20", items:[
       {t:"更新", d:"你才是挑战者 v2.7 上线：点击对战+黑闪暴击+无尽连击；APK强制竖屏、黑闪概率20%、四重输入兜底老内核也能玩"}
     ]},
