@@ -13,3 +13,6 @@ preview_mobile.png
 .wrangler/
 seo_gen.py
 i18n_inject.py
+.tg_hook_secret
+shots/m_*.png
+shots/zz_*.png
