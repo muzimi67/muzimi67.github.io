@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN" data-theme="dark">
 <head>
 <meta charset="UTF-8">
@@ -1720,9 +1720,20 @@ route();
    要点：token 全在服务端（CF 加密变量），前端一行都没有；VPS 完全不参与
    ================================== */
 const SUBMIT_API = "https://muzimi67.pages.dev/api/submit";   // GitHub Pages 上打开时也发到这里
-const TURNSTILE_SITE_KEY = "";                                // ← 建好 Turnstile 组件后把 site key 填这儿（留空=只用蜜罐+限流）
+const TURNSTILE_SITE_KEY = "0x4AAAAAAFEIm9TIwmTce_jf";            // Cloudflare Turnstile（公开的 site key；留空=只用蜜罐+限流）
 const SUB_MAX_FILES = 3, SUB_MAX_MB = 10;
 let subPicked = [], subT0 = Date.now();
+let tsWidgetId = null;
+
+/* Turnstile 惰性渲染：容器在未激活的页面里是 display:none，那时 render 不出 iframe（实测坑） */
+function ensureTurnstile(){
+  if(!TURNSTILE_SITE_KEY || tsWidgetId !== null) return;
+  if(!window.turnstile) return;
+  const box = document.getElementById("subTurnstile");
+  if(!box || !box.offsetParent) return;                 // 页面还没激活，等下次
+  try{ tsWidgetId = turnstile.render(box, {sitekey: TURNSTILE_SITE_KEY, theme: "auto"}); }
+  catch(e){ tsWidgetId = null; }
+}
 
 function subSay(txt, cls){
   const el = document.getElementById("subMsg");
@@ -1790,6 +1801,12 @@ async function sendSubmit(){
     fd.append("t0", String(subT0));                                  // 最短填写时长闸
     fd.append("website", document.getElementById("subWeb").value || ""); // 蜜罐
     const tsEl = document.querySelector('input[name="cf-turnstile-response"]');
+    if(TURNSTILE_SITE_KEY && (!tsEl || !tsEl.value)){
+      ensureTurnstile();
+      subSay("人机验证还在加载，等一两秒再点一次", "err");
+      btn.disabled = false;
+      return;
+    }
     if(tsEl) fd.append("cf-turnstile-response", tsEl.value);
     subPicked.forEach(f => fd.append("images", f, f.name));
     const r = await fetch(SUBMIT_API, {method:"POST", body: fd});
@@ -1823,8 +1840,11 @@ async function sendSubmit(){
     const s = document.createElement("script");
     s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
     s.async = true; s.defer = true;
-    s.onload = () => { try{ turnstile.render("#subTurnstile", {sitekey: TURNSTILE_SITE_KEY}); }catch(e){} };
+    s.onload = () => ensureTurnstile();
     document.head.appendChild(s);
+    /* ⚠️ 坑：容器在没激活的页面里是 display:none，此时 render 不出 iframe → 每次切到本页都补一次 */
+    addEventListener("hashchange", () => setTimeout(ensureTurnstile, 50));
+    setTimeout(ensureTurnstile, 1200);
   }
 })();
 </script>
