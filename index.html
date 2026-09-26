@@ -414,6 +414,17 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 .sub-msg{margin-top:.6rem;font-size:.8rem;font-weight:700;color:var(--text2)}
 .sub-msg.ok{color:#22c55e}
 .sub-msg.err{color:#ef4444}
+.sub-reply{margin-top:1.1rem;border-top:1px dashed var(--border);padding-top:1rem}
+.sub-reply-head{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin-bottom:.55rem}
+.sub-reply-head b{font-size:.95rem;font-weight:900}
+.sub-reply-head span{font-size:.72rem;color:var(--text3)}
+.sub-ask{background:linear-gradient(135deg,#0ea5e9,#0284c7);white-space:nowrap;padding:.6rem 1rem}
+.sub-thread{margin:.7rem 0 .2rem;display:flex;flex-direction:column;gap:.5rem}
+.sub-thread .bub{max-width:86%;border-radius:.9rem;padding:.55rem .75rem;font-size:.83rem;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.sub-thread .bub.me{align-self:flex-end;background:rgba(127,127,127,.14);border:1px solid var(--border)}
+.sub-thread .bub.owner{align-self:flex-start;background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(59,130,246,.06));border:1px solid rgba(59,130,246,.35)}
+.sub-thread .bub i{display:block;font-style:normal;font-size:.65rem;color:var(--text3);margin-top:.28rem}
+.sub-ticket{display:inline-flex;align-items:center;gap:.45rem;margin-top:.5rem;font-weight:900;color:var(--brand);background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);border-radius:.7rem;padding:.35rem .7rem;cursor:pointer;font-size:.85rem;letter-spacing:.06em}
 
 /* ===== Apps 列表 ===== */
 .page-head{padding:3.5rem 0 1.6rem}
@@ -641,6 +652,21 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
       <div class="sub-turnstile" id="subTurnstile"></div>
       <button class="sub-send" id="subSend" data-i18n="subSend">发送投稿</button>
       <div class="sub-msg" id="subMsg"></div>
+      <div class="sub-reply" id="subReply">
+        <div class="sub-reply-head">
+          <b data-i18n="replyTitle">📬 查回复</b>
+          <span data-i18n="replyHint">投稿成功后会给一个票号，填这儿就能看到我的回复</span>
+        </div>
+        <div class="sub-row">
+          <input type="text" id="replyTicket" maxlength="12" placeholder="票号，例如 MZ7F3K9Q" autocomplete="off">
+          <button class="sub-send sub-ask" id="replyBtn" data-i18n="replyBtn">查询</button>
+        </div>
+        <div class="sub-thread" id="replyThread"></div>
+        <div class="sub-row" id="replyFollowRow" style="display:none">
+          <input type="text" id="replyFollow" maxlength="1200" data-i18n-ph="replyFollow" placeholder="还想补充点什么？写这儿继续发给我">
+          <button class="sub-send sub-ask" id="replyFollowBtn" data-i18n="replyFollowBtn">追问</button>
+        </div>
+      </div>
       <input type="text" id="subWeb" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
     </div>
     <div class="tl" id="tlBody"></div>
@@ -759,6 +785,19 @@ const T = {
   subEmpty:    {zh:"先写点什么再发吧", en:"Write something first"},
   subTooBig:   {zh:"图片太大啦，最多 10MB 一张", en:"Image too large (10MB max each)"},
   subSaved:    {zh:"图已压好，直接发送就行", en:"Images ready"},
+  /* 查回复 */
+  replyTitle:  {zh:"📬 查回复", en:"📬 Check replies"},
+  replyHint:   {zh:"投稿成功后会给一个票号，填这儿就能看到我的回复", en:"After submitting you get a ticket code — paste it here to see my reply"},
+  replyBtn:    {zh:"查询", en:"Check"},
+  replyFollow: {zh:"还想补充点什么？写这儿继续发给我", en:"Anything to add? Write it here"},
+  replyFollowBtn:{zh:"追问", en:"Send"},
+  ticketGot:   {zh:"收到啦！你的票号是（点一下复制）：", en:"Got it! Your ticket code (tap to copy):"},
+  ticketKeep:  {zh:"记下来，随时回来查我的回复", en:"Keep it to check my reply anytime"},
+  replyNone:   {zh:"还没回复，我看到就会回你", en:"No reply yet — I'll get to it soon"},
+  replyBad:    {zh:"票号不对（或已过期，保留 30 天）", en:"Invalid or expired ticket (kept 30 days)"},
+  replyLoading:{zh:"查询中…", en:"Checking…"},
+  followOk:    {zh:"发出去了，等我回你", en:"Sent — I'll reply soon"},
+  copiedTip:   {zh:"已复制", en:"Copied"},
   /* 平台名 */
   platAndroid: {zh:"安卓", en:"Android"},
   platIOS:     {zh:"iOS", en:"iOS"},
@@ -1818,10 +1857,28 @@ async function sendSubmit(){
     const r = await fetch(SUBMIT_API, {method:"POST", body: fd});
     const j = await r.json().catch(() => ({ok:false}));
     if(j && j.ok){
-      subSay(t("subOk"), "ok");
       ideaEl.value = ""; document.getElementById("subCount").textContent = "0";
       subPicked = []; renderPicked();
       if(window.turnstile){ try{ turnstile.reset(); }catch(e){} }
+      if(j.ticket){
+        try{ localStorage.setItem("mzm_ticket", j.ticket); }catch(e){}
+        document.getElementById("subMsg").innerHTML = "";
+        subSay(t("subOk") + " " + t("ticketGot"), "ok");
+        const chip = document.createElement("div");
+        chip.className = "sub-ticket";
+        chip.title = t("copiedTip");
+        chip.textContent = j.ticket;
+        chip.onclick = () => { try{ navigator.clipboard.writeText(j.ticket); subSay(t("copiedTip") + " " + j.ticket, "ok"); }catch(e){} };
+        document.getElementById("subMsg").appendChild(chip);
+        const keep = document.createElement("div");
+        keep.className = "sub-msg";
+        keep.textContent = t("ticketKeep");
+        document.getElementById("subMsg").appendChild(keep);
+        document.getElementById("replyTicket").value = j.ticket;
+        queryReply(j.ticket);
+      }else{
+        subSay(t("subOk"), "ok");
+      }
     }else{
       subSay(t("subErr") + " [" + ((j && j.error) || r.status) + "]", "err");
     }
@@ -1829,6 +1886,72 @@ async function sendSubmit(){
     subSay(t("subErr"), "err");
   }
   btn.disabled = false;
+}
+
+/* ============ 查回复（凭票号看主人的回复） ============ */
+let curTicket = "";
+
+function fmtTs(ms){
+  try{ return new Date(ms).toLocaleString("zh-CN", {hour12:false, month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit"}); }
+  catch(e){ return ""; }
+}
+
+function drawThread(msgs){
+  const box = document.getElementById("replyThread");
+  box.innerHTML = "";
+  (msgs || []).forEach(m => {
+    const d = document.createElement("div");
+    d.className = "bub " + (m.who === "owner" ? "owner" : "me");
+    d.textContent = m.text;
+    const tag = document.createElement("i");
+    tag.textContent = (m.who === "owner" ? "我 · " : "你 · ") + fmtTs(m.ts);
+    d.appendChild(tag);
+    box.appendChild(d);
+  });
+  if(!(msgs || []).some(m => m.who === "owner")){
+    const d = document.createElement("div");
+    d.className = "sub-msg";
+    d.textContent = t("replyNone");
+    box.appendChild(d);
+  }
+}
+
+async function queryReply(ticket){
+  const tk = String(ticket || document.getElementById("replyTicket").value || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+  if(tk.length < 6){ subSay(t("replyBad"), "err"); return; }
+  subSay(t("replyLoading"));
+  try{
+    const r = await fetch(SUBMIT_API.replace("/submit", "/reply") + "?t=" + encodeURIComponent(tk));
+    const j = await r.json().catch(() => ({ok:false}));
+    if(j && j.ok){
+      curTicket = j.ticket || tk;
+      try{ localStorage.setItem("mzm_ticket", curTicket); }catch(e){}
+      document.getElementById("replyTicket").value = curTicket;
+      document.getElementById("replyFollowRow").style.display = "grid";
+      drawThread(j.msgs);
+      subSay("");
+    }else{
+      document.getElementById("replyThread").innerHTML = "";
+      document.getElementById("replyFollowRow").style.display = "none";
+      subSay(t("replyBad") + " [" + ((j && j.error) || r.status) + "]", "err");
+    }
+  }catch(e){ subSay(t("replyBad"), "err"); }
+}
+
+async function sendFollowup(){
+  const el = document.getElementById("replyFollow");
+  const text = (el.value || "").trim();
+  if(!curTicket || text.length < 1){ subSay(t("subEmpty"), "err"); return; }
+  subSay(t("subSending"));
+  try{
+    const r = await fetch(SUBMIT_API.replace("/submit", "/followup"), {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ticket: curTicket, text}),
+    });
+    const j = await r.json().catch(() => ({ok:false}));
+    if(j && j.ok){ el.value = ""; subSay(t("followOk"), "ok"); queryReply(curTicket); }
+    else subSay(t("subErr") + " [" + ((j && j.error) || r.status) + "]", "err");
+  }catch(e){ subSay(t("subErr"), "err"); }
 }
 
 (function initSubmit(){
@@ -1841,6 +1964,15 @@ async function sendSubmit(){
   ideaEl.addEventListener("input", () => { document.getElementById("subCount").textContent = String(ideaEl.value.length); });
   /* 拖拽也行 */
   ideaEl.addEventListener("drop", e => { if(e.dataTransfer && e.dataTransfer.files.length){ e.preventDefault(); pickFiles(e.dataTransfer.files); } });
+  /* 查回复 / 追问 */
+  document.getElementById("replyBtn").addEventListener("click", () => queryReply());
+  document.getElementById("replyTicket").addEventListener("keydown", e => { if(e.key === "Enter") queryReply(); });
+  document.getElementById("replyFollowBtn").addEventListener("click", sendFollowup);
+  document.getElementById("replyFollow").addEventListener("keydown", e => { if(e.key === "Enter") sendFollowup(); });
+  try{
+    const saved = localStorage.getItem("mzm_ticket");
+    if(saved){ document.getElementById("replyTicket").value = saved; }
+  }catch(e){}
   /* Turnstile：填了 site key 才加载（免费人机验证） */
   if(TURNSTILE_SITE_KEY){
     const s = document.createElement("script");
