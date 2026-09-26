@@ -392,6 +392,29 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 .foot-stat span{display:none;font-size:.75rem;font-weight:800;letter-spacing:.06em;color:var(--text2);background:var(--card);border:1px solid var(--border);border-radius:999px;padding:.22rem .7rem}
 .foot-stat b{color:var(--brand);font-weight:900}
 
+/* ===== 投稿表单 ===== */
+.sub-box{border-radius:var(--radius);border:1px solid var(--border);background:var(--card);backdrop-filter:blur(12px);padding:1.2rem;margin-bottom:1.6rem;position:relative}
+.sub-box h2{font-size:1.05rem;font-weight:900;margin-bottom:.35rem}
+.sub-hint{color:var(--text2);font-size:.78rem;line-height:1.6;margin-bottom:.9rem}
+.sub-row{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-bottom:.55rem}
+@media(max-width:560px){.sub-row{grid-template-columns:1fr}}
+.sub-box input[type=text],.sub-box textarea{width:100%;border-radius:.7rem;border:1px solid var(--border);background:rgba(127,127,127,.08);color:inherit;font:inherit;font-size:.85rem;padding:.6rem .7rem;outline:none}
+.sub-box input[type=text]:focus,.sub-box textarea:focus{border-color:var(--brand)}
+.sub-box textarea{min-height:6.5rem;resize:vertical;line-height:1.65}
+.sub-foot{display:flex;align-items:center;justify-content:space-between;margin:.55rem 0 .2rem;font-size:.75rem;color:var(--text2)}
+.sub-file{cursor:pointer;border:1px dashed var(--border);border-radius:.7rem;padding:.4rem .7rem;font-weight:800;display:inline-block}
+.sub-file:hover{border-color:var(--brand);color:var(--brand)}
+.sub-preview{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0}
+.sub-preview .p{position:relative;width:64px;height:64px;border-radius:.6rem;overflow:hidden;border:1px solid var(--border)}
+.sub-preview .p img{width:100%;height:100%;object-fit:cover;display:block}
+.sub-preview .p b{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.62);color:#fff;border-radius:50%;width:17px;height:17px;line-height:17px;text-align:center;font-size:11px;cursor:pointer}
+.sub-turnstile{margin:.5rem 0}
+.sub-send{border:0;border-radius:.8rem;padding:.7rem 1.3rem;font:inherit;font-weight:900;color:#fff;background:linear-gradient(135deg,#3b82f6,#2563eb);cursor:pointer}
+.sub-send:disabled{opacity:.55;cursor:default}
+.sub-msg{margin-top:.6rem;font-size:.8rem;font-weight:700;color:var(--text2)}
+.sub-msg.ok{color:#22c55e}
+.sub-msg.err{color:#ef4444}
+
 /* ===== Apps 列表 ===== */
 .page-head{padding:3.5rem 0 1.6rem}
 .page-head h1{font-size:2rem;font-weight:900;letter-spacing:-.02em}
@@ -597,6 +620,24 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 <div class="page" id="page-updates">
   <div class="container">
     <div class="page-head"><h1>更新与投稿</h1><p>最近做了什么，接下来做什么。有想玩的点子进群说，我来做</p></div>
+    <div class="sub-box" id="subBox">
+      <h2 data-i18n="subTitle">📮 直接投稿（不用加群也能发）</h2>
+      <p class="sub-hint" data-i18n="subHint">想要什么功能、想加哪首歌、哪里点不动、发现什么毛病——写在这儿直接发我，带图更好（最多 3 张）。</p>
+      <div class="sub-row">
+        <input type="text" id="subName" maxlength="24" data-i18n-ph="subName" placeholder="怎么称呼你（可留空）">
+        <input type="text" id="subContact" maxlength="64" data-i18n-ph="subContact" placeholder="联系方式 QQ / 群名（可留空）">
+      </div>
+      <textarea id="subIdea" maxlength="1200" data-i18n-ph="subIdea" placeholder="说人话就行……"></textarea>
+      <div class="sub-foot">
+        <label class="sub-file"><input type="file" id="subFiles" accept="image/*" multiple hidden><span data-i18n="subPick">📎 加图片</span></label>
+        <span><b id="subCount">0</b>/1200</span>
+      </div>
+      <div class="sub-preview" id="subPreview"></div>
+      <div class="sub-turnstile" id="subTurnstile"></div>
+      <button class="sub-send" id="subSend" data-i18n="subSend">发送投稿</button>
+      <div class="sub-msg" id="subMsg"></div>
+      <input type="text" id="subWeb" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+    </div>
     <div class="tl" id="tlBody"></div>
   </div>
   <footer>COPYRIGHT © 2025-2026 木子米
@@ -697,6 +738,21 @@ const T = {
   statPvUnit:  {zh:"次", en:""},
   statUv:      {zh:"访客", en:"Visitors"},
   statUvUnit:  {zh:"人", en:""},
+  /* 投稿表单 */
+  subTitle:    {zh:"📮 直接投稿（不用加群也能发）", en:"📮 Submit an idea"},
+  subHint:     {zh:"想要什么功能、想加哪首歌、哪里点不动、发现什么毛病——写在这儿直接发我，带图更好（最多 3 张）。",
+                en:"New features, songs to add, bugs — write it here and it reaches me directly. Up to 3 images."},
+  subName:     {zh:"怎么称呼你（可留空）", en:"Your name (optional)"},
+  subContact:  {zh:"联系方式 QQ / 群名（可留空）", en:"Contact: QQ / group (optional)"},
+  subIdea:     {zh:"说人话就行……", en:"Just say it in plain words…"},
+  subPick:     {zh:"📎 加图片", en:"📎 Add images"},
+  subSend:     {zh:"发送投稿", en:"Send"},
+  subSending:  {zh:"发送中…", en:"Sending…"},
+  subOk:       {zh:"📮 收到了！我会尽快看", en:"📮 Got it — I'll take a look soon"},
+  subErr:      {zh:"没发出去，过会儿再试一次？（也可以进群直接说）", en:"Couldn't send. Try again later?"},
+  subEmpty:    {zh:"先写点什么再发吧", en:"Write something first"},
+  subTooBig:   {zh:"图片太大啦，最多 10MB 一张", en:"Image too large (10MB max each)"},
+  subSaved:    {zh:"图已压好，直接发送就行", en:"Images ready"},
   /* 平台名 */
   platAndroid: {zh:"安卓", en:"Android"},
   platIOS:     {zh:"iOS", en:"iOS"},
@@ -769,6 +825,11 @@ function applyStatic(){
   Object.keys(tips).forEach(id=>{
     const n=document.getElementById(id);
     if(n) n.title=t(tips[id]);
+  });
+  /* 表单 placeholder */
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>{
+    const e=T[el.getAttribute("data-i18n-ph")];
+    if(e) el.placeholder=e[L]||e.zh;
   });
   document.documentElement.lang = (L==="zh" ? "zh-CN" : "en");
 }
@@ -1653,6 +1714,119 @@ function route(){
 addEventListener("hashchange",route);
 applyLang();
 route();
+
+/* ============ 投稿表单 ============
+   链路：这里 → Cloudflare Pages Function(/api/submit) → Telegram Bot API → 主人 TG
+   要点：token 全在服务端（CF 加密变量），前端一行都没有；VPS 完全不参与
+   ================================== */
+const SUBMIT_API = "https://muzimi67.pages.dev/api/submit";   // GitHub Pages 上打开时也发到这里
+const TURNSTILE_SITE_KEY = "";                                // ← 建好 Turnstile 组件后把 site key 填这儿（留空=只用蜜罐+限流）
+const SUB_MAX_FILES = 3, SUB_MAX_MB = 10;
+let subPicked = [], subT0 = Date.now();
+
+function subSay(txt, cls){
+  const el = document.getElementById("subMsg");
+  if(!el) return;
+  el.textContent = txt || "";
+  el.className = "sub-msg" + (cls ? " " + cls : "");
+}
+
+/* 前端先压一遍：最长边 1600px / JPEG 0.82，通常 200KB-1MB，省流量也避开 TG 的 10MB 上限 */
+async function shrinkImg(file){
+  try{
+    const bmp = await createImageBitmap(file);
+    const max = 1600, sc = Math.min(1, max / Math.max(bmp.width, bmp.height));
+    if(sc === 1 && file.size < 900 * 1024) return file;
+    const c = document.createElement("canvas");
+    c.width = Math.round(bmp.width * sc); c.height = Math.round(bmp.height * sc);
+    c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+    const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.82));
+    return blob ? new File([blob], (file.name || "pic").replace(/\.[^.]+$/, "") + ".jpg", {type:"image/jpeg"}) : file;
+  }catch(e){ return file; }
+}
+
+function renderPicked(){
+  const box = document.getElementById("subPreview");
+  if(!box) return;
+  box.innerHTML = "";
+  subPicked.forEach((f, i) => {
+    const d = document.createElement("div");
+    d.className = "p";
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(f);
+    const x = document.createElement("b");
+    x.textContent = "×";
+    x.onclick = () => { URL.revokeObjectURL(img.src); subPicked.splice(i, 1); renderPicked(); };
+    d.appendChild(img); d.appendChild(x);
+    box.appendChild(d);
+  });
+}
+
+async function pickFiles(files){
+  const list = Array.from(files || []);
+  if(!list.length) return;
+  subSay("…");
+  for(const f of list){
+    if(subPicked.length >= SUB_MAX_FILES) break;
+    if(f.size > SUB_MAX_MB * 1024 * 1024){ subSay(t("subTooBig"), "err"); continue; }
+    subPicked.push(await shrinkImg(f));
+  }
+  renderPicked();
+  subSay(t("subSaved"));
+}
+
+async function sendSubmit(){
+  const ideaEl = document.getElementById("subIdea");
+  const idea = (ideaEl.value || "").trim();
+  if(idea.length < 2){ subSay(t("subEmpty"), "err"); return; }
+  const btn = document.getElementById("subSend");
+  btn.disabled = true;
+  subSay(t("subSending"));
+  try{
+    const fd = new FormData();
+    fd.append("name", document.getElementById("subName").value || "");
+    fd.append("contact", document.getElementById("subContact").value || "");
+    fd.append("idea", idea);
+    fd.append("t0", String(subT0));                                  // 最短填写时长闸
+    fd.append("website", document.getElementById("subWeb").value || ""); // 蜜罐
+    const tsEl = document.querySelector('input[name="cf-turnstile-response"]');
+    if(tsEl) fd.append("cf-turnstile-response", tsEl.value);
+    subPicked.forEach(f => fd.append("images", f, f.name));
+    const r = await fetch(SUBMIT_API, {method:"POST", body: fd});
+    const j = await r.json().catch(() => ({ok:false}));
+    if(j && j.ok){
+      subSay(t("subOk"), "ok");
+      ideaEl.value = ""; document.getElementById("subCount").textContent = "0";
+      subPicked = []; renderPicked();
+      if(window.turnstile){ try{ turnstile.reset(); }catch(e){} }
+    }else{
+      subSay(t("subErr") + " [" + ((j && j.error) || r.status) + "]", "err");
+    }
+  }catch(e){
+    subSay(t("subErr"), "err");
+  }
+  btn.disabled = false;
+}
+
+(function initSubmit(){
+  const box = document.getElementById("subBox");
+  if(!box) return;
+  const fileEl = document.getElementById("subFiles");
+  const ideaEl = document.getElementById("subIdea");
+  document.getElementById("subSend").addEventListener("click", sendSubmit);
+  fileEl.addEventListener("change", e => { pickFiles(e.target.files); fileEl.value = ""; });
+  ideaEl.addEventListener("input", () => { document.getElementById("subCount").textContent = String(ideaEl.value.length); });
+  /* 拖拽也行 */
+  ideaEl.addEventListener("drop", e => { if(e.dataTransfer && e.dataTransfer.files.length){ e.preventDefault(); pickFiles(e.dataTransfer.files); } });
+  /* Turnstile：填了 site key 才加载（免费人机验证） */
+  if(TURNSTILE_SITE_KEY){
+    const s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    s.async = true; s.defer = true;
+    s.onload = () => { try{ turnstile.render("#subTurnstile", {sitekey: TURNSTILE_SITE_KEY}); }catch(e){} };
+    document.head.appendChild(s);
+  }
+})();
 </script>
 
 <!-- 访问量统计（不蒜子 JSONP，免注册永久免费）：一次请求→填充全站所有页脚；脚本挂了只是不显示，站点功能零影响 -->
