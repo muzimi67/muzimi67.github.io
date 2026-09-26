@@ -434,6 +434,10 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 /* 投稿成功后的网盘弹窗 */
 .modal-p{font-size:.82rem;line-height:1.75;color:var(--text2);margin-bottom:.55rem}
 .pan-btns{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin:.9rem 0 .2rem}
+/* 「想赚点米」按钮 + 海报 */
+.earn-btn{margin-top:.7rem;width:100%;border:1px dashed rgba(249,115,22,.55);background:rgba(249,115,22,.10);color:#f97316;font:inherit;font-weight:900;font-size:.85rem;border-radius:.8rem;padding:.6rem;cursor:pointer}
+.earn-btn:hover{background:rgba(249,115,22,.18)}
+.earn-poster{display:block;margin:.7rem auto;max-width:100%;max-height:44vh;width:auto;border-radius:.9rem;border:1px solid var(--border)}
 /* 页脚免责声明 */
 .disclaimer{max-width:46rem;margin:1.15rem auto 0;padding-top:.9rem;border-top:1px solid var(--border);font-size:.62rem;line-height:1.9;letter-spacing:.02em;color:var(--text3);font-weight:400;white-space:pre-line;text-align:left}
 /* 我的投稿卡片 */
@@ -716,7 +720,19 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
     <p class="modal-p" data-i18n="panDesc">所有软件都免费玩、随便转发。欢迎拍成视频让更多人看到。</p>
     <p class="modal-p" data-i18n="panDesc2">顺手把网盘链接转存一下——我能拿到一点推广佣金，全用来继续做新游戏。</p>
     <div class="pan-btns" id="panModalBtns"></div>
+    <button class="earn-btn" onclick="openEarnModal()" data-i18n="earnBtn">💰 想赚点米？点这里</button>
     <button class="close" onclick="closePanModal()" data-i18n="close">关闭</button>
+  </div>
+</div>
+
+<!-- 二级弹窗：想赚点米 → 任推邦海报 -->
+<div class="modal-mask" id="earnModal" onclick="if(event.target===this)closeEarnModal()">
+  <div class="modal">
+    <h3 data-i18n="earnTitle">💰 想赚点米？一起搞</h3>
+    <p class="modal-p" data-i18n="earnDesc">下载「任推邦」，把我这些软件转存到自己网盘、申请几个网盘项目，再做点小视频引流——有人转存你就有米，大家一起赚点 ヾ(≧▽≦*)o</p>
+    <img class="earn-poster" src="assets/rentuibang.webp" alt="任推邦" loading="lazy">
+    <p class="modal-p" data-i18n="earnTip">扫码，或在应用商店搜「任推邦」；注册后在「网盘转存」里挑项目就能开工。</p>
+    <button class="close" onclick="closeEarnModal()" data-i18n="close">关闭</button>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -847,8 +863,14 @@ const T = {
   panDesc2:    {zh:"顺手把网盘链接转存一下——我能拿到一点推广佣金，全用来继续做新游戏。",
                 en:"If you can, save the drive links to your own account — the small commission goes back into making new games."},
   /* 页脚免责声明 */
-  disclaimer:  {zh:"免责声明\n本站为个人兴趣分享站，所有内容均免费提供，仅供学习与交流使用，请于下载后 24 小时内自行删除。\n软件中涉及的角色、音乐、图像等版权归原作者及相应权利人所有，本站不主张任何权利；如有侵权，请联系我们，我们会第一时间删除。\n本站不对软件的完整性、适用性作任何担保，使用所产生的一切后果由使用者自行承担；请勿用于商业用途或二次售卖。",
-                en:"Disclaimer\nThis is a personal hobby site. Everything here is provided free of charge for learning and exchange only — please delete any download within 24 hours.\nAll characters, music and images belong to their original authors and rights holders; this site claims no rights over them. If anything infringes your rights, contact us and we will remove it immediately.\nNo warranty of any kind is given for completeness or fitness for purpose. You use everything at your own risk. Commercial use and resale are not permitted."},
+  disclaimer:  {zh:"免责声明\n这是个个人兴趣小站，东西都免费，主打一个玩得开心，大家学习交流用～\n软件里的角色、音乐、图片，版权都归原作者和相应权利人，这里不做任何版权主张；要是有冒犯到，说一声我们马上处理。\n每台设备脾气不一样，不敢保证都能完美跑起来，玩的时候自己拿捏一下哈～\n喜欢就拍成视频分享给更多人吧，只是别把它当成自己的原创作品哦 (・∀・)",
+                en:"Disclaimer\nThis is a personal hobby site. Everything is free, made for fun — enjoy it, learn from it, share it.\nCharacters, music and images belong to their original authors and rights holders; no rights are claimed here. If anything bothers you, just tell us and we'll fix it right away.\nEvery device has its own mood, so we can't promise everything runs perfectly — take it easy and enjoy.\nIf you like it, make a video and share it around; just please don't pass it off as your own original work (・∀・)"},
+  /* 赚点米弹窗 */
+  earnBtn:     {zh:"💰 想赚点米？点这里", en:"💰 Want to earn a little too? Tap here"},
+  earnTitle:   {zh:"💰 想赚点米？一起搞", en:"💰 Want to earn a little too?"},
+  earnDesc:    {zh:"下载「任推邦」，把我这些软件转存到自己网盘、申请几个网盘项目，再做点小视频引流——有人转存你就有米，大家一起赚点 ヾ(≧▽≦*)o",
+                en:"Get the RentuiBang app, save these apps into your own cloud drive, pick a few drive-promotion projects and post short videos — every save earns you a little. Let's all earn together ヾ(≧▽≦*)o"},
+  earnTip:     {zh:"扫码，或在应用商店搜「任推邦」；注册后在「网盘转存」里挑项目就能开工。", en:"Scan the code or search “任推邦” in your app store, then pick a project under drive promotion."},
   /* 平台名 */
   platAndroid: {zh:"安卓", en:"Android"},
   platIOS:     {zh:"iOS", en:"iOS"},
@@ -2125,6 +2147,15 @@ function showPanModal(){
 }
 function closePanModal(){
   const m = document.getElementById("panModal");
+  if(m) m.classList.remove("show");
+}
+/* 二级弹窗：想赚点米 */
+function openEarnModal(){
+  const m = document.getElementById("earnModal");
+  if(m) m.classList.add("show");
+}
+function closeEarnModal(){
+  const m = document.getElementById("earnModal");
   if(m) m.classList.remove("show");
 }
 
