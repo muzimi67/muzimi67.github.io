@@ -152,7 +152,6 @@ export async function onRequest(context) {
 async function handleSubmit({ request, env }, origin) {
   if (request.method !== "POST") return jsonResp({ ok: false, error: "method" }, 405, origin);
   const ip = request.headers.get("CF-Connecting-IP") || "";
-  const ua = request.headers.get("User-Agent") || "";
 
   if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) {
     return jsonResp({ ok: false, error: "server-not-configured" }, 500, origin);
@@ -200,13 +199,14 @@ async function handleSubmit({ request, env }, origin) {
   const sent = await tgText(env, env.TELEGRAM_CHAT_ID, head + "\n" + idea + tail);
   if (!sent.ok) return jsonResp({ ok: false, error: "telegram-message-failed", why: sent.description || "" }, 502, origin);
 
-  /* 存票号 + 建立 TG 消息 → 票号 的映射（主人回复那条消息时靠它找回来） */
+  /* 存票号 + 建立 TG 消息 → 票号 的映射（主人回复那条消息时靠它找回来）
+     ⚠️ 隐私：KV 里【不存】IP / UA / 称呼 / 联系方式 —— 只留票号与对话正文。
+        个人信息只出现在主人的 TG 消息里，不落库。 */
   let stored = false;
-  if (env.SUBS) {
+  if (env.SUBS && env.TICKET_OFF !== "1") {
     const rec = {
-      t: ticket, ts: Date.now(), name, contact, ip, ua: ua.slice(0, 80),
+      t: ticket, ts: Date.now(),
       msgs: [{ who: "user", text: idea, ts: Date.now() }],
-      images: files.length,
     };
     stored = await kvPutSub(env, rec);
     if (sent.result && sent.result.message_id) {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN" data-theme="dark">
 <head>
 <meta charset="UTF-8">
@@ -431,6 +431,11 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 /* 双站互挂（页脚备用地址） */
 .foot-stat a{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.06em;color:var(--brand);background:var(--card);border:1px solid var(--border);border-radius:999px;padding:.22rem .7rem}
 .foot-stat a:hover{border-color:var(--brand)}
+/* 投稿成功后的网盘弹窗 */
+.modal-p{font-size:.82rem;line-height:1.75;color:var(--text2);margin-bottom:.55rem}
+.pan-btns{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin:.9rem 0 .2rem}
+/* 页脚免责声明 */
+.disclaimer{max-width:46rem;margin:1.15rem auto 0;padding-top:.9rem;border-top:1px solid var(--border);font-size:.62rem;line-height:1.9;letter-spacing:.02em;color:var(--text3);font-weight:400;white-space:pre-line;text-align:left}
 
 /* ===== Apps 列表 ===== */
 .page-head{padding:3.5rem 0 1.6rem}
@@ -683,11 +688,21 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 </div>
 
 <!-- QQ群弹窗 -->
-<div class="modal-mask" id="groupModal" onclick="if(event.target===this)closeGroups()">
-  <div class="modal">
+<div class="modal-mask" id="groupModal" onclick="if(event.target===this)closeGroups()">  <div class="modal">
     <h3 data-i18n="joinFans">💬 加入粉丝群</h3>
     <div id="groupList"></div>
     <button class="close" onclick="closeGroups()" data-i18n="close">关闭</button>
+  </div>
+</div>
+
+<!-- 投稿成功后弹的「全部软件免费 · 欢迎做视频」网盘弹窗 -->
+<div class="modal-mask" id="panModal" onclick="if(event.target===this)closePanModal()">
+  <div class="modal">
+    <h3 data-i18n="panTitle">🎁 全部软件免费 · 欢迎做视频</h3>
+    <p class="modal-p" data-i18n="panDesc">所有软件都免费玩、随便转发。欢迎拍成视频让更多人看到。</p>
+    <p class="modal-p" data-i18n="panDesc2">顺手把网盘链接转存一下——我能拿到一点推广佣金，全用来继续做新游戏。</p>
+    <div class="pan-btns" id="panModalBtns"></div>
+    <button class="close" onclick="closePanModal()" data-i18n="close">关闭</button>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -804,6 +819,15 @@ const T = {
   replyLoading:{zh:"查询中…", en:"Checking…"},
   followOk:    {zh:"发出去了，等我回你", en:"Sent — I'll reply soon"},
   copiedTip:   {zh:"已复制", en:"Copied"},
+  /* 投稿成功后的网盘弹窗 */
+  panTitle:    {zh:"🎁 全部软件免费 · 欢迎做视频", en:"🎁 Everything is free · videos welcome"},
+  panDesc:     {zh:"所有软件都免费玩、随便转发。欢迎拍成视频让更多人看到。",
+                en:"All apps are free to play and share. Feel free to make videos about them."},
+  panDesc2:    {zh:"顺手把网盘链接转存一下——我能拿到一点推广佣金，全用来继续做新游戏。",
+                en:"If you can, save the drive links to your own account — the small commission goes back into making new games."},
+  /* 页脚免责声明 */
+  disclaimer:  {zh:"免责声明\n本站为个人兴趣分享站，所有内容均免费提供，仅供学习与交流使用，请于下载后 24 小时内自行删除。\n软件中涉及的角色、音乐、图像等版权归原作者及相应权利人所有，本站不主张任何权利；如有侵权，请联系我们，我们会第一时间删除。\n本站不对软件的完整性、适用性作任何担保，使用所产生的一切后果由使用者自行承担；请勿用于商业用途或二次售卖。",
+                en:"Disclaimer\nThis is a personal hobby site. Everything here is provided free of charge for learning and exchange only — please delete any download within 24 hours.\nAll characters, music and images belong to their original authors and rights holders; this site claims no rights over them. If anything infringes your rights, contact us and we will remove it immediately.\nNo warranty of any kind is given for completeness or fitness for purpose. You use everything at your own risk. Commercial use and resale are not permitted."},
   /* 平台名 */
   platAndroid: {zh:"安卓", en:"Android"},
   platIOS:     {zh:"iOS", en:"iOS"},
@@ -1885,6 +1909,7 @@ async function sendSubmit(){
       }else{
         subSay(t("subOk"), "ok");
       }
+      setTimeout(showPanModal, 700);          // 发送成功 → 弹「全部软件免费 · 欢迎做视频」+ 三个网盘
     }else{
       subSay(t("subErr") + " [" + ((j && j.error) || r.status) + "]", "err");
     }
@@ -2022,6 +2047,30 @@ function paintMirror(){
   });
 }
 paintBrand(); paintMirror();
+
+/* ============ 投稿成功后的网盘推广弹窗 ============ */
+function showPanModal(){
+  const box = document.getElementById("panModalBtns");
+  if(box && !box.innerHTML) box.innerHTML = panButtons(DATA.pan.all);
+  const m = document.getElementById("panModal");
+  if(m) m.classList.add("show");
+}
+function closePanModal(){
+  const m = document.getElementById("panModal");
+  if(m) m.classList.remove("show");
+}
+
+/* ============ 页脚免责声明（四个页脚都挂） ============ */
+function paintDisclaimer(){
+  document.querySelectorAll("footer").forEach(f => {
+    if(f.querySelector(".disclaimer")) return;
+    const d = document.createElement("div");
+    d.className = "disclaimer";
+    d.textContent = t("disclaimer");
+    f.appendChild(d);
+  });
+}
+paintDisclaimer();
 </script>
 
 <!-- 访问量统计（不蒜子 JSONP，免注册永久免费）：一次请求→填充全站所有页脚；脚本挂了只是不显示，站点功能零影响 -->
