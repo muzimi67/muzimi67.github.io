@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN" data-theme="dark">
 <head>
 <meta charset="UTF-8">
@@ -619,15 +619,20 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 <!-- ============ 更新/投稿 ============ -->
 <div class="page" id="page-updates">
   <div class="container">
-    <div class="page-head"><h1>更新与投稿</h1><p>最近做了什么，接下来做什么。有想玩的点子进群说，我来做</p></div>
+    <div class="page-head"><h1>更新与投稿</h1><p data-i18n="updatesHeadDesc">最近做了什么，接下来做什么。有想玩的点子进群玩玩，或者直接在下面投稿——想定制什么也能说。</p>
+      <div class="soc-row" style="margin-top:.9rem">
+        <button class="soc-btn qq" onclick="openGroups()">💬 <span data-i18n="qqFans">QQ粉丝群</span> <small data-i18n="qqGroupsN">3 个群可选</small></button>
+        <a class="soc-btn bl" href="https://space.bilibili.com/638676336" target="_blank" rel="noopener">📺 <span data-i18n="biliFollow">B站 点个关注</span></a>
+      </div>
+    </div>
     <div class="sub-box" id="subBox">
       <h2 data-i18n="subTitle">📮 直接投稿（不用加群也能发）</h2>
-      <p class="sub-hint" data-i18n="subHint">想要什么功能、想加哪首歌、哪里点不动、发现什么毛病——写在这儿直接发我，带图更好（最多 3 张）。</p>
+      <p class="sub-hint" data-i18n="subHint">想要什么新游戏、想加哪首歌、哪里点不动、发现什么毛病——写在这儿直接发我，带图更好（最多 3 张）。可定制。</p>
       <div class="sub-row">
         <input type="text" id="subName" maxlength="24" data-i18n-ph="subName" placeholder="怎么称呼你（可留空）">
-        <input type="text" id="subContact" maxlength="64" data-i18n-ph="subContact" placeholder="联系方式 QQ / 群名（可留空）">
+        <input type="text" id="subContact" maxlength="64" data-i18n-ph="subContact" placeholder="联系方式 QQ / 邮箱（留了我才能回你）">
       </div>
-      <textarea id="subIdea" maxlength="1200" data-i18n-ph="subIdea" placeholder="说人话就行……"></textarea>
+      <textarea id="subIdea" maxlength="1200" data-i18n-ph="subIdea" placeholder="请尽可能详细点，收到了会很快回复你的。"></textarea>
       <div class="sub-foot">
         <label class="sub-file"><input type="file" id="subFiles" accept="image/*" multiple hidden><span data-i18n="subPick">📎 加图片</span></label>
         <span><b id="subCount">0</b>/1200</span>
@@ -696,6 +701,7 @@ const T = {
   qqFans:      {zh:"QQ粉丝群", en:"QQ Fan Group"},
   qqGroupsN:   {zh:"3 个群可选", en:"3 groups available"},
   biliVideo:   {zh:"视频首发", en:"Videos first"},
+  biliFollow:  {zh:"B站 点个关注", en:"Follow on Bilibili"},
   /* bento */
   bApps:       {zh:"软件大全", en:"All Apps"},
   bAppsDesc:   {zh:"语音盒 × 互动游戏，全平台可用", en:"Voice boxes × mini games, cross-platform"},
@@ -721,8 +727,8 @@ const T = {
   getArrow:    {zh:"获取 →", en:"Get →"},
   notFound:    {zh:"页面不存在", en:"Page not found"},
   /* 更新页 */
-  updatesHeadDesc:{zh:"最新动态 & 投稿制作排期（你的点子我来做，进群投稿）",
-                en:"Latest news & build queue (your idea, I build it — submit in the group)"},
+  updatesHeadDesc:{zh:"最近做了什么，接下来做什么。有想玩的点子进群玩玩，或者直接在下面投稿——想定制什么也能说",
+                en:"What I've been building and what's next. Join the group for ideas, or submit directly below — custom requests welcome"},
   changelog:   {zh:"📝 更新日志", en:"📝 Changelog"},
   submissions: {zh:"📮 投稿排期（进群投稿你的点子）", en:"📮 Request Queue (submit your idea in the group)"},
   stDone:      {zh:"已完成", en:"Done"},
@@ -740,11 +746,11 @@ const T = {
   statUvUnit:  {zh:"人", en:""},
   /* 投稿表单 */
   subTitle:    {zh:"📮 直接投稿（不用加群也能发）", en:"📮 Submit an idea"},
-  subHint:     {zh:"想要什么功能、想加哪首歌、哪里点不动、发现什么毛病——写在这儿直接发我，带图更好（最多 3 张）。",
-                en:"New features, songs to add, bugs — write it here and it reaches me directly. Up to 3 images."},
+  subHint:     {zh:"想要什么新游戏、想加哪首歌、哪里点不动、发现什么毛病——写在这儿直接发我，带图更好（最多 3 张）。可定制。",
+                en:"Want a new game, another song, or found a bug? Write it here — it reaches me directly. Up to 3 images. Custom requests welcome."},
   subName:     {zh:"怎么称呼你（可留空）", en:"Your name (optional)"},
-  subContact:  {zh:"联系方式 QQ / 群名（可留空）", en:"Contact: QQ / group (optional)"},
-  subIdea:     {zh:"说人话就行……", en:"Just say it in plain words…"},
+  subContact:  {zh:"联系方式 QQ / 邮箱（留了我才能回你）", en:"QQ / email (needed if you want a reply)"},
+  subIdea:     {zh:"请尽可能详细点，收到了会很快回复你的。", en:"Describe it in detail — I usually reply quickly."},
   subPick:     {zh:"📎 加图片", en:"📎 Add images"},
   subSend:     {zh:"发送投稿", en:"Send"},
   subSending:  {zh:"发送中…", en:"Sending…"},
