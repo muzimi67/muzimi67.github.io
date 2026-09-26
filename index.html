@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN" data-theme="dark">
 <head>
 <meta charset="UTF-8">
@@ -436,6 +436,15 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 .pan-btns{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin:.9rem 0 .2rem}
 /* 页脚免责声明 */
 .disclaimer{max-width:46rem;margin:1.15rem auto 0;padding-top:.9rem;border-top:1px solid var(--border);font-size:.62rem;line-height:1.9;letter-spacing:.02em;color:var(--text3);font-weight:400;white-space:pre-line;text-align:left}
+/* 我的投稿卡片 */
+.mine-item{border:1px solid var(--border);border-radius:.85rem;padding:.7rem .8rem;background:var(--card);display:flex;flex-direction:column;gap:.35rem}
+.mine-top{display:flex;align-items:center;gap:.5rem;font-size:.7rem;color:var(--text3)}
+.mine-t{font-weight:900;color:var(--brand);letter-spacing:.06em}
+.mine-badge{margin-left:auto;background:rgba(34,197,94,.16);color:#22c55e;border-radius:999px;padding:.1rem .5rem;font-weight:800}
+.mine-first{font-size:.82rem;color:var(--text2);line-height:1.6}
+.mine-reply{font-size:.85rem;font-weight:700;line-height:1.65;background:linear-gradient(135deg,rgba(59,130,246,.16),rgba(59,130,246,.05));border:1px solid rgba(59,130,246,.32);border-radius:.7rem;padding:.5rem .65rem;white-space:pre-wrap;word-break:break-word}
+.mine-wait{font-size:.75rem;color:var(--text3)}
+.mine-more{align-self:flex-start;background:none;border:0;color:var(--brand);font:inherit;font-size:.78rem;font-weight:900;cursor:pointer;padding:0}
 
 /* ===== Apps 列表 ===== */
 .page-head{padding:3.5rem 0 1.6rem}
@@ -665,8 +674,13 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
       <div class="sub-msg" id="subMsg"></div>
       <div class="sub-reply" id="subReply">
         <div class="sub-reply-head">
-          <b data-i18n="replyTitle">📬 查回复</b>
-          <span data-i18n="replyHint">投稿成功后会给一个票号，填这儿就能看到我的回复</span>
+          <b data-i18n="mineTitle">📬 我的投稿</b>
+          <span data-i18n="mineHint">在这台设备上投过的稿，回来看就行——不用票号、不用注册</span>
+        </div>
+        <div class="sub-thread" id="mineList"></div>
+        <div class="sub-reply-head" style="margin-top:1rem">
+          <b data-i18n="replyTitle">🔑 换设备了？用票号找回</b>
+          <span data-i18n="replyHint">投稿时会给你一个票号，填这儿也能看到同一段对话</span>
         </div>
         <div class="sub-row">
           <input type="text" id="replyTicket" maxlength="12" placeholder="票号，例如 MZ7F3K9Q" autocomplete="off">
@@ -807,8 +821,15 @@ const T = {
   subTooBig:   {zh:"图片太大啦，最多 10MB 一张", en:"Image too large (10MB max each)"},
   subSaved:    {zh:"图已压好，直接发送就行", en:"Images ready"},
   /* 查回复 */
-  replyTitle:  {zh:"📬 查回复", en:"📬 Check replies"},
-  replyHint:   {zh:"投稿成功后会给一个票号，填这儿就能看到我的回复", en:"After submitting you get a ticket code — paste it here to see my reply"},
+  replyTitle:  {zh:"🔑 换设备了？用票号找回", en:"🔑 On another device? Use your ticket"},
+  replyHint:   {zh:"投稿时会给你一个票号，填这儿也能看到同一段对话", en:"You get a ticket when you submit — paste it here to reopen the thread"},
+  mineTitle:   {zh:"📬 我的投稿", en:"📬 My submissions"},
+  mineHint:    {zh:"在这台设备上投过的稿，回来看就行——不用票号、不用注册", en:"Submissions from this device show up here automatically — no account, no code"},
+  mineEmpty:   {zh:"还没投过稿。上面写两句试试，我会回你。", en:"Nothing yet — write something above and I'll reply."},
+  mineExpired: {zh:"之前的投稿已经过期清掉了（只保留 30 天）", en:"Your earlier submissions have expired (kept 30 days)"},
+  mineWait:    {zh:"还没回复，我一般当天就回", en:"No reply yet — usually same day"},
+  mineView:    {zh:"看完整对话", en:"Open thread"},
+  mineNew:     {zh:"有回复", en:"replied"},
   replyBtn:    {zh:"查询", en:"Check"},
   replyFollow: {zh:"还想补充点什么？写这儿继续发给我", en:"Anything to add? Write it here"},
   replyFollowBtn:{zh:"追问", en:"Send"},
@@ -821,8 +842,8 @@ const T = {
   copiedTip:   {zh:"已复制", en:"Copied"},
   /* 投稿成功后的网盘弹窗 */
   panTitle:    {zh:"🎁 全部软件免费 · 欢迎做视频", en:"🎁 Everything is free · videos welcome"},
-  panDesc:     {zh:"所有软件都免费玩、随便转发。欢迎拍成视频让更多人看到。",
-                en:"All apps are free to play and share. Feel free to make videos about them."},
+  panDesc:     {zh:"所有软件都免费玩、随便转发。网页版的代码全在文件里，想改成自己的版本也随你。",
+                en:"Everything is free to play and share. The web versions ship as one readable file — remix them if you like."},
   panDesc2:    {zh:"顺手把网盘链接转存一下——我能拿到一点推广佣金，全用来继续做新游戏。",
                 en:"If you can, save the drive links to your own account — the small commission goes back into making new games."},
   /* 页脚免责声明 */
@@ -1891,7 +1912,7 @@ async function sendSubmit(){
       subPicked = []; renderPicked();
       if(window.turnstile){ try{ turnstile.reset(); }catch(e){} }
       if(j.ticket){
-        try{ localStorage.setItem("mzm_ticket", j.ticket); }catch(e){}
+        rememberTicket(j.ticket);
         document.getElementById("subMsg").innerHTML = "";
         subSay(t("subOk") + " " + t("ticketGot"), "ok");
         const chip = document.createElement("div");
@@ -1906,6 +1927,7 @@ async function sendSubmit(){
         document.getElementById("subMsg").appendChild(keep);
         document.getElementById("replyTicket").value = j.ticket;
         queryReply(j.ticket);
+        renderMine();
       }else{
         subSay(t("subOk"), "ok");
       }
@@ -1917,6 +1939,49 @@ async function sendSubmit(){
     subSay(t("subErr"), "err");
   }
   btn.disabled = false;
+}
+
+/* ============ 我的投稿（本机记住票号 → 无需注册/无需手抄） ============ */
+function myTickets(){
+  try{ return JSON.parse(localStorage.getItem("mzm_mine") || "[]"); }catch(e){ return []; }
+}
+function rememberTicket(t){
+  if(!t) return;
+  const a = myTickets().filter(x => x !== t);
+  a.unshift(t);
+  try{ localStorage.setItem("mzm_mine", JSON.stringify(a.slice(0, 10))); }catch(e){}
+  try{ localStorage.setItem("mzm_ticket", t); }catch(e){}
+}
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+async function renderMine(){
+  const box = document.getElementById("mineList");
+  if(!box) return;
+  const list = myTickets();
+  if(!list.length){ box.innerHTML = '<div class="sub-msg">' + t("mineEmpty") + '</div>'; return; }
+  try{
+    const r = await fetch(SUBMIT_API.replace("/submit", "/mine") + "?t=" + encodeURIComponent(list.join(",")));
+    const j = await r.json().catch(() => ({ok:false}));
+    if(!j || !j.ok) return;
+    if(!j.threads.length){ box.innerHTML = '<div class="sub-msg">' + t("mineExpired") + '</div>'; return; }
+    box.innerHTML = j.threads.map(x => `
+      <div class="mine-item">
+        <div class="mine-top">
+          <span class="mine-t">${esc(x.ticket)}</span>
+          <span class="mine-d">${fmtTs(x.ts)}</span>
+          ${x.ownerCount ? '<span class="mine-badge">' + t("mineNew") + " " + x.ownerCount + '</span>' : ""}
+        </div>
+        <div class="mine-first">${esc(x.first)}</div>
+        ${x.ownerCount
+          ? '<div class="mine-reply">💬 ' + esc(x.lastOwner) + '</div>'
+          : '<div class="mine-wait">' + t("mineWait") + '</div>'}
+        <button class="mine-more" data-t="${esc(x.ticket)}">${t("mineView")} →</button>
+      </div>`).join("");
+    box.querySelectorAll(".mine-more").forEach(b => {
+      b.onclick = () => { document.getElementById("replyTicket").value = b.dataset.t; queryReply(b.dataset.t); };
+    });
+  }catch(e){}
 }
 
 /* ============ 查回复（凭票号看主人的回复） ============ */
@@ -1995,6 +2060,9 @@ async function sendFollowup(){
   ideaEl.addEventListener("input", () => { document.getElementById("subCount").textContent = String(ideaEl.value.length); });
   /* 拖拽也行 */
   ideaEl.addEventListener("drop", e => { if(e.dataTransfer && e.dataTransfer.files.length){ e.preventDefault(); pickFiles(e.dataTransfer.files); } });
+  /* 进页面就把"我的投稿"拉出来（本机记着的票号，无需注册/无需手抄） */
+  renderMine();
+  addEventListener("hashchange", () => { if((location.hash || "").indexOf("/updates") >= 0) renderMine(); });
   /* 查回复 / 追问 */
   document.getElementById("replyBtn").addEventListener("click", () => queryReply());
   document.getElementById("replyTicket").addEventListener("keydown", e => { if(e.key === "Enter") queryReply(); });

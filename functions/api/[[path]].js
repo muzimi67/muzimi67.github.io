@@ -142,6 +142,7 @@ export async function onRequest(context) {
 
   if (path.endsWith("/api/submit"))   return handleSubmit(context, origin);
   if (path.endsWith("/api/reply"))    return handleReply(context, origin);
+  if (path.endsWith("/api/mine"))     return handleMine(context, origin);
   if (path.endsWith("/api/followup")) return handleFollowup(context, origin);
   if (path.endsWith("/api/tg-hook"))  return handleTgHook(context);
 
@@ -241,6 +242,35 @@ async function handleReply({ request, env }, origin) {
   const rec = await kvGetSub(env, ticket);
   if (!rec) return jsonResp({ ok: false, error: "not-found" }, 404, origin);
   return jsonResp({ ok: true, ticket, ts: rec.ts, msgs: rec.msgs || [] }, 200, origin);
+}
+
+/* ===== 我的投稿（浏览器本地记住票号 → 一次批量取回，无需注册/无需手抄票号） ===== */
+async function handleMine({ request, env }, origin) {
+  if (!env.SUBS) return jsonResp({ ok: false, error: "reply-feature-off" }, 503, origin);
+  const url = new URL(request.url);
+  const raw = clean(url.searchParams.get("t"), 200).toUpperCase();
+  const tickets = raw.split(",").map((s) => s.replace(/[^A-Z0-9]/g, "")).filter((s) => s.length >= 6).slice(0, 10);
+  if (!tickets.length) return jsonResp({ ok: true, threads: [] }, 200, origin);
+
+  const ip = request.headers.get("CF-Connecting-IP") || "";
+  if (rateLimited(ip, 60, 10 * 60 * 1000, 500)) return jsonResp({ ok: false, error: "rate-limited" }, 429, origin);
+
+  const threads = [];
+  for (const t of tickets) {
+    const rec = await kvGetSub(env, t);
+    if (!rec) continue;
+    const msgs = rec.msgs || [];
+    const owner = msgs.filter((m) => m.who === "owner");
+    threads.push({
+      ticket: t,
+      ts: rec.ts,
+      count: msgs.length,
+      ownerCount: owner.length,
+      lastOwner: owner.length ? owner[owner.length - 1].text.slice(0, 200) : "",
+      first: (msgs[0] && msgs[0].text || "").slice(0, 80),
+    });
+  }
+  return jsonResp({ ok: true, threads }, 200, origin);
 }
 
 /* ===== 追问 ===== */
