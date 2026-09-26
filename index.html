@@ -834,6 +834,7 @@ const T = {
   subOk:       {zh:"📮 收到了！我会尽快看", en:"📮 Got it — I'll take a look soon"},
   subErr:      {zh:"没发出去，过会儿再试一次？（也可以进群直接说）", en:"Couldn't send. Try again later?"},
   subEmpty:    {zh:"先写点什么再发吧", en:"Write something first"},
+  subRate:     {zh:"刚发过啦，{n} 秒后再试～（也可以直接进群说）", en:"Just sent one — try again in {n}s (or ask in the group)"},
   subTooBig:   {zh:"图片太大啦，最多 10MB 一张", en:"Image too large (10MB max each)"},
   subSaved:    {zh:"图已压好，直接发送就行", en:"Images ready"},
   /* 查回复 */
@@ -1954,6 +1955,17 @@ async function sendSubmit(){
         subSay(t("subOk"), "ok");
       }
       setTimeout(showPanModal, 700);          // 发送成功 → 弹「全部软件免费 · 欢迎做视频」+ 三个网盘
+    }else if(j && j.error === "rate-limited"){
+      const s = Math.max(3, Math.min(600, j.retryAfter || 15));
+      subSay(t("subRate").replace("{n}", s), "err");
+      let n = s;
+      btn.textContent = t("subSend") + " (" + n + ")";
+      const iv = setInterval(() => {
+        n--;
+        if(n <= 0){ clearInterval(iv); btn.textContent = t("subSend"); btn.disabled = false; return; }
+        btn.textContent = t("subSend") + " (" + n + ")";
+      }, 1000);
+      return;                                  // 倒数期间按钮保持禁用，不走下面的解锁
     }else{
       subSay(t("subErr") + " [" + ((j && j.error) || r.status) + "]", "err");
     }

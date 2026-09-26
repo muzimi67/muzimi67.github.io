@@ -51,16 +51,29 @@ function jsonResp(obj, status, origin) {
   });
 }
 
-function rateLimited(ip, max, windowMs, gapMs) {
-  if (!ip) return false;
+/* 只读检查（不计数）——判断"被限流了没有 + 还要等几秒" */
+function rateCheck(ip, max, windowMs, gapMs) {
+  if (!ip) return { limited: false };
   const now = Date.now();
   const arr = (hits.get(ip) || []).filter((t) => now - t < windowMs);
-  if (arr.length >= max) return true;
-  if (gapMs && arr.length && now - arr[arr.length - 1] < gapMs) return true;
-  arr.push(now);
+  hits.set(ip, arr);
+  if (arr.length >= max) {
+    return { limited: true, retryAfter: Math.max(1, Math.ceil((windowMs - (now - arr[0])) / 1000)) };
+  }
+  const last = arr[arr.length - 1];
+  if (gapMs && last && now - last < gapMs) {
+    return { limited: true, retryAfter: Math.max(1, Math.ceil((gapMs - (now - last)) / 1000)) };
+  }
+  return { limited: false };
+}
+
+/* 真正计数：只在"过了全部闸门"之后调用——被 Turnstile 拦下/参数非法的尝试不占额度 */
+function rateHit(ip) {
+  if (!ip) return;
+  const arr = hits.get(ip) || [];
+  arr.push(Date.now());
   hits.set(ip, arr);
   if (hits.size > 5000) hits.clear();
-  return false;
 }
 
 function clean(s, max) {
@@ -166,7 +179,8 @@ async function handleSubmit({ request, env }, origin) {
   const t0 = parseInt(form.get("t0") || "0", 10);
   if (!t0 || Date.now() - t0 < MIN_FILL_MS) return jsonResp({ ok: false, error: "too-fast" }, 429, origin);  // 闸2
 
-  if (rateLimited(ip, 5, 10 * 60 * 1000, 15 * 1000)) return jsonResp({ ok: false, error: "rate-limited" }, 429, origin); // 闸3
+  const rl = rateCheck(ip, 10, 10 * 60 * 1000, 5000);                                  // 闸3（只查不计数）
+  if (rl.limited) return jsonResp({ ok: false, error: "rate-limited", retryAfter: rl.retryAfter }, 429, origin);
 
   const ts = await verifyTurnstile(env, form.get("cf-turnstile-response"), ip);                       // 闸4
   if (!ts.ok) return jsonResp({ ok: false, error: "captcha", why: ts.why }, 403, origin);
@@ -185,6 +199,7 @@ async function handleSubmit({ request, env }, origin) {
 
   const ticket = newTicket();
   const when = nowCST();
+  rateHit(ip);                                // 到这里才算"成功占用一次额度"（失败的尝试不占）
 
   const head = [
     "📮 网站新投稿" + (env.SUBS ? " · 票号 " + ticket : ""),
@@ -237,7 +252,7 @@ async function handleReply({ request, env }, origin) {
   if (ticket.length < 6) return jsonResp({ ok: false, error: "bad-ticket" }, 400, origin);
 
   const ip = request.headers.get("CF-Connecting-IP") || "";
-  if (rateLimited(ip, 30, 10 * 60 * 1000, 800)) return jsonResp({ ok: false, error: "rate-limited" }, 429, origin);
+  if (rateCheck(ip, 30, 10 * 60 * 1000, 800).limited) return jsonResp({ ok: false, error: "rate-limited" }, 429, origin);
 
   const rec = await kvGetSub(env, ticket);
   if (!rec) return jsonResp({ ok: false, error: "not-found" }, 404, origin);
@@ -253,7 +268,7 @@ async function handleMine({ request, env }, origin) {
   if (!tickets.length) return jsonResp({ ok: true, threads: [] }, 200, origin);
 
   const ip = request.headers.get("CF-Connecting-IP") || "";
-  if (rateLimited(ip, 60, 10 * 60 * 1000, 500)) return jsonResp({ ok: false, error: "rate-limited" }, 429, origin);
+  if (rateCheck(ip, 60, 10 * 60 * 1000, 500).limited) return jsonResp({ ok: false, error: "rate-limited" }, 429, origin);
 
   const threads = [];
   for (const t of tickets) {
@@ -285,7 +300,7 @@ async function handleFollowup({ request, env }, origin) {
   if (ticket.length < 6 || text.length < 1) return jsonResp({ ok: false, error: "bad-input" }, 400, origin);
 
   const ip = request.headers.get("CF-Connecting-IP") || "";
-  if (rateLimited(ip, 10, 10 * 60 * 1000, 5000)) return jsonResp({ ok: false, error: "rate-limited" }, 429, origin);
+  if (rateCheck(ip, 10, 10 * 60 * 1000, 5000).limited) return jsonResp({ ok: false, error: "rate-limited" }, 429, origin);
 
   const rec = await kvGetSub(env, ticket);
   if (!rec) return jsonResp({ ok: false, error: "not-found" }, 404, origin);
