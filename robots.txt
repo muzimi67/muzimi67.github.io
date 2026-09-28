@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /
+
+# 显式放行 AI 爬虫（2026 年 AI 搜索流量占比上升，收录进 AI 答案 = 免费曝光）
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# 百度/必应/搜狗/360（国内流量）
+User-agent: Baiduspider
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+Sitemap: https://muzimi67.github.io/sitemap.xml

@@ -1,0 +1,334 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "木子米软件大全",
+  "description": "独立开发者木子米的离线单文件软件作品集，语音盒、互动游戏、邦多利系列",
+  "url": "https://muzimi67.github.io/",
+  "numberOfItems": 18,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "邦多利反应堆·娃娃版",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v3.1",
+        "datePublished": "2026-09-26",
+        "url": "https://muzimi67.github.io/#/app/fanyingdui",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "你怎么两清·识图点唱",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-09-23",
+        "url": "https://muzimi67.github.io/#/app/nmlq",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "ykn又三郎",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-09-20",
+        "url": "https://muzimi67.github.io/#/app/ykn",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "你才是挑战者",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v2.7",
+        "datePublished": "2026-09-20",
+        "url": "https://muzimi67.github.io/#/app/tiaozhanzhe",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "邦多利·看哭114514亿邦邦人",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v6.2",
+        "datePublished": "2026-09-28",
+        "url": "https://muzimi67.github.io/#/app/bangduori",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "邦多利·亲亲盒",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.1",
+        "datePublished": "2026-09-09",
+        "url": "https://muzimi67.github.io/#/app/qinqinhe",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "肥嘟嘟语音盒",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v2.0",
+        "datePublished": "2026-09-21",
+        "url": "https://muzimi67.github.io/#/app/feidudu",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "木子米开黑盒",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.5",
+        "datePublished": "2026-08-29",
+        "url": "https://muzimi67.github.io/#/app/kaixiahe",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "莫知了",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-24",
+        "url": "https://muzimi67.github.io/#/app/mozhiliao",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "睦从天降",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-24",
+        "url": "https://muzimi67.github.io/#/app/mucheng",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "米家亲亲盒",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-28",
+        "url": "https://muzimi67.github.io/#/app/mijia",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "木子米小球",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-26",
+        "url": "https://muzimi67.github.io/#/app/ball",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "木子米彩虹环",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v5",
+        "datePublished": "2026-08-27",
+        "url": "https://muzimi67.github.io/#/app/rainbowring",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "藤都子压抑盒",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-29",
+        "url": "https://muzimi67.github.io/#/app/tengduzi",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "闹吃与古振兴",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-30",
+        "url": "https://muzimi67.github.io/#/app/naochi",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "天素罗宝宝",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-09-05",
+        "url": "https://muzimi67.github.io/#/app/tiansuoluo",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 17,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "邦邦社恐盒",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-29",
+        "url": "https://muzimi67.github.io/#/app/shekonghe",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 18,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "吃汉堡木子米",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS, HarmonyOS",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-22",
+        "url": "https://muzimi67.github.io/#/app/chibaobao",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    }
+  ]
+}
