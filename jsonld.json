@@ -3,7 +3,7 @@
   "@type": "ItemList",
   "name": "木子米软件大全",
   "description": "独立开发者木子米的离线单文件软件作品集，语音盒、互动游戏、邦多利系列",
-  "url": "https://muzimi67.github.io/",
+  "url": "https://muzimi67.pages.dev/",
   "numberOfItems": 20,
   "itemListElement": [
     {
@@ -16,7 +16,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "先行版",
         "datePublished": "2026-09-28",
-        "url": "https://muzimi67.github.io/#/app/familytime",
+        "url": "https://muzimi67.pages.dev/#/app/familytime",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -32,9 +32,9 @@
         "name": "邦友的酒",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v0.9",
+        "softwareVersion": "v1.0",
         "datePublished": "2026-09-28",
-        "url": "https://muzimi67.github.io/#/app/youjiu",
+        "url": "https://muzimi67.pages.dev/#/app/youjiu",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -52,7 +52,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v3.1",
         "datePublished": "2026-09-26",
-        "url": "https://muzimi67.github.io/#/app/fanyingdui",
+        "url": "https://muzimi67.pages.dev/#/app/fanyingdui",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -70,7 +70,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-09-23",
-        "url": "https://muzimi67.github.io/#/app/nmlq",
+        "url": "https://muzimi67.pages.dev/#/app/nmlq",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -88,7 +88,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-09-20",
-        "url": "https://muzimi67.github.io/#/app/ykn",
+        "url": "https://muzimi67.pages.dev/#/app/ykn",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -106,7 +106,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v2.7",
         "datePublished": "2026-09-20",
-        "url": "https://muzimi67.github.io/#/app/tiaozhanzhe",
+        "url": "https://muzimi67.pages.dev/#/app/tiaozhanzhe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -124,7 +124,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v6.2",
         "datePublished": "2026-09-28",
-        "url": "https://muzimi67.github.io/#/app/bangduori",
+        "url": "https://muzimi67.pages.dev/#/app/bangduori",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -142,7 +142,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.1",
         "datePublished": "2026-09-09",
-        "url": "https://muzimi67.github.io/#/app/qinqinhe",
+        "url": "https://muzimi67.pages.dev/#/app/qinqinhe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -160,7 +160,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v2.0",
         "datePublished": "2026-09-21",
-        "url": "https://muzimi67.github.io/#/app/feidudu",
+        "url": "https://muzimi67.pages.dev/#/app/feidudu",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -178,7 +178,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.5",
         "datePublished": "2026-08-29",
-        "url": "https://muzimi67.github.io/#/app/kaixiahe",
+        "url": "https://muzimi67.pages.dev/#/app/kaixiahe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -196,7 +196,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-24",
-        "url": "https://muzimi67.github.io/#/app/mozhiliao",
+        "url": "https://muzimi67.pages.dev/#/app/mozhiliao",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -214,7 +214,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-24",
-        "url": "https://muzimi67.github.io/#/app/mucheng",
+        "url": "https://muzimi67.pages.dev/#/app/mucheng",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -232,7 +232,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-28",
-        "url": "https://muzimi67.github.io/#/app/mijia",
+        "url": "https://muzimi67.pages.dev/#/app/mijia",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -250,7 +250,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-26",
-        "url": "https://muzimi67.github.io/#/app/ball",
+        "url": "https://muzimi67.pages.dev/#/app/ball",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -268,7 +268,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v5",
         "datePublished": "2026-08-27",
-        "url": "https://muzimi67.github.io/#/app/rainbowring",
+        "url": "https://muzimi67.pages.dev/#/app/rainbowring",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -286,7 +286,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-29",
-        "url": "https://muzimi67.github.io/#/app/tengduzi",
+        "url": "https://muzimi67.pages.dev/#/app/tengduzi",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -304,7 +304,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-30",
-        "url": "https://muzimi67.github.io/#/app/naochi",
+        "url": "https://muzimi67.pages.dev/#/app/naochi",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -322,7 +322,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-09-05",
-        "url": "https://muzimi67.github.io/#/app/tiansuoluo",
+        "url": "https://muzimi67.pages.dev/#/app/tiansuoluo",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -340,7 +340,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-29",
-        "url": "https://muzimi67.github.io/#/app/shekonghe",
+        "url": "https://muzimi67.pages.dev/#/app/shekonghe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -358,7 +358,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-22",
-        "url": "https://muzimi67.github.io/#/app/chibaobao",
+        "url": "https://muzimi67.pages.dev/#/app/chibaobao",
         "offers": {
           "@type": "Offer",
           "price": "0",

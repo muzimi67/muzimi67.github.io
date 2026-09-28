@@ -3,6 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ==================== 两站主从：主站 = Cloudflare Pages ====================
+     这份是 GitHub Pages（备用线路）。打开就自动跳到主站，hash 路由原样带过去。
+     · 想在备用站停留（调试/应急）：地址加 ?stay=1，例如 /?stay=1#/apps
+     · 主站打不开时：浏览器返回键退回这一份，内容跟主站完全一样，照常用
+     · 页脚的「备用地址」链接也带 ?stay=1，不然点过来又被弹回主站 = 死循环
+     关掉自动跳转：把下面这段自动跳转的 JS 整块删掉即可（或用 ?stay=1 单次绕过）。 -->
+<script>
+(function () { try {
+  var h = location.hostname || "";
+  if (h.indexOf("github.io") < 0) return;                       /* 已经在主站 */
+  if (/[?&]stay=1/.test(location.search)) return;                /* 调试/应急：留在备用站 */
+  location.replace("https://muzimi67.pages.dev/" + location.hash);
+} catch (e) {} })();
+</script>
 <title>木子米软件大全 - 作品集与下载</title>
 <meta name="description" content="木子米的个人作品门户：语音盒、互动游戏、邦多利系列软件，一次劳动三端卖（安卓/iOS/鸿蒙），离线单文件永不变砖。">
 <meta name="keywords" content="木子米,语音盒,邦多利,肥嘟嘟,开黑盒,亲亲盒,HTML游戏,APK">
@@ -13,8 +27,8 @@
 <meta property="og:title" content="木子米软件大全">
 <meta property="og:description" content="语音盒 × 互动游戏 × 邦多利系列。离线单文件，永不变砖。">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://muzimi67.github.io/assets/og-cover.png">
-<meta property="og:url" content="https://muzimi67.github.io/">
+<meta property="og:image" content="https://muzimi67.pages.dev/assets/og-cover.png">
+<meta property="og:url" content="https://muzimi67.pages.dev/">
 <meta name="twitter:card" content="summary_large_image">
 <!-- JSON-LD 结构化数据（由 seo_gen.py 生成，勿手改） -->
 <script type="application/ld+json">
@@ -23,7 +37,7 @@
   "@type": "ItemList",
   "name": "木子米软件大全",
   "description": "独立开发者木子米的离线单文件软件作品集，语音盒、互动游戏、邦多利系列",
-  "url": "https://muzimi67.github.io/",
+  "url": "https://muzimi67.pages.dev/",
   "numberOfItems": 20,
   "itemListElement": [
     {
@@ -36,7 +50,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "先行版",
         "datePublished": "2026-09-28",
-        "url": "https://muzimi67.github.io/#/app/familytime",
+        "url": "https://muzimi67.pages.dev/#/app/familytime",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -52,9 +66,9 @@
         "name": "邦友的酒",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v0.9",
+        "softwareVersion": "v1.0",
         "datePublished": "2026-09-28",
-        "url": "https://muzimi67.github.io/#/app/youjiu",
+        "url": "https://muzimi67.pages.dev/#/app/youjiu",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -72,7 +86,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v3.1",
         "datePublished": "2026-09-26",
-        "url": "https://muzimi67.github.io/#/app/fanyingdui",
+        "url": "https://muzimi67.pages.dev/#/app/fanyingdui",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -90,7 +104,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-09-23",
-        "url": "https://muzimi67.github.io/#/app/nmlq",
+        "url": "https://muzimi67.pages.dev/#/app/nmlq",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -108,7 +122,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-09-20",
-        "url": "https://muzimi67.github.io/#/app/ykn",
+        "url": "https://muzimi67.pages.dev/#/app/ykn",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -126,7 +140,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v2.7",
         "datePublished": "2026-09-20",
-        "url": "https://muzimi67.github.io/#/app/tiaozhanzhe",
+        "url": "https://muzimi67.pages.dev/#/app/tiaozhanzhe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -144,7 +158,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v6.2",
         "datePublished": "2026-09-28",
-        "url": "https://muzimi67.github.io/#/app/bangduori",
+        "url": "https://muzimi67.pages.dev/#/app/bangduori",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -162,7 +176,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.1",
         "datePublished": "2026-09-09",
-        "url": "https://muzimi67.github.io/#/app/qinqinhe",
+        "url": "https://muzimi67.pages.dev/#/app/qinqinhe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -180,7 +194,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v2.0",
         "datePublished": "2026-09-21",
-        "url": "https://muzimi67.github.io/#/app/feidudu",
+        "url": "https://muzimi67.pages.dev/#/app/feidudu",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -198,7 +212,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.5",
         "datePublished": "2026-08-29",
-        "url": "https://muzimi67.github.io/#/app/kaixiahe",
+        "url": "https://muzimi67.pages.dev/#/app/kaixiahe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -216,7 +230,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-24",
-        "url": "https://muzimi67.github.io/#/app/mozhiliao",
+        "url": "https://muzimi67.pages.dev/#/app/mozhiliao",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -234,7 +248,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-24",
-        "url": "https://muzimi67.github.io/#/app/mucheng",
+        "url": "https://muzimi67.pages.dev/#/app/mucheng",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -252,7 +266,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-28",
-        "url": "https://muzimi67.github.io/#/app/mijia",
+        "url": "https://muzimi67.pages.dev/#/app/mijia",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -270,7 +284,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-26",
-        "url": "https://muzimi67.github.io/#/app/ball",
+        "url": "https://muzimi67.pages.dev/#/app/ball",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -288,7 +302,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v5",
         "datePublished": "2026-08-27",
-        "url": "https://muzimi67.github.io/#/app/rainbowring",
+        "url": "https://muzimi67.pages.dev/#/app/rainbowring",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -306,7 +320,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-29",
-        "url": "https://muzimi67.github.io/#/app/tengduzi",
+        "url": "https://muzimi67.pages.dev/#/app/tengduzi",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -324,7 +338,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-30",
-        "url": "https://muzimi67.github.io/#/app/naochi",
+        "url": "https://muzimi67.pages.dev/#/app/naochi",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -342,7 +356,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-09-05",
-        "url": "https://muzimi67.github.io/#/app/tiansuoluo",
+        "url": "https://muzimi67.pages.dev/#/app/tiansuoluo",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -360,7 +374,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-29",
-        "url": "https://muzimi67.github.io/#/app/shekonghe",
+        "url": "https://muzimi67.pages.dev/#/app/shekonghe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -378,7 +392,7 @@
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-22",
-        "url": "https://muzimi67.github.io/#/app/chibaobao",
+        "url": "https://muzimi67.pages.dev/#/app/chibaobao",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -1122,10 +1136,10 @@ const DATA = {
                 baidu:"https://pan.baidu.com/s/18ZgGSw1IIOw3mMY0wnQZ6Q", baiduCode:"fbxa" },
     youjiu:   { quark:"https://pan.quark.cn/s/53a4a6ef7dd5",
                 uc:"https://drive.uc.cn/s/63f1e3c06b524",
-                baidu:"https://pan.baidu.com/s/18ZgGSw1IIOw3mMY0wnQZ6Q", baiduCode:"fbxa" },
+                baidu:"https://pan.baidu.com/s/1OLXiaLubBZmYBJYLnatjow", baiduCode:"y2uy" },
     familytime:{ quark:"https://pan.quark.cn/s/8d678e3b6e87",
                 uc:"https://drive.uc.cn/s/9220754a7c324",
-                baidu:"https://pan.baidu.com/s/1W3Uq7C4z5DuuajX" }
+                baidu:"https://pan.baidu.com/s/1W3Uq7C4z5DuuajX0LFY_SQ", baiduCode:"idgv" }
   },
   slogans: [
     "警告：点开就停不下来，全都是免费的。",
@@ -1142,10 +1156,10 @@ const DATA = {
       longDesc:"把 PC 上的《FamilyTime》搬到手机上：点屏幕走路、右下角换工具、挖土砍树盖房子，抱起小狼女孩还能跟她互动。\n现在放的是先行版 —— 玩法链已经通了：挖土、砍树、抓取、抱持、建造都能用，小狼女孩能抓起来也能互动。\n画面还在修：草地还没出画、部分道具只有低模和暗色贴图。安卓装 APK 就能玩。"
     },
     {
-      id:"youjiu", icon:"🍶", name:"邦友的酒", ver:"v0.9", date:"2026-09-28", size:"单文件 1.22MB（浏览器直接打开）",
-      desc:"点一下抽一鞭子：抽得越密歌放得越带劲，手一停就慢慢闷下去停住。连击上去炸出老虎机的大当たり，还有冰块叮当声。",
+      id:"youjiu", icon:"🍶", name:"邦友的酒", ver:"v1.0", date:"2026-09-28", size:"单文件 1.22MB（浏览器直接打开）",
+      desc:"点一下抽一鞭子：抽得越密歌放得越带劲，手一停就慢慢闷下去停住。连击上去炸出老虎机的欧耶，还有冰块叮当声。",
       plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/youjiu.webp",
-      longDesc:"《朋友的酒》原声内嵌在里面，点一下就是抽一鞭子：抽得越密陀螺转得越快、歌放得越带劲；手一停它就被拖着慢慢慢下来、声音闷下去，最后停住——像抽陀螺。\n连续点连击就不停，踩准拍子一下算两下。连击上去会炸出老虎机那一套：边缘转灯、走马灯横幅、金币雨、「大当たり！」，破纪录还有最狠的一版；一路随机响冰块撞杯壁的叮当声。\n转速没有上限。快过屏幕刷新率之后，你看到的就不是「转」而是采样混叠——某些转速下肉眼看它完全静止，那是显示器的极限，不是卡了。\n单文件 1.22MB，音频已内嵌，双击就响。"
+      longDesc:"《朋友的酒》原声内嵌在里面，点一下就是抽一鞭子：抽得越密陀螺转得越快、歌放得越带劲；手一停它就被拖着慢慢慢下来、声音闷下去，最后停住——像抽陀螺。\n连续点连击就不停，踩准拍子一下算两下。连击上去会炸出老虎机那一套：边缘转灯、走马灯横幅、金币雨、「欧耶！」，破纪录还有最狠的一版；一路随机响冰块撞杯壁的叮当声。\n上面还有「💾 保存」和「🔄 更新」两个按钮：点保存直接弹出三个网盘的转存链接（转存到自己网盘就不怕分享失效），点更新去更新页看有没有新版。\n转速没有上限。快过屏幕刷新率之后，你看到的就不是「转」而是采样混叠——某些转速下肉眼看它完全静止，那是显示器的极限，不是卡了。\n单文件 1.22MB，音频已内嵌，双击就响。"
     },
     {
       id:"fanyingdui", icon:"⚛️", name:"邦多利反应堆·娃娃版", ver:"v3.1", date:"2026-09-26", size:"APK 52.9MB / 单文件 36.1MB",
@@ -1260,7 +1274,8 @@ const DATA = {
     {date:"2026-09-28", items:[
       {t:"新增", d:"FamilyTime 手机移植版先上架（先行版）：挖土/砍树/抓取/抱抱/建造都能玩，草地和部分道具的画面还在修，安卓装 APK"},
 
-      {t:"新增", d:"邦友的酒 v0.9 上线：点一下抽一鞭子，抽得越密歌放得越带劲、手一停就慢慢闷下去停住；连击上去炸出老虎机的大当たり（转灯/横幅/金币雨），还有冰块叮当声。转速不封顶，快过屏幕刷新率肉眼看它是静止的"},
+      {t:"新增", d:"邦友的酒 v0.9 上线：点一下抽一鞭子，抽得越密歌放得越带劲、手一停就慢慢闷下去停住；连击上去炸出老虎机的欧耶（转灯/横幅/金币雨），还有冰块叮当声。转速不封顶，快过屏幕刷新率肉眼看它是静止的"},
+      {t:"更新", d:"邦友的酒 v1.0：台词里的日文全换成中文「欧耶」；补上「💾 保存」和「🔄 更新」两个按钮——点保存弹三个网盘的转存链接，跟之前那些作品一套；顺手修好两个网盘链接（邦友的酒和 FamilyTime 的百度盘以前点进去是别的软件）"},
       {t:"更新", d:"看哭 v6.2：自己导入的歌以前只有最后两首放得出来，现在放哪首都行；底部菜单以前够不着，现在右下角点一下就出来"},
       {t:"优化", d:"单文件版以后只出 80k 一档（66.8MB）——画质最好的那档，32k/48k 两档下架，不用再纠结选哪个"}
     ]},
@@ -2285,9 +2300,11 @@ function paintBrand(){
 /* 双站互挂：在 github.io 上指向 pages.dev，反之亦然（一个打不开就换另一个） */
 function paintMirror(){
   const onGH = location.hostname.indexOf("github.io") >= 0;
+  /* ★主站=CF（2026-09-28）：GitHub 那份打开就自动跳主站，
+     所以「备用地址」指 GitHub 时必须带 ?stay=1，否则点过去又被弹回来 = 死循环★ */
   const other = onGH
     ? {u:"https://muzimi67.pages.dev/", n:"muzimi67.pages.dev"}
-    : {u:"https://muzimi67.github.io/", n:"muzimi67.github.io"};
+    : {u:"https://muzimi67.github.io/?stay=1", n:"muzimi67.github.io"};
   document.querySelectorAll("footer .foot-stat").forEach(box => {
     if(box.querySelector("a.mirror")) return;
     const a = document.createElement("a");
