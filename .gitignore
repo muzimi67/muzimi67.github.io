@@ -12,6 +12,7 @@ push.bat
 preview_mobile.png
 .wrangler/
 seo_gen.py
+check_inline_js.py
 i18n_inject.py
 _i18n.js
 .tg_hook_secret
