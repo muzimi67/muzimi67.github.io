@@ -606,6 +606,43 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 .mine-wait{font-size:.75rem;color:var(--text3)}
 .mine-more{align-self:flex-start;background:none;border:0;color:var(--brand);font:inherit;font-size:.78rem;font-weight:900;cursor:pointer;padding:0}
 
+/* ===== 💛 赞助弹跳条 + 赞助弹窗（2026-09-30） ===== */
+@keyframes dn-bounce{
+  0%,100%{transform:translateY(0) rotate(0)}
+  25%{transform:translateY(-12px) rotate(-1.2deg) scale(1.02)}
+  50%{transform:translateY(0) rotate(0)}
+  65%{transform:translateY(-6px) rotate(1deg)}
+  80%{transform:translateY(0)}
+}
+@keyframes dn-glow{
+  0%,100%{box-shadow:0 10px 30px -8px rgba(249,115,22,.55)}
+  50%{box-shadow:0 18px 46px -6px rgba(236,72,153,.8)}
+}
+@keyframes dn-beat{0%,100%{transform:scale(1)}30%{transform:scale(1.35)}60%{transform:scale(.92)}}
+.donate-bounce{
+  display:flex;align-items:center;justify-content:center;gap:.45rem;flex-wrap:wrap;
+  margin:0 0 1.2rem;padding:1rem 1.2rem;cursor:pointer;user-select:none;
+  border-radius:1.1rem;border:1px solid rgba(249,115,22,.45);
+  background:linear-gradient(135deg,#f59e0b,#f97316 45%,#ec4899);
+  color:#fff;font-weight:900;font-size:1.02rem;letter-spacing:.02em;text-align:center;
+  animation:dn-bounce 1.5s ease-in-out infinite,dn-glow 1.5s ease-in-out infinite;
+  will-change:transform;
+}
+.donate-bounce:hover{animation-play-state:paused;filter:brightness(1.1)}
+.donate-bounce .dn-heart{display:inline-block;font-size:1.25em;animation:dn-beat .9s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.donate-bounce,.donate-bounce .dn-heart{animation:none}}
+.donate-modal .modal{text-align:center}
+.donate-title{font-size:1.08rem;font-weight:900;line-height:1.6;margin-bottom:.3rem}
+.donate-sub{font-size:.76rem;color:var(--text3);margin-bottom:.8rem}
+.donate-qr{display:block;width:min(14.5rem,66vw);margin:0 auto .7rem;border-radius:1rem;border:1px solid var(--border);background:#fff;padding:.5rem}
+@keyframes dn-pop{0%{transform:scale(1)}40%{transform:scale(1.07) rotate(2deg)}100%{transform:scale(1)}}
+.donate-qr.qr-pop{animation:dn-pop .45s ease}
+.donate-tip{font-size:.78rem;color:var(--text2);margin-bottom:.8rem;min-height:1.3rem;font-weight:700}
+.donate-amts{display:flex;gap:.55rem;justify-content:center;flex-wrap:wrap;margin-bottom:.2rem}
+.dn-amt{border:1px solid var(--border);background:var(--card);color:var(--text1);font:inherit;font-weight:900;font-size:.95rem;border-radius:.85rem;padding:.65rem 1.15rem;cursor:pointer;transition:.18s}
+.dn-amt:hover{border-color:#f97316;background:rgba(249,115,22,.12);transform:translateY(-2px)}
+.dn-amt.hot{background:linear-gradient(135deg,#f97316,#ec4899);color:#fff;border-color:transparent}
+
 /* ===== Apps 列表 ===== */
 .page-head{padding:3.5rem 0 1.6rem}
 .page-head h1{font-size:2rem;font-weight:900;letter-spacing:-.02em}
@@ -749,6 +786,40 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
     <div class="t"><b>📦 软件大全 · 全部打包</b><p>一个链接拿走全部作品，安卓和 iPhone/鸿蒙都齐了 · 先转存到自己网盘，永久都在</p></div>
     <div class="btns" id="allpackBtns"></div>
   </div>
+  <!-- 💛 赞助：网盘区下面的弹跳入口 -->
+  <div class="donate-bounce" onclick="openDonate()"><span class="dn-heart">💛</span>喜欢我的游戏？o((>ω< ))o 可以赞助我!!!<span class="dn-heart">💛</span></div>
+  <!-- 💛 赞助弹窗 -->
+  <div class="modal-mask donate-modal" id="donateModal" onclick="if(event.target===this)closeDonate()">
+    <div class="modal">
+      <div class="donate-title">喜欢我的游戏？o((>ω< ))o<br>可以赞助我!!!</div>
+      <div class="donate-sub">手机点金额直接跳支付宝 · 电脑用支付宝扫码</div>
+      <img id="dnQr" class="donate-qr" src="assets/alipay_qr.png" alt="支付宝收款码" draggable="false">
+      <div class="donate-tip" id="dnTip">选个金额，扫码就能付啦~</div>
+      <div class="donate-amts">
+        <button class="dn-amt" onclick="donateAmt(5)">¥5</button>
+        <button class="dn-amt" onclick="donateAmt(10)">¥10</button>
+        <button class="dn-amt" onclick="donateAmt(20)">¥20</button>
+        <button class="dn-amt" onclick="donateAmt('custom')">自定义</button>
+      </div>
+      <button class="close" onclick="closeDonate()">关闭</button>
+    </div>
+  </div>
+  <script>
+    var DN_ALIPAY='https://qr.alipay.com/tsx17830kc0t3k4z4zykmba';
+    function openDonate(){document.getElementById('donateModal').classList.add('show')}
+    function closeDonate(){document.getElementById('donateModal').classList.remove('show')}
+    function dnMobile(){return /Android|iPhone|iPad|HarmonyOS|OpenHarmony|Mobile/i.test(navigator.userAgent)}
+    function donateAmt(v){
+      if(dnMobile()){location.href=DN_ALIPAY;return}
+      var tip=document.getElementById('dnTip');
+      tip.textContent=v==='custom'?'扫码后输入任意金额，多少都是心意~':'请扫码后输入 ¥'+v+' 哦~ 谢谢老板!!!';
+      var q=document.getElementById('dnQr');
+      q.classList.remove('qr-pop');void q.offsetWidth;q.classList.add('qr-pop');
+      var btns=document.querySelectorAll('.dn-amt');
+      for(var i=0;i<btns.length;i++)btns[i].classList.remove('hot');
+      event.currentTarget.classList.add('hot');
+    }
+  </script>
   <div class="hero-wrap">
     <div class="hero-left">
       <!-- 吃汉堡木子米：3 张立绘轮播（果冻飘浮 + 弹入） -->
