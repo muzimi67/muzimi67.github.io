@@ -3,33 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ==================== 两站主从：主站 = Cloudflare Pages ====================
-     这份是 GitHub Pages（备用线路）。打开后先探一下主站通不通：
-       · 通   → 跳到主站（hash 原样带过去），搜索排名只认一个域名
-       · 不通 → 留在这一份，两边内容完全一样，照常用
-       · 你已经开始操作（点了/滚了）→ 也不跳，不打断你
-     · 想直接留在备用站（调试/应急）：地址加 ?stay=1，例如 /?stay=1#/apps
-     · 主站打不开时：浏览器返回键退回这一份
-     · 页脚的「备用地址」链接也带 ?stay=1，不然点过来又被弹回主站 = 死循环
-     关掉自动跳转：把下面这段 JS 整块删掉即可（或用 ?stay=1 单次绕过）。 -->
-<script>
-(function () { try {
-  var h = location.hostname || "";
-  if (h.indexOf("github.io") < 0) return;                       /* 已经在主站 */
-  if (/[?&]stay=1/.test(location.search)) return;                /* 调试/应急：留在备用站 */
-  var MAIN = "https://muzimi67.pages.dev/";
-  var done = false;
-  function jump() { if (done) return; done = true; location.replace(MAIN + location.hash); }
-  function stay() { done = true; }                               /* 主站不通 / 已被操作：留在本页 */
-  setTimeout(stay, 1800);                                        /* 探测超时上限 */
-  addEventListener("pointerdown", stay, { once: true, passive: true });   /* 用户开始看了就别跳走 */
-  addEventListener("wheel",       stay, { once: true, passive: true });
-  /* 探测主站是否可达：HEAD 只取响应头、不下载正文；?probe= 破缓存 ——
-     否则主站挂了浏览器仍拿缓存的旧响应，会假报「通」、把人送到打不开的站 */
-  fetch(MAIN + "?probe=" + Date.now(), { method: "HEAD", mode: "no-cors", cache: "no-store" })
-    .then(jump, stay);
-} catch (e) {} })();
-</script>
 <title>木子米软件大全 - 作品集与下载</title>
 <meta name="description" content="木子米的个人作品门户：语音盒、互动游戏、邦多利系列软件，一次劳动三端卖（安卓/iOS/鸿蒙），离线单文件永不变砖。">
 <meta name="keywords" content="木子米,语音盒,邦多利,肥嘟嘟,开黑盒,亲亲盒,HTML游戏,APK">
@@ -40,8 +13,8 @@
 <meta property="og:title" content="木子米软件大全">
 <meta property="og:description" content="语音盒 × 互动游戏 × 邦多利系列。离线单文件，永不变砖。">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://muzimi67.pages.dev/assets/og-cover.png">
-<meta property="og:url" content="https://muzimi67.pages.dev/">
+<meta property="og:image" content="https://muzimi67.github.io/assets/og-cover.png">
+<meta property="og:url" content="https://muzimi67.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <!-- JSON-LD 结构化数据（由 seo_gen.py 生成，勿手改） -->
 <script type="application/ld+json">
@@ -50,20 +23,20 @@
   "@type": "ItemList",
   "name": "木子米软件大全",
   "description": "独立开发者木子米的离线单文件软件作品集，语音盒、互动游戏、邦多利系列",
-  "url": "https://muzimi67.pages.dev/",
-  "numberOfItems": 21,
+  "url": "https://muzimi67.github.io/",
+  "numberOfItems": 14,
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "邦多利最通透的软件",
+        "name": "邦多利·看哭114514亿邦邦人",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v2.3",
-        "datePublished": "2026-09-30",
-        "url": "https://muzimi67.pages.dev/#/app/tongtou",
+        "softwareVersion": "v5.2",
+        "datePublished": "2026-09-12",
+        "url": "https://muzimi67.github.io/#/app/bangduori",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -76,12 +49,12 @@
       "position": 2,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "FamilyTime 手机移植版",
+        "name": "邦多利·亲亲盒",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "先行版",
-        "datePublished": "2026-09-28",
-        "url": "https://muzimi67.pages.dev/#/app/familytime",
+        "softwareVersion": "v1.1",
+        "datePublished": "2026-09-09",
+        "url": "https://muzimi67.github.io/#/app/qinqinhe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -94,12 +67,12 @@
       "position": 3,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "邦友的酒",
+        "name": "肥嘟嘟语音盒",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v1.1",
-        "datePublished": "2026-09-28",
-        "url": "https://muzimi67.pages.dev/#/app/youjiu",
+        "softwareVersion": "v2.0",
+        "datePublished": "2026-08-29",
+        "url": "https://muzimi67.github.io/#/app/feidudu",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -112,12 +85,12 @@
       "position": 4,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "邦多利反应堆·娃娃版",
+        "name": "木子米开黑盒",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v3.1",
-        "datePublished": "2026-09-26",
-        "url": "https://muzimi67.pages.dev/#/app/fanyingdui",
+        "softwareVersion": "v1.5",
+        "datePublished": "2026-08-29",
+        "url": "https://muzimi67.github.io/#/app/kaixiahe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -130,12 +103,12 @@
       "position": 5,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "你怎么两清·识图点唱",
+        "name": "莫知了",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
-        "datePublished": "2026-09-23",
-        "url": "https://muzimi67.pages.dev/#/app/nmlq",
+        "datePublished": "2026-08-24",
+        "url": "https://muzimi67.github.io/#/app/mozhiliao",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -148,12 +121,12 @@
       "position": 6,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "ykn又三郎",
+        "name": "睦从天降",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
-        "datePublished": "2026-09-20",
-        "url": "https://muzimi67.pages.dev/#/app/ykn",
+        "datePublished": "2026-08-24",
+        "url": "https://muzimi67.github.io/#/app/mucheng",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -166,12 +139,12 @@
       "position": 7,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "你才是挑战者",
+        "name": "米家亲亲盒",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v2.7",
-        "datePublished": "2026-09-20",
-        "url": "https://muzimi67.pages.dev/#/app/tiaozhanzhe",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-28",
+        "url": "https://muzimi67.github.io/#/app/mijia",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -184,12 +157,12 @@
       "position": 8,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "邦多利·看哭114514亿邦邦人",
+        "name": "木子米小球",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v6.2",
-        "datePublished": "2026-09-28",
-        "url": "https://muzimi67.pages.dev/#/app/bangduori",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-26",
+        "url": "https://muzimi67.github.io/#/app/ball",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -202,12 +175,12 @@
       "position": 9,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "邦多利·亲亲盒",
+        "name": "木子米彩虹环",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v1.1",
-        "datePublished": "2026-09-09",
-        "url": "https://muzimi67.pages.dev/#/app/qinqinhe",
+        "softwareVersion": "v5",
+        "datePublished": "2026-08-27",
+        "url": "https://muzimi67.github.io/#/app/rainbowring",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -220,12 +193,12 @@
       "position": 10,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "肥嘟嘟语音盒",
+        "name": "藤都子压抑盒",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v2.0",
-        "datePublished": "2026-09-21",
-        "url": "https://muzimi67.pages.dev/#/app/feidudu",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-29",
+        "url": "https://muzimi67.github.io/#/app/tengduzi",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -238,12 +211,12 @@
       "position": 11,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "木子米开黑盒",
+        "name": "闹吃与古振兴",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v1.5",
-        "datePublished": "2026-08-29",
-        "url": "https://muzimi67.pages.dev/#/app/kaixiahe",
+        "softwareVersion": "v1.0",
+        "datePublished": "2026-08-30",
+        "url": "https://muzimi67.github.io/#/app/naochi",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -256,12 +229,12 @@
       "position": 12,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "莫知了",
+        "name": "天素罗宝宝",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
-        "datePublished": "2026-08-24",
-        "url": "https://muzimi67.pages.dev/#/app/mozhiliao",
+        "datePublished": "2026-09-05",
+        "url": "https://muzimi67.github.io/#/app/tiansuoluo",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -274,12 +247,12 @@
       "position": 13,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "睦从天降",
+        "name": "邦邦社恐盒",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
-        "datePublished": "2026-08-24",
-        "url": "https://muzimi67.pages.dev/#/app/mucheng",
+        "datePublished": "2026-08-29",
+        "url": "https://muzimi67.github.io/#/app/shekonghe",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -292,138 +265,12 @@
       "position": 14,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "米家亲亲盒",
-        "applicationCategory": "GameApplication",
-        "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v1.0",
-        "datePublished": "2026-08-28",
-        "url": "https://muzimi67.pages.dev/#/app/mijia",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "CNY"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 15,
-      "item": {
-        "@type": "SoftwareApplication",
-        "name": "木子米小球",
-        "applicationCategory": "GameApplication",
-        "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v1.0",
-        "datePublished": "2026-08-26",
-        "url": "https://muzimi67.pages.dev/#/app/ball",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "CNY"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 16,
-      "item": {
-        "@type": "SoftwareApplication",
-        "name": "木子米彩虹环",
-        "applicationCategory": "GameApplication",
-        "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v5",
-        "datePublished": "2026-08-27",
-        "url": "https://muzimi67.pages.dev/#/app/rainbowring",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "CNY"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 17,
-      "item": {
-        "@type": "SoftwareApplication",
-        "name": "藤都子压抑盒",
-        "applicationCategory": "GameApplication",
-        "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v1.0",
-        "datePublished": "2026-08-29",
-        "url": "https://muzimi67.pages.dev/#/app/tengduzi",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "CNY"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 18,
-      "item": {
-        "@type": "SoftwareApplication",
-        "name": "闹吃与古振兴",
-        "applicationCategory": "GameApplication",
-        "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v1.0",
-        "datePublished": "2026-08-30",
-        "url": "https://muzimi67.pages.dev/#/app/naochi",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "CNY"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 19,
-      "item": {
-        "@type": "SoftwareApplication",
-        "name": "天素罗宝宝",
-        "applicationCategory": "GameApplication",
-        "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v1.0",
-        "datePublished": "2026-09-05",
-        "url": "https://muzimi67.pages.dev/#/app/tiansuoluo",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "CNY"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 20,
-      "item": {
-        "@type": "SoftwareApplication",
-        "name": "邦邦社恐盒",
-        "applicationCategory": "GameApplication",
-        "operatingSystem": "Android, iOS, HarmonyOS",
-        "softwareVersion": "v1.0",
-        "datePublished": "2026-08-29",
-        "url": "https://muzimi67.pages.dev/#/app/shekonghe",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "CNY"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 21,
-      "item": {
-        "@type": "SoftwareApplication",
         "name": "吃汉堡木子米",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, HarmonyOS",
         "softwareVersion": "v1.0",
         "datePublished": "2026-08-22",
-        "url": "https://muzimi67.pages.dev/#/app/chibaobao",
+        "url": "https://muzimi67.github.io/#/app/chibaobao",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -606,83 +453,6 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
 .mine-wait{font-size:.75rem;color:var(--text3)}
 .mine-more{align-self:flex-start;background:none;border:0;color:var(--brand);font:inherit;font-size:.78rem;font-weight:900;cursor:pointer;padding:0}
 
-/* ===== 💛 赞助弹跳条 + 赞助弹窗（2026-09-30） ===== */
-@keyframes dn-bounce{
-  0%,100%{transform:translateY(0) rotate(0)}
-  25%{transform:translateY(-12px) rotate(-1.2deg) scale(1.02)}
-  50%{transform:translateY(0) rotate(0)}
-  65%{transform:translateY(-6px) rotate(1deg)}
-  80%{transform:translateY(0)}
-}
-@keyframes dn-glow{
-  0%,100%{box-shadow:0 10px 30px -8px rgba(249,115,22,.55)}
-  50%{box-shadow:0 18px 46px -6px rgba(236,72,153,.8)}
-}
-@keyframes dn-beat{0%,100%{transform:scale(1)}30%{transform:scale(1.35)}60%{transform:scale(.92)}}
-.donate-bounce{
-  display:flex;align-items:center;justify-content:center;gap:.45rem;flex-wrap:wrap;
-  margin:0 0 1.2rem;padding:1rem 1.2rem;cursor:pointer;user-select:none;
-  border-radius:1.1rem;border:1px solid rgba(249,115,22,.45);
-  background:linear-gradient(135deg,#f59e0b,#f97316 45%,#ec4899);
-  color:#fff;font-weight:900;font-size:1.02rem;letter-spacing:.02em;text-align:center;
-  animation:dn-bounce 1.5s ease-in-out infinite,dn-glow 1.5s ease-in-out infinite;
-  will-change:transform;
-}
-.donate-bounce:hover{animation-play-state:paused;filter:brightness(1.1)}
-.donate-bounce .dn-heart{display:inline-block;font-size:1.25em;animation:dn-beat .9s ease-in-out infinite}
-@media (prefers-reduced-motion: reduce){.donate-bounce,.donate-bounce .dn-heart{animation:none}}
-.donate-modal .modal{text-align:center}
-.donate-title{font-size:1.08rem;font-weight:900;line-height:1.6;margin-bottom:.3rem}
-.donate-sub{font-size:.76rem;color:var(--text3);margin-bottom:.8rem}
-.donate-qr{display:block;width:min(14.5rem,66vw);margin:0 auto .7rem;border-radius:1rem;border:1px solid var(--border);background:#fff;padding:.5rem}
-@keyframes dn-pop{0%{transform:scale(1)}40%{transform:scale(1.07) rotate(2deg)}100%{transform:scale(1)}}
-.donate-qr.qr-pop{animation:dn-pop .45s ease}
-.donate-tip{font-size:.78rem;color:var(--text2);margin-bottom:.8rem;min-height:1.3rem;font-weight:700}
-.donate-amts{display:flex;gap:.55rem;justify-content:center;flex-wrap:wrap;margin-bottom:.2rem}
-.dn-amt{border:1px solid var(--border);background:var(--card);color:var(--text1);font:inherit;font-weight:900;font-size:.95rem;border-radius:.85rem;padding:.65rem 1.15rem;cursor:pointer;transition:.18s}
-.dn-amt:hover{border-color:#f97316;background:rgba(249,115,22,.12);transform:translateY(-2px)}
-.dn-amt.hot{background:linear-gradient(135deg,#f97316,#ec4899);color:#fff;border-color:transparent}
-
-/* ===== 🐳 DeepSeek 大肥鱼弹跳条 + 充值弹窗（2026-09-30） ===== */
-@keyframes ds-wave{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-9px) rotate(1.1deg) scale(1.02)}55%{transform:translateY(0)}70%{transform:translateY(-5px) rotate(-.8deg)}}
-@keyframes ds-glow{0%,100%{box-shadow:0 10px 30px -8px rgba(59,130,246,.55)}50%{box-shadow:0 18px 46px -6px rgba(6,182,212,.75)}}
-.ds-bounce{
-  display:flex;align-items:center;justify-content:center;gap:.45rem;flex-wrap:wrap;
-  margin:0 0 1.2rem;padding:1rem 1.2rem;cursor:pointer;user-select:none;
-  border-radius:1.1rem;border:1px solid rgba(59,130,246,.5);
-  background:linear-gradient(135deg,#0ea5e9,#2563eb 45%,#7c3aed);
-  color:#fff;font-weight:900;font-size:.98rem;letter-spacing:.02em;text-align:center;
-  animation:ds-wave 1.8s ease-in-out infinite,ds-glow 1.8s ease-in-out infinite;
-  will-change:transform;
-}
-.ds-bounce:hover{animation-play-state:paused;filter:brightness(1.1)}
-.ds-bounce .ds-fish{display:inline-block;font-size:1.3em;animation:dn-beat 1.1s ease-in-out infinite}
-@media (prefers-reduced-motion: reduce){.ds-bounce,.ds-bounce .ds-fish{animation:none}}
-.ds-modal .modal{text-align:center}
-.ds-title{font-size:1.08rem;font-weight:900;line-height:1.6;margin-bottom:.3rem}
-.ds-sub{font-size:.76rem;color:var(--text3);margin-bottom:.8rem}
-.ds-qrbox{display:block;width:min(14.5rem,66vw);margin:0 auto .5rem;border-radius:1rem;border:1px solid var(--border);background:#fff;padding:.5rem;min-height:15.6rem;display:flex;align-items:center;justify-content:center;overflow:hidden}
-#dsQr img,#dsQr canvas{display:block}
-.ds-count{font-size:.78rem;color:var(--brand);font-weight:800;margin-bottom:.7rem;min-height:1.2rem}
-.ds-loading{font-size:.82rem;color:var(--text3);font-weight:700;text-align:center;padding:0 .6rem;line-height:1.7}
-.ds-amts{display:flex;gap:.55rem;justify-content:center;flex-wrap:wrap;margin-bottom:.2rem}
-.ds-amt{border:1px solid var(--border);background:var(--card);color:var(--text1);font:inherit;font-weight:900;font-size:.95rem;border-radius:.85rem;padding:.65rem 1.15rem;cursor:pointer;transition:.18s}
-.ds-amt:hover{border-color:#2563eb;background:rgba(37,99,235,.12);transform:translateY(-2px)}
-.ds-amt.hot{background:linear-gradient(135deg,#0ea5e9,#2563eb);color:#fff;border-color:transparent;box-shadow:0 6px 18px -6px rgba(37,99,235,.6)}
-.ds-note{font-size:.68rem;color:var(--text3);margin:.6rem 0 .2rem;line-height:1.8}
-.ds-grain{font-size:.88rem;font-weight:900;color:var(--brand);margin-bottom:.6rem;min-height:1.3rem}
-.ds-chs{display:flex;gap:.55rem;justify-content:center;margin-bottom:.55rem}
-.ds-ch{border:1px solid var(--border);background:var(--card);color:var(--text1);font:inherit;font-weight:900;font-size:.9rem;border-radius:.85rem;padding:.6rem 1.05rem;cursor:pointer;transition:.18s}
-.ds-ch:hover{transform:translateY(-2px)}
-.ds-ch.hot.ali{background:linear-gradient(135deg,#2563eb,#0ea5e9);color:#fff;border-color:transparent;box-shadow:0 6px 18px -6px rgba(37,99,235,.55)}
-.ds-ch.hot.wx{background:linear-gradient(135deg,#059669,#10b981);color:#fff;border-color:transparent;box-shadow:0 6px 18px -6px rgba(16,185,129,.55)}
-.ds-go{display:block;margin:.7rem auto .3rem;border:none;background:linear-gradient(135deg,#0ea5e9,#2563eb 55%,#7c3aed);color:#fff;font:inherit;font-weight:900;font-size:.98rem;border-radius:.95rem;padding:.72rem 2.1rem;cursor:pointer;box-shadow:0 8px 22px -8px rgba(37,99,235,.55);transition:.18s}
-.ds-go:hover{transform:translateY(-2px);filter:brightness(1.08)}
-.ds-go:disabled{opacity:.55;cursor:wait;transform:none}
-.ds-fallback{margin:.5rem auto 0;text-align:center}
-.ds-fallback img{display:block;width:9.5rem;border-radius:.8rem;border:1px solid var(--border);background:#fff;padding:.3rem;margin:0 auto .45rem}
-.ds-fallback div{font-size:.7rem;color:var(--text3);line-height:1.8}
-
 /* ===== Apps 列表 ===== */
 .page-head{padding:3.5rem 0 1.6rem}
 .page-head h1{font-size:2rem;font-weight:900;letter-spacing:-.02em}
@@ -826,208 +596,6 @@ footer{padding:3rem 0 2rem;text-align:center;font-size:.65rem;letter-spacing:.3e
     <div class="t"><b>📦 软件大全 · 全部打包</b><p>一个链接拿走全部作品，安卓和 iPhone/鸿蒙都齐了 · 先转存到自己网盘，永久都在</p></div>
     <div class="btns" id="allpackBtns"></div>
   </div>
-  <!-- 💛 赞助：网盘区下面的弹跳入口 -->
-  <div class="donate-bounce" onclick="openDonate()"><span class="dn-heart">💛</span>喜欢我的游戏？o((>ω< ))o 可以赞助我!!!<span class="dn-heart">💛</span></div>
-  <!-- 💛 赞助弹窗 -->
-  <div class="modal-mask donate-modal" id="donateModal" onclick="if(event.target===this)closeDonate()">
-    <div class="modal">
-      <div class="donate-title">喜欢我的游戏？o((>ω< ))o<br>可以赞助我!!!</div>
-      <div class="donate-sub">手机点金额直接跳支付宝 · 电脑用支付宝扫码</div>
-      <img id="dnQr" class="donate-qr" src="assets/alipay_qr.png" alt="支付宝收款码" draggable="false">
-      <div class="donate-tip" id="dnTip">选个金额，扫码就能付啦~</div>
-      <div class="donate-amts">
-        <button class="dn-amt" onclick="donateAmt(5)">¥5</button>
-        <button class="dn-amt" onclick="donateAmt(10)">¥10</button>
-        <button class="dn-amt" onclick="donateAmt(20)">¥20</button>
-        <button class="dn-amt" onclick="donateAmt('custom')">自定义</button>
-      </div>
-      <button class="close" onclick="closeDonate()">关闭</button>
-    </div>
-  </div>
-  <script>
-    var DN_ALIPAY='https://qr.alipay.com/tsx17830kc0t3k4z4zykmba';
-    function openDonate(){document.getElementById('donateModal').classList.add('show')}
-    function closeDonate(){document.getElementById('donateModal').classList.remove('show')}
-    function dnMobile(){return /Android|iPhone|iPad|HarmonyOS|OpenHarmony|Mobile/i.test(navigator.userAgent)}
-    function donateAmt(v){
-      if(dnMobile()){location.href=DN_ALIPAY;return}
-      var tip=document.getElementById('dnTip');
-      tip.textContent=v==='custom'?'扫码后输入任意金额，多少都是心意~':'请扫码后输入 ¥'+v+' 哦~ 谢谢老板!!!';
-      var q=document.getElementById('dnQr');
-      q.classList.remove('qr-pop');void q.offsetWidth;q.classList.add('qr-pop');
-      var btns=document.querySelectorAll('.dn-amt');
-      for(var i=0;i<btns.length;i++)btns[i].classList.remove('hot');
-      event.currentTarget.classList.add('hot');
-    }
-  </script>
-  <!-- 🐳 DeepSeek 大肥鱼：充值入口2 -->
-  <div class="ds-bounce" onclick="openDs()"><span class="ds-fish">🐳</span>不想兄弟开路虎，那给蓝色大肥鱼充点钱吧 会更快开发新游戏的欧<span class="ds-fish">🐳</span></div>
-  <!-- 🐳 DeepSeek 充值弹窗 -->
-  <div class="modal-mask ds-modal" id="dsModal" onclick="if(event.target===this)closeDs()">
-    <div class="modal">
-      <div class="ds-title">给蓝色大肥鱼充点钱吧 🐳<br>充的钱直接变成我的 DeepSeek 算力！</div>
-      <div class="ds-sub">选渠道和金额 → 点「生成收款码」· 钱实时冲进我的 DeepSeek 账户</div>
-      <div class="ds-grain" id="dsGrain"></div>
-      <div class="ds-chs">
-        <button class="ds-ch" id="dsChAli" onclick="dsCh('ALIPAY')">💙 支付宝</button>
-        <button class="ds-ch" id="dsChWx" onclick="dsCh('WECHAT')">💚 微信</button>
-      </div>
-      <div class="ds-amts">
-        <button class="ds-amt" onclick="dsAmt(5)">¥5</button>
-        <button class="ds-amt" onclick="dsAmt(10)">¥10</button>
-        <button class="ds-amt" onclick="dsAmt(20)">¥20</button>
-      </div>
-      <button class="ds-go" id="dsGo" onclick="dsGo()">⚡ 生成收款码</button>
-      <div class="ds-qrbox" id="dsQrBox" style="display:none"><div id="dsQr"></div></div>
-      <div class="ds-count" id="dsCount"></div>
-      <div class="ds-fallback" id="dsFallback" style="display:none">
-        <img src="assets/alipay_qr.png" alt="支付宝赞助码">
-        <div>收款码服务器打瞌睡了（博主电脑可能没开机）～<br>急的话可以先用这张支付宝码直接赞助我</div>
-      </div>
-      <div class="ds-note" id="dsNote">点「生成收款码」后约 10 秒出码 · 支付宝手机端自动跳转付款 · 微信用「扫一扫」扫码<br>收款码 15 分钟内有效 · 付款后 DeepSeek 余额自动到账，感谢老板投喂!!!</div>
-      <button class="close" onclick="closeDs()">关闭</button>
-    </div>
-  </div>
-  <script>
-var QRCode;!function(){function a(a){this.mode=c.MODE_8BIT_BYTE,this.data=a,this.parsedData=[];for(var b=[],d=0,e=this.data.length;e>d;d++){var f=this.data.charCodeAt(d);f>65536?(b[0]=240|(1835008&f)>>>18,b[1]=128|(258048&f)>>>12,b[2]=128|(4032&f)>>>6,b[3]=128|63&f):f>2048?(b[0]=224|(61440&f)>>>12,b[1]=128|(4032&f)>>>6,b[2]=128|63&f):f>128?(b[0]=192|(1984&f)>>>6,b[1]=128|63&f):b[0]=f,this.parsedData=this.parsedData.concat(b)}this.parsedData.length!=this.data.length&&(this.parsedData.unshift(191),this.parsedData.unshift(187),this.parsedData.unshift(239))}function b(a,b){this.typeNumber=a,this.errorCorrectLevel=b,this.modules=null,this.moduleCount=0,this.dataCache=null,this.dataList=[]}function i(a,b){if(void 0==a.length)throw new Error(a.length+"/"+b);for(var c=0;c<a.length&&0==a[c];)c++;this.num=new Array(a.length-c+b);for(var d=0;d<a.length-c;d++)this.num[d]=a[d+c]}function j(a,b){this.totalCount=a,this.dataCount=b}function k(){this.buffer=[],this.length=0}function m(){return"undefined"!=typeof CanvasRenderingContext2D}function n(){var a=!1,b=navigator.userAgent;return/android/i.test(b)&&(a=!0,aMat=b.toString().match(/android ([0-9]\.[0-9])/i),aMat&&aMat[1]&&(a=parseFloat(aMat[1]))),a}function r(a,b){for(var c=1,e=s(a),f=0,g=l.length;g>=f;f++){var h=0;switch(b){case d.L:h=l[f][0];break;case d.M:h=l[f][1];break;case d.Q:h=l[f][2];break;case d.H:h=l[f][3]}if(h>=e)break;c++}if(c>l.length)throw new Error("Too long data");return c}function s(a){var b=encodeURI(a).toString().replace(/\%[0-9a-fA-F]{2}/g,"a");return b.length+(b.length!=a?3:0)}a.prototype={getLength:function(){return this.parsedData.length},write:function(a){for(var b=0,c=this.parsedData.length;c>b;b++)a.put(this.parsedData[b],8)}},b.prototype={addData:function(b){var c=new a(b);this.dataList.push(c),this.dataCache=null},isDark:function(a,b){if(0>a||this.moduleCount<=a||0>b||this.moduleCount<=b)throw new Error(a+","+b);return this.modules[a][b]},getModuleCount:function(){return this.moduleCount},make:function(){this.makeImpl(!1,this.getBestMaskPattern())},makeImpl:function(a,c){this.moduleCount=4*this.typeNumber+17,this.modules=new Array(this.moduleCount);for(var d=0;d<this.moduleCount;d++){this.modules[d]=new Array(this.moduleCount);for(var e=0;e<this.moduleCount;e++)this.modules[d][e]=null}this.setupPositionProbePattern(0,0),this.setupPositionProbePattern(this.moduleCount-7,0),this.setupPositionProbePattern(0,this.moduleCount-7),this.setupPositionAdjustPattern(),this.setupTimingPattern(),this.setupTypeInfo(a,c),this.typeNumber>=7&&this.setupTypeNumber(a),null==this.dataCache&&(this.dataCache=b.createData(this.typeNumber,this.errorCorrectLevel,this.dataList)),this.mapData(this.dataCache,c)},setupPositionProbePattern:function(a,b){for(var c=-1;7>=c;c++)if(!(-1>=a+c||this.moduleCount<=a+c))for(var d=-1;7>=d;d++)-1>=b+d||this.moduleCount<=b+d||(this.modules[a+c][b+d]=c>=0&&6>=c&&(0==d||6==d)||d>=0&&6>=d&&(0==c||6==c)||c>=2&&4>=c&&d>=2&&4>=d?!0:!1)},getBestMaskPattern:function(){for(var a=0,b=0,c=0;8>c;c++){this.makeImpl(!0,c);var d=f.getLostPoint(this);(0==c||a>d)&&(a=d,b=c)}return b},createMovieClip:function(a,b,c){var d=a.createEmptyMovieClip(b,c),e=1;this.make();for(var f=0;f<this.modules.length;f++)for(var g=f*e,h=0;h<this.modules[f].length;h++){var i=h*e,j=this.modules[f][h];j&&(d.beginFill(0,100),d.moveTo(i,g),d.lineTo(i+e,g),d.lineTo(i+e,g+e),d.lineTo(i,g+e),d.endFill())}return d},setupTimingPattern:function(){for(var a=8;a<this.moduleCount-8;a++)null==this.modules[a][6]&&(this.modules[a][6]=0==a%2);for(var b=8;b<this.moduleCount-8;b++)null==this.modules[6][b]&&(this.modules[6][b]=0==b%2)},setupPositionAdjustPattern:function(){for(var a=f.getPatternPosition(this.typeNumber),b=0;b<a.length;b++)for(var c=0;c<a.length;c++){var d=a[b],e=a[c];if(null==this.modules[d][e])for(var g=-2;2>=g;g++)for(var h=-2;2>=h;h++)this.modules[d+g][e+h]=-2==g||2==g||-2==h||2==h||0==g&&0==h?!0:!1}},setupTypeNumber:function(a){for(var b=f.getBCHTypeNumber(this.typeNumber),c=0;18>c;c++){var d=!a&&1==(1&b>>c);this.modules[Math.floor(c/3)][c%3+this.moduleCount-8-3]=d}for(var c=0;18>c;c++){var d=!a&&1==(1&b>>c);this.modules[c%3+this.moduleCount-8-3][Math.floor(c/3)]=d}},setupTypeInfo:function(a,b){for(var c=this.errorCorrectLevel<<3|b,d=f.getBCHTypeInfo(c),e=0;15>e;e++){var g=!a&&1==(1&d>>e);6>e?this.modules[e][8]=g:8>e?this.modules[e+1][8]=g:this.modules[this.moduleCount-15+e][8]=g}for(var e=0;15>e;e++){var g=!a&&1==(1&d>>e);8>e?this.modules[8][this.moduleCount-e-1]=g:9>e?this.modules[8][15-e-1+1]=g:this.modules[8][15-e-1]=g}this.modules[this.moduleCount-8][8]=!a},mapData:function(a,b){for(var c=-1,d=this.moduleCount-1,e=7,g=0,h=this.moduleCount-1;h>0;h-=2)for(6==h&&h--;;){for(var i=0;2>i;i++)if(null==this.modules[d][h-i]){var j=!1;g<a.length&&(j=1==(1&a[g]>>>e));var k=f.getMask(b,d,h-i);k&&(j=!j),this.modules[d][h-i]=j,e--,-1==e&&(g++,e=7)}if(d+=c,0>d||this.moduleCount<=d){d-=c,c=-c;break}}}},b.PAD0=236,b.PAD1=17,b.createData=function(a,c,d){for(var e=j.getRSBlocks(a,c),g=new k,h=0;h<d.length;h++){var i=d[h];g.put(i.mode,4),g.put(i.getLength(),f.getLengthInBits(i.mode,a)),i.write(g)}for(var l=0,h=0;h<e.length;h++)l+=e[h].dataCount;if(g.getLengthInBits()>8*l)throw new Error("code length overflow. ("+g.getLengthInBits()+">"+8*l+")");for(g.getLengthInBits()+4<=8*l&&g.put(0,4);0!=g.getLengthInBits()%8;)g.putBit(!1);for(;;){if(g.getLengthInBits()>=8*l)break;if(g.put(b.PAD0,8),g.getLengthInBits()>=8*l)break;g.put(b.PAD1,8)}return b.createBytes(g,e)},b.createBytes=function(a,b){for(var c=0,d=0,e=0,g=new Array(b.length),h=new Array(b.length),j=0;j<b.length;j++){var k=b[j].dataCount,l=b[j].totalCount-k;d=Math.max(d,k),e=Math.max(e,l),g[j]=new Array(k);for(var m=0;m<g[j].length;m++)g[j][m]=255&a.buffer[m+c];c+=k;var n=f.getErrorCorrectPolynomial(l),o=new i(g[j],n.getLength()-1),p=o.mod(n);h[j]=new Array(n.getLength()-1);for(var m=0;m<h[j].length;m++){var q=m+p.getLength()-h[j].length;h[j][m]=q>=0?p.get(q):0}}for(var r=0,m=0;m<b.length;m++)r+=b[m].totalCount;for(var s=new Array(r),t=0,m=0;d>m;m++)for(var j=0;j<b.length;j++)m<g[j].length&&(s[t++]=g[j][m]);for(var m=0;e>m;m++)for(var j=0;j<b.length;j++)m<h[j].length&&(s[t++]=h[j][m]);return s};for(var c={MODE_NUMBER:1,MODE_ALPHA_NUM:2,MODE_8BIT_BYTE:4,MODE_KANJI:8},d={L:1,M:0,Q:3,H:2},e={PATTERN000:0,PATTERN001:1,PATTERN010:2,PATTERN011:3,PATTERN100:4,PATTERN101:5,PATTERN110:6,PATTERN111:7},f={PATTERN_POSITION_TABLE:[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],G15:1335,G18:7973,G15_MASK:21522,getBCHTypeInfo:function(a){for(var b=a<<10;f.getBCHDigit(b)-f.getBCHDigit(f.G15)>=0;)b^=f.G15<<f.getBCHDigit(b)-f.getBCHDigit(f.G15);return(a<<10|b)^f.G15_MASK},getBCHTypeNumber:function(a){for(var b=a<<12;f.getBCHDigit(b)-f.getBCHDigit(f.G18)>=0;)b^=f.G18<<f.getBCHDigit(b)-f.getBCHDigit(f.G18);return a<<12|b},getBCHDigit:function(a){for(var b=0;0!=a;)b++,a>>>=1;return b},getPatternPosition:function(a){return f.PATTERN_POSITION_TABLE[a-1]},getMask:function(a,b,c){switch(a){case e.PATTERN000:return 0==(b+c)%2;case e.PATTERN001:return 0==b%2;case e.PATTERN010:return 0==c%3;case e.PATTERN011:return 0==(b+c)%3;case e.PATTERN100:return 0==(Math.floor(b/2)+Math.floor(c/3))%2;case e.PATTERN101:return 0==b*c%2+b*c%3;case e.PATTERN110:return 0==(b*c%2+b*c%3)%2;case e.PATTERN111:return 0==(b*c%3+(b+c)%2)%2;default:throw new Error("bad maskPattern:"+a)}},getErrorCorrectPolynomial:function(a){for(var b=new i([1],0),c=0;a>c;c++)b=b.multiply(new i([1,g.gexp(c)],0));return b},getLengthInBits:function(a,b){if(b>=1&&10>b)switch(a){case c.MODE_NUMBER:return 10;case c.MODE_ALPHA_NUM:return 9;case c.MODE_8BIT_BYTE:return 8;case c.MODE_KANJI:return 8;default:throw new Error("mode:"+a)}else if(27>b)switch(a){case c.MODE_NUMBER:return 12;case c.MODE_ALPHA_NUM:return 11;case c.MODE_8BIT_BYTE:return 16;case c.MODE_KANJI:return 10;default:throw new Error("mode:"+a)}else{if(!(41>b))throw new Error("type:"+b);switch(a){case c.MODE_NUMBER:return 14;case c.MODE_ALPHA_NUM:return 13;case c.MODE_8BIT_BYTE:return 16;case c.MODE_KANJI:return 12;default:throw new Error("mode:"+a)}}},getLostPoint:function(a){for(var b=a.getModuleCount(),c=0,d=0;b>d;d++)for(var e=0;b>e;e++){for(var f=0,g=a.isDark(d,e),h=-1;1>=h;h++)if(!(0>d+h||d+h>=b))for(var i=-1;1>=i;i++)0>e+i||e+i>=b||(0!=h||0!=i)&&g==a.isDark(d+h,e+i)&&f++;f>5&&(c+=3+f-5)}for(var d=0;b-1>d;d++)for(var e=0;b-1>e;e++){var j=0;a.isDark(d,e)&&j++,a.isDark(d+1,e)&&j++,a.isDark(d,e+1)&&j++,a.isDark(d+1,e+1)&&j++,(0==j||4==j)&&(c+=3)}for(var d=0;b>d;d++)for(var e=0;b-6>e;e++)a.isDark(d,e)&&!a.isDark(d,e+1)&&a.isDark(d,e+2)&&a.isDark(d,e+3)&&a.isDark(d,e+4)&&!a.isDark(d,e+5)&&a.isDark(d,e+6)&&(c+=40);for(var e=0;b>e;e++)for(var d=0;b-6>d;d++)a.isDark(d,e)&&!a.isDark(d+1,e)&&a.isDark(d+2,e)&&a.isDark(d+3,e)&&a.isDark(d+4,e)&&!a.isDark(d+5,e)&&a.isDark(d+6,e)&&(c+=40);for(var k=0,e=0;b>e;e++)for(var d=0;b>d;d++)a.isDark(d,e)&&k++;var l=Math.abs(100*k/b/b-50)/5;return c+=10*l}},g={glog:function(a){if(1>a)throw new Error("glog("+a+")");return g.LOG_TABLE[a]},gexp:function(a){for(;0>a;)a+=255;for(;a>=256;)a-=255;return g.EXP_TABLE[a]},EXP_TABLE:new Array(256),LOG_TABLE:new Array(256)},h=0;8>h;h++)g.EXP_TABLE[h]=1<<h;for(var h=8;256>h;h++)g.EXP_TABLE[h]=g.EXP_TABLE[h-4]^g.EXP_TABLE[h-5]^g.EXP_TABLE[h-6]^g.EXP_TABLE[h-8];for(var h=0;255>h;h++)g.LOG_TABLE[g.EXP_TABLE[h]]=h;i.prototype={get:function(a){return this.num[a]},getLength:function(){return this.num.length},multiply:function(a){for(var b=new Array(this.getLength()+a.getLength()-1),c=0;c<this.getLength();c++)for(var d=0;d<a.getLength();d++)b[c+d]^=g.gexp(g.glog(this.get(c))+g.glog(a.get(d)));return new i(b,0)},mod:function(a){if(this.getLength()-a.getLength()<0)return this;for(var b=g.glog(this.get(0))-g.glog(a.get(0)),c=new Array(this.getLength()),d=0;d<this.getLength();d++)c[d]=this.get(d);for(var d=0;d<a.getLength();d++)c[d]^=g.gexp(g.glog(a.get(d))+b);return new i(c,0).mod(a)}},j.RS_BLOCK_TABLE=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],j.getRSBlocks=function(a,b){var c=j.getRsBlockTable(a,b);if(void 0==c)throw new Error("bad rs block @ typeNumber:"+a+"/errorCorrectLevel:"+b);for(var d=c.length/3,e=[],f=0;d>f;f++)for(var g=c[3*f+0],h=c[3*f+1],i=c[3*f+2],k=0;g>k;k++)e.push(new j(h,i));return e},j.getRsBlockTable=function(a,b){switch(b){case d.L:return j.RS_BLOCK_TABLE[4*(a-1)+0];case d.M:return j.RS_BLOCK_TABLE[4*(a-1)+1];case d.Q:return j.RS_BLOCK_TABLE[4*(a-1)+2];case d.H:return j.RS_BLOCK_TABLE[4*(a-1)+3];default:return void 0}},k.prototype={get:function(a){var b=Math.floor(a/8);return 1==(1&this.buffer[b]>>>7-a%8)},put:function(a,b){for(var c=0;b>c;c++)this.putBit(1==(1&a>>>b-c-1))},getLengthInBits:function(){return this.length},putBit:function(a){var b=Math.floor(this.length/8);this.buffer.length<=b&&this.buffer.push(0),a&&(this.buffer[b]|=128>>>this.length%8),this.length++}};var l=[[17,14,11,7],[32,26,20,14],[53,42,32,24],[78,62,46,34],[106,84,60,44],[134,106,74,58],[154,122,86,64],[192,152,108,84],[230,180,130,98],[271,213,151,119],[321,251,177,137],[367,287,203,155],[425,331,241,177],[458,362,258,194],[520,412,292,220],[586,450,322,250],[644,504,364,280],[718,560,394,310],[792,624,442,338],[858,666,482,382],[929,711,509,403],[1003,779,565,439],[1091,857,611,461],[1171,911,661,511],[1273,997,715,535],[1367,1059,751,593],[1465,1125,805,625],[1528,1190,868,658],[1628,1264,908,698],[1732,1370,982,742],[1840,1452,1030,790],[1952,1538,1112,842],[2068,1628,1168,898],[2188,1722,1228,958],[2303,1809,1283,983],[2431,1911,1351,1051],[2563,1989,1423,1093],[2699,2099,1499,1139],[2809,2213,1579,1219],[2953,2331,1663,1273]],o=function(){var a=function(a,b){this._el=a,this._htOption=b};return a.prototype.draw=function(a){function g(a,b){var c=document.createElementNS("http://www.w3.org/2000/svg",a);for(var d in b)b.hasOwnProperty(d)&&c.setAttribute(d,b[d]);return c}var b=this._htOption,c=this._el,d=a.getModuleCount();Math.floor(b.width/d),Math.floor(b.height/d),this.clear();var h=g("svg",{viewBox:"0 0 "+String(d)+" "+String(d),width:"100%",height:"100%",fill:b.colorLight});h.setAttributeNS("http://www.w3.org/2000/xmlns/","xmlns:xlink","http://www.w3.org/1999/xlink"),c.appendChild(h),h.appendChild(g("rect",{fill:b.colorDark,width:"1",height:"1",id:"template"}));for(var i=0;d>i;i++)for(var j=0;d>j;j++)if(a.isDark(i,j)){var k=g("use",{x:String(i),y:String(j)});k.setAttributeNS("http://www.w3.org/1999/xlink","href","#template"),h.appendChild(k)}},a.prototype.clear=function(){for(;this._el.hasChildNodes();)this._el.removeChild(this._el.lastChild)},a}(),p="svg"===document.documentElement.tagName.toLowerCase(),q=p?o:m()?function(){function a(){this._elImage.src=this._elCanvas.toDataURL("image/png"),this._elImage.style.display="block",this._elCanvas.style.display="none"}function d(a,b){var c=this;if(c._fFail=b,c._fSuccess=a,null===c._bSupportDataURI){var d=document.createElement("img"),e=function(){c._bSupportDataURI=!1,c._fFail&&_fFail.call(c)},f=function(){c._bSupportDataURI=!0,c._fSuccess&&c._fSuccess.call(c)};return d.onabort=e,d.onerror=e,d.onload=f,d.src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",void 0}c._bSupportDataURI===!0&&c._fSuccess?c._fSuccess.call(c):c._bSupportDataURI===!1&&c._fFail&&c._fFail.call(c)}if(this._android&&this._android<=2.1){var b=1/window.devicePixelRatio,c=CanvasRenderingContext2D.prototype.drawImage;CanvasRenderingContext2D.prototype.drawImage=function(a,d,e,f,g,h,i,j){if("nodeName"in a&&/img/i.test(a.nodeName))for(var l=arguments.length-1;l>=1;l--)arguments[l]=arguments[l]*b;else"undefined"==typeof j&&(arguments[1]*=b,arguments[2]*=b,arguments[3]*=b,arguments[4]*=b);c.apply(this,arguments)}}var e=function(a,b){this._bIsPainted=!1,this._android=n(),this._htOption=b,this._elCanvas=document.createElement("canvas"),this._elCanvas.width=b.width,this._elCanvas.height=b.height,a.appendChild(this._elCanvas),this._el=a,this._oContext=this._elCanvas.getContext("2d"),this._bIsPainted=!1,this._elImage=document.createElement("img"),this._elImage.style.display="none",this._el.appendChild(this._elImage),this._bSupportDataURI=null};return e.prototype.draw=function(a){var b=this._elImage,c=this._oContext,d=this._htOption,e=a.getModuleCount(),f=d.width/e,g=d.height/e,h=Math.round(f),i=Math.round(g);b.style.display="none",this.clear();for(var j=0;e>j;j++)for(var k=0;e>k;k++){var l=a.isDark(j,k),m=k*f,n=j*g;c.strokeStyle=l?d.colorDark:d.colorLight,c.lineWidth=1,c.fillStyle=l?d.colorDark:d.colorLight,c.fillRect(m,n,f,g),c.strokeRect(Math.floor(m)+.5,Math.floor(n)+.5,h,i),c.strokeRect(Math.ceil(m)-.5,Math.ceil(n)-.5,h,i)}this._bIsPainted=!0},e.prototype.makeImage=function(){this._bIsPainted&&d.call(this,a)},e.prototype.isPainted=function(){return this._bIsPainted},e.prototype.clear=function(){this._oContext.clearRect(0,0,this._elCanvas.width,this._elCanvas.height),this._bIsPainted=!1},e.prototype.round=function(a){return a?Math.floor(1e3*a)/1e3:a},e}():function(){var a=function(a,b){this._el=a,this._htOption=b};return a.prototype.draw=function(a){for(var b=this._htOption,c=this._el,d=a.getModuleCount(),e=Math.floor(b.width/d),f=Math.floor(b.height/d),g=['<table style="border:0;border-collapse:collapse;">'],h=0;d>h;h++){g.push("<tr>");for(var i=0;d>i;i++)g.push('<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:'+e+"px;height:"+f+"px;background-color:"+(a.isDark(h,i)?b.colorDark:b.colorLight)+';"></td>');g.push("</tr>")}g.push("</table>"),c.innerHTML=g.join("");var j=c.childNodes[0],k=(b.width-j.offsetWidth)/2,l=(b.height-j.offsetHeight)/2;k>0&&l>0&&(j.style.margin=l+"px "+k+"px")},a.prototype.clear=function(){this._el.innerHTML=""},a}();QRCode=function(a,b){if(this._htOption={width:256,height:256,typeNumber:4,colorDark:"#000000",colorLight:"#ffffff",correctLevel:d.H},"string"==typeof b&&(b={text:b}),b)for(var c in b)this._htOption[c]=b[c];"string"==typeof a&&(a=document.getElementById(a)),this._android=n(),this._el=a,this._oQRCode=null,this._oDrawing=new q(this._el,this._htOption),this._htOption.text&&this.makeCode(this._htOption.text)},QRCode.prototype.makeCode=function(a){this._oQRCode=new b(r(a,this._htOption.correctLevel),this._htOption.correctLevel),this._oQRCode.addData(a),this._oQRCode.make(),this._el.title=a,this._oDrawing.draw(this._oQRCode),this.makeImage()},QRCode.prototype.makeImage=function(){"function"==typeof this._oDrawing.makeImage&&(!this._android||this._android>=3)&&this._oDrawing.makeImage()},QRCode.prototype.clear=function(){this._oDrawing.clear()},QRCode.CorrectLevel=d}();
-var DS_QR_URLS=[
-  'https://cdn.jsdelivr.net/gh/muzimi67/muzimi67.github.io@qr-data/deepseek_qr.json',
-  'https://fastly.jsdelivr.net/gh/muzimi67/muzimi67.github.io@qr-data/deepseek_qr.json',
-  'https://raw.githubusercontent.com/muzimi67/muzimi67.github.io/qr-data/deepseek_qr.json'
-];
-var DS_RES_BASE=[
-  'https://cdn.jsdelivr.net/gh/muzimi67/muzimi67.github.io@qr-data/res_',
-  'https://fastly.jsdelivr.net/gh/muzimi67/muzimi67.github.io@qr-data/res_'
-];
-var DS_ORDER_API='https://muzimi67.pages.dev/api/ds-order';
-var dsCur=10,dsChCur='ALIPAY',dsData=null,dsPollTimer=null,dsCdTimer=null,dsBusy=false,dsExp=0,dsFetching=false;
-function openDs(){document.getElementById('dsModal').classList.add('show');dsCh('ALIPAY');dsAmt(dsCur);dsFetch(function(){dsGrains()})}
-function closeDs(){document.getElementById('dsModal').classList.remove('show');dsStopTimers()}
-function dsStopTimers(){if(dsPollTimer){clearInterval(dsPollTimer);dsPollTimer=null}if(dsCdTimer){clearInterval(dsCdTimer);dsCdTimer=null}}
-function dsMobile(){return /Android|iPhone|iPad|HarmonyOS|OpenHarmony|Mobile/i.test(navigator.userAgent)}
-function dsInWx(){return /MicroMessenger/i.test(navigator.userAgent)}
-function dsGrains(){
-  var g=document.getElementById('dsGrain');
-  var v=(dsData&&dsData.grains!=null)?dsData.grains:null;
-  if(v==null){g.textContent='';return}
-  if(v<0){g.textContent='🐋 大肥鱼饿瘪了，还欠 '+(-v).toFixed(2)+' 粒米，快救救孩子！';g.style.color='#e11d48'}
-  else{g.textContent='🐋 大肥鱼当前囤粮：'+v.toFixed(2)+' 粒米';g.style.color=''}
-}
-function dsFetch(cb){
-  if(dsFetching)return;dsFetching=true;
-  var i=0;
-  function next(){
-    if(i>=DS_QR_URLS.length){dsFetching=false;return}
-    var x=new XMLHttpRequest();
-    x.open('GET',DS_QR_URLS[i++]+'?t='+Date.now(),true);
-    x.onload=function(){
-      dsFetching=false;
-      try{dsData=JSON.parse(x.responseText);cb&&cb()}catch(e){dsFetching=true;next()}
-    };
-    x.onerror=function(){next()};
-    x.send();
-  }
-  next();
-}
-function dsCh(ch){
-  dsChCur=ch;
-  document.getElementById('dsChAli').className='ds-ch'+(ch==='ALIPAY'?' hot ali':'');
-  document.getElementById('dsChWx').className='ds-ch'+(ch==='WECHAT'?' hot wx':'');
-}
-function dsAmt(v){
-  dsCur=v;
-  var btns=document.querySelectorAll('.ds-amt');
-  for(var i=0;i<btns.length;i++){btns[i].classList.remove('hot');if(btns[i].textContent==='¥'+v)btns[i].classList.add('hot')}
-}
-function dsResetGo(txt){
-  dsBusy=false;
-  var go=document.getElementById('dsGo');go.disabled=false;go.textContent=txt||'⚡ 生成收款码';
-}
-function dsGo(){
-  if(dsBusy)return;dsBusy=true;
-  var go=document.getElementById('dsGo');go.disabled=true;go.textContent='🐳 正在召唤收款码…';
-  dsStopTimers();
-  document.getElementById('dsQrBox').style.display='none';
-  document.getElementById('dsFallback').style.display='none';
-  document.getElementById('dsCount').textContent='';
-  document.getElementById('dsQr').innerHTML='<div class="ds-loading">正在实时生成收款码（约10秒）…<br>钱直接进博主 DeepSeek 账户</div>';
-  var x=new XMLHttpRequest();
-  x.open('POST',DS_ORDER_API,true);
-  x.setRequestHeader('Content-Type','application/json');
-  x.onload=function(){
-    var j=null;try{j=JSON.parse(x.responseText)}catch(e){}
-    if(x.status===200&&j&&j.nonce){dsWaitRes(j.nonce)}
-    else{dsFail('下单接口报错（'+((j&&j.error)||x.status)+'），稍后再试一次')}
-  };
-  x.onerror=function(){dsFail('下单接口连不上，稍后再试')};
-  x.send(JSON.stringify({method:dsChCur==='ALIPAY'?'alipay':'wechat',amount:dsCur}));
-}
-function dsFail(msg){
-  dsResetGo();
-  document.getElementById('dsQr').innerHTML='<div class="ds-loading">'+msg+'</div>';
-}
-function dsWaitRes(nonce){
-  var start=Date.now(),src=0;
-  dsPollTimer=setInterval(function(){
-    if(Date.now()-start>40000){
-      dsStopTimers();dsResetGo();
-      document.getElementById('dsQr').innerHTML='';
-      document.getElementById('dsQrBox').style.display='none';
-      document.getElementById('dsFallback').style.display='block';
-      return
-    }
-    var x=new XMLHttpRequest();
-    x.open('GET',DS_RES_BASE[src]+nonce+'.json?t='+Date.now(),true);
-    x.onload=function(){
-      if(x.status===200){
-        var j=null;try{j=JSON.parse(x.responseText)}catch(e){}
-        if(j&&j.nonce===nonce){dsStopTimers();dsRes(j)}
-      }else if(x.status===404||x.status===502||x.status===504){
-        src=(src+1)%DS_RES_BASE.length;
-      }
-    };
-    x.onerror=function(){src=(src+1)%DS_RES_BASE.length};
-    x.send();
-  },2000);
-}
-function dsRes(j){
-  dsResetGo('⚡ 再生成一张');
-  if(j.status==='ok'&&j.url){dsShow(j)}
-  else if(j.status==='busy'){dsFail('今天充值太火爆啦，稍后再来～')}
-  else{dsFail('生成失败：'+(j.msg||'上游开小差了'))}
-}
-function dsShow(j){
-  dsFetch(function(){dsGrains()});
-  if(j.method==='ALIPAY'&&dsMobile()){location.href=j.url;return}
-  var box=document.getElementById('dsQr');box.innerHTML='';
-  try{
-    new QRCode(box,{text:j.url,width:210,height:210,correctLevel:QRCode.CorrectLevel.M});
-    var cv=box.querySelector('canvas');
-    if(cv){
-      var img=document.createElement('img');
-      img.src=cv.toDataURL('image/png');img.width=210;img.height=210;img.alt='收款码';
-      cv.parentNode.replaceChild(img,cv);
-    }
-  }catch(e){dsFail('二维码渲染失败，稍后再试');return}
-  document.getElementById('dsQrBox').style.display='block';
-  dsExp=Date.now()+14.5*60*1000;
-  if(dsCdTimer)clearInterval(dsCdTimer);
-  dsCdTimer=setInterval(dsTick,1000);dsTick();
-  var hint;
-  if(j.method==='WECHAT'){
-    hint=dsInWx()?'长按上面的二维码 → 选「识别二维码」付款':(dsMobile()?'微信不能跳转：截图保存后，打开微信「扫一扫」从相册选这张码':'打开微信「扫一扫」扫上面的码');
-  }else{
-    hint='打开支付宝「扫一扫」扫上面的码';
-  }
-  document.getElementById('dsNote').innerHTML=hint+'<br>收款码 15 分钟内有效 · 付款后 DeepSeek 余额自动到账，感谢老板投喂!!!';
-}
-function dsTick(){
-  var left=dsExp-Date.now();
-  if(left<=0){clearInterval(dsCdTimer);dsCdTimer=null;document.getElementById('dsQr').innerHTML='<div class="ds-loading">收款码过期了，点上方按钮重新生成一张～</div>';document.getElementById('dsCount').textContent='';return}
-  var m=Math.floor(left/60000),s=Math.floor(left%60000/1000);
-  document.getElementById('dsCount').textContent='本码 '+m+':'+(s<10?'0':'')+s+' 内有效';
-}
-  </script>
   <div class="hero-wrap">
     <div class="hero-left">
       <!-- 吃汉堡木子米：3 张立绘轮播（果冻飘浮 + 弹入） -->
@@ -1041,7 +609,7 @@ function dsTick(){
       <div class="soc-row">
         <button class="soc-btn qq" onclick="openGroups()">
           <span class="brand" data-logo="qq"></span>
-          <span data-i18n="qqFans">QQ粉丝群</span> <small data-i18n="qqGroupsN">9 个群可选</small>
+          <span data-i18n="qqFans">QQ粉丝群</span> <small data-i18n="qqGroupsN">3 个群可选</small>
         </button>
         <a class="soc-btn bl" id="biliLink" href="https://space.bilibili.com/638676336" target="_blank" rel="noopener">
           <span class="brand" data-logo="bili"></span>
@@ -1091,7 +659,7 @@ function dsTick(){
   <div class="container">
     <div class="page-head"><h1>更新与投稿</h1><p data-i18n="updatesHeadDesc">最近做了什么，接下来做什么。有想玩的点子进群玩玩，或者直接在下面投稿——想定制什么也能说。</p>
       <div class="soc-row" style="margin-top:.9rem">
-        <button class="soc-btn qq" onclick="openGroups()"><span class="brand" data-logo="qq"></span> <span data-i18n="qqFans">QQ粉丝群</span> <small data-i18n="qqGroupsN">9 个群可选</small></button>
+        <button class="soc-btn qq" onclick="openGroups()"><span class="brand" data-logo="qq"></span> <span data-i18n="qqFans">QQ粉丝群</span> <small data-i18n="qqGroupsN">3 个群可选</small></button>
         <a class="soc-btn bl" href="https://space.bilibili.com/638676336" target="_blank" rel="noopener"><span class="brand" data-logo="bili"></span> <span data-i18n="biliFollow">B站 点个关注</span></a>
       </div>
     </div>
@@ -1214,7 +782,7 @@ const T = {
   /* hero */
   heroName:    {zh:"木子米<br>软件大全", en:"Muzimi<br>Software"},
   qqFans:      {zh:"QQ粉丝群", en:"QQ Fan Group"},
-  qqGroupsN:   {zh:"9 个群可选", en:"9 groups available"},
+  qqGroupsN:   {zh:"3 个群可选", en:"3 groups available"},
   biliVideo:   {zh:"视频首发", en:"Videos first"},
   biliFollow:  {zh:"B站 点个关注", en:"Follow on Bilibili"},
   tgFans:      {zh:"TG 频道", en:"Telegram"},
@@ -1413,13 +981,7 @@ const DATA = {
   groups: [
     {name:"一群", id:"318283066"},
     {name:"二群", id:"575703180"},
-    {name:"三群", id:"1071472123"},
-    {name:"四群", id:"654650170"},
-    {name:"五群", id:"1060219108"},
-    {name:"六群", id:"654175817"},
-    {name:"七群", id:"1045224039"},
-    {name:"八群", id:"1085796474"},
-    {name:"九群", id:"1046933392"}
+    {name:"三群", id:"1071472123"}
   ],
   tgChannel: "https://t.me/muzimi67",  // TG 频道（站点打不开时来这儿找最新地址）
   biliSpace: "https://space.bilibili.com/638676336",
@@ -1449,16 +1011,7 @@ const DATA = {
                 baidu:"https://pan.baidu.com/s/1gUWljXPLx-KGxRE58fxv8g", baiduCode:"3fk8" },
     ykn:      { quark:"https://pan.quark.cn/s/2175c0a58f0a",
                 uc:"https://drive.uc.cn/s/16d0368001694",
-                baidu:"https://pan.baidu.com/s/18ZgGSw1IIOw3mMY0wnQZ6Q", baiduCode:"fbxa" },
-    youjiu:   { quark:"https://pan.quark.cn/s/53a4a6ef7dd5",
-                uc:"https://drive.uc.cn/s/63f1e3c06b524",
-                baidu:"https://pan.baidu.com/s/1OLXiaLubBZmYBJYLnatjow", baiduCode:"y2uy" },
-    familytime:{ quark:"https://pan.quark.cn/s/8d678e3b6e87",
-                uc:"https://drive.uc.cn/s/9220754a7c324",
-                baidu:"https://pan.baidu.com/s/1W3Uq7C4z5DuuajX0LFY_SQ", baiduCode:"idgv" },
-    tongtou:  { quark:"https://pan.quark.cn/s/c5185c63202b",
-                uc:"https://drive.uc.cn/s/18f1f223a36c4",
-                baidu:"https://pan.baidu.com/s/14u57GS8N4fi1T6kzPFBpbw", baiduCode:"t9gu" }
+                baidu:"https://pan.baidu.com/s/18ZgGSw1IIOw3mMY0wnQZ6Q", baiduCode:"fbxa" }
   },
   slogans: [
     "警告：点开就停不下来，全都是免费的。",
@@ -1469,28 +1022,10 @@ const DATA = {
   ],
   apps: [
     {
-      id:"tongtou", icon:"💎", name:"邦多利最通透的软件", ver:"v2.3", date:"2026-09-30", size:"APK 17.5MB（2D）/ 4.1MB（3D）· 单文件 23.2MB / 5.6MB",
-      desc:"点得越密转得越快：转圈没有上限，歌速封在 1.4 倍；17 只娃娃一直自转，拖一个到中间就换 C 位。安卓可以直接装 APK，2D 版和 3D/WebGL 版都在。",
-      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/tongtou.webp",
-      longDesc:"《邦多利最伟大的软件》的升级版：17 只娃娃，16 只绕着中间的主位转，每只都是 60 帧真自转（一圈 60 格），凑近看它是在原地转盘式自转，不是翻跟头。\n点屏幕就是抽陀螺——点得越密转得越快，转速没有上限；快过屏幕刷新率之后肉眼看它像静止一样，那是显示器的极限，不是卡了。歌曲速度封在 1.4 倍，一路听得见在涨但不会失控。弹跳也放开了，摔得越狠弹得越高，落地带扬尘。\n最上面那个「通透模式」点一下：按钮变蓝、自动开始放歌、转速钉住，背景的磨砂去掉。\n两版都给你：2D 版 23.2MB，3D/WebGL 版 5.6MB（同一套页面换 3D 渲染层，手机上更省内存）。安卓可以直接装 APK（2D 版 17.5MB、3D 版 4.1MB，装完点开就玩）；iPhone 和纯血鸿蒙用浏览器打开 HTML 就行，不用装。\n这一版（v2.3）修了拖娃娃换 C 位那一下的卡顿，打击感也加狠了——抖屏幅度跟着屏幕大小走，顿帧和挤压都加码。"
-    },
-    {
-      id:"familytime", icon:"🐺", name:"FamilyTime 手机移植版", ver:"先行版", date:"2026-09-28", size:"APK 61.2MB（安卓）",
-      desc:"小狼的《FamilyTime》搬到手机上。挖土、砍树、造东西、抱小狼女孩都能玩；草地和部分道具的画面还在修。",
-      plat:["安卓"], tags:["new"], shot:"shots/familytime.webp",
-      longDesc:"把 PC 上的《FamilyTime》搬到手机上：点屏幕走路、右下角换工具、挖土砍树盖房子，抱起小狼女孩还能跟她互动。\n现在放的是先行版 —— 玩法链已经通了：挖土、砍树、抓取、抱持、建造都能用，小狼女孩能抓起来也能互动。\n画面还在修：草地还没出画、部分道具只有低模和暗色贴图。安卓装 APK 就能玩。"
-    },
-    {
-      id:"youjiu", icon:"🍶", name:"邦友的酒", ver:"v1.1", date:"2026-09-28", size:"单文件 2.0MB（浏览器打开）／ 安卓 APK 1.6MB",
-      desc:"点一下抽一鞭子：抽得越密歌放得越带劲，手一停就慢慢闷下去停住。连击上去炸出老虎机的欧耶，还有冰块叮当声。安卓另有 APK 版，装上点开就玩。",
-      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/youjiu.webp",
-      longDesc:"《朋友的酒》原声内嵌在里面，点一下就是抽一鞭子：抽得越密陀螺转得越快、歌放得越带劲；手一停它就被拖着慢慢慢下来、声音闷下去，最后停住——像抽陀螺。\n连续点连击就不停，踩准拍子一下算两下。连击上去会炸出老虎机那一套：边缘转灯、走马灯横幅、金币雨、「欧耶！」，破纪录还有最狠的一版；一路随机响冰块撞杯壁的叮当声。\n上面还有「💾 保存」和「🔄 更新」两个按钮：点保存直接弹出三个网盘的转存链接（转存到自己网盘就不怕分享失效），点更新去更新页看有没有新版。\n安卓可以直接装 APK（1.6MB，装完点开就玩），也可以只拿那个 2.0MB 的 HTML 用浏览器打开——v1.1 起 99 张帧图全部内嵌进 HTML，单个文件拖到哪都能跑。\n转速没有上限。快过屏幕刷新率之后，你看到的就不是「转」而是采样混叠——某些转速下肉眼看它完全静止，那是显示器的极限，不是卡了。\n单文件 1.22MB，音频已内嵌，双击就响。"
-    },
-    {
-      id:"fanyingdui", icon:"⚛️", name:"邦多利反应堆·娃娃版", ver:"v3.1", date:"2026-09-26", size:"APK 52.9MB / 单文件 36.1MB",
+      id:"fanyingdui", icon:"⚛️", name:"邦多利反应堆·娃娃版", ver:"v1.0", date:"2026-09-25", size:"APK 6.28MB / 网页 8.86MB",
       desc:"709 个娃娃铺成一座堆芯，音乐一放整座跟着起伏。换一批、弹一下，全看你怎么折腾。",
       plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/fanyingdui.webp",
-      longDesc:"把娃娃密密麻麻铺成一个反应堆，音乐一起，整座堆芯跟着节奏呼吸——鼓点砸下来就亮得高，安静的地方压下去。\n可以整批换娃娃、点一下把它们弹飞，视角随便拖着转，全屏看更过瘾。内置 40 首歌，点播放就开。\n安卓装 APK，iPhone 和鸿蒙用浏览器打开 HTML，同一份东西三端都能玩。"
+      longDesc:"把娃娃密密麻麻铺成一个反应堆，音乐一起，整座堆芯跟着节奏呼吸——鼓点砸下来就亮得高，安静的地方压下去。\n可以整批换娃娃、点一下把它们弹飞，视角随便拖着转，全屏看更过瘾。内置几首曲子，点播放就开。\n安卓装 APK，iPhone 和鸿蒙用浏览器打开 HTML，同一份东西三端都能玩。"
     },
     {
       id:"nmlq", icon:"🎹", name:"你怎么两清·识图点唱", ver:"v1.0", date:"2026-09-23", size:"APK 5.86MB / 网页 5.72MB",
@@ -1511,108 +1046,93 @@ const DATA = {
       longDesc:"一路点过去，把对手打得灰飞烟灭。气势攒满后每拳都有机会出黑闪暴击，连击数字越滚越大，音效跟着点击位置变，越打越上头。\n普通模式可以通关，无尽模式看你能连多少下，横屏竖屏都能玩。这一版修好了安卓平板不竖屏的毛病，老手机的浏览器也点得动。\n安卓装 APK，iPhone 和鸿蒙用浏览器打开就行——同一份文件，三端都能玩。"
     },
     {
-      id:"bangduori", icon:"🎸", name:"邦多利·看哭114514亿邦邦人", ver:"v6.2", date:"2026-09-28", size:"APK 77.7MB / 网页 2.57MB / 单文件 66.8MB",
-      desc:"68 个棉花娃娃、41 首歌，想怎么摆就怎么摆。换娃自动抠图，连击特效四档可调，老手机也跑得动。",
+      id:"bangduori", icon:"🎸", name:"邦多利·看哭114514亿邦邦人", ver:"v5.2", date:"2026-09-12", size:"2.5MB/单文件83MB",
+      desc:"52 个棉花娃娃、36 首歌，想怎么摆就怎么摆。换娃自动抠图，连击特效四档可调，老手机也跑得动。",
       plat:["安卓","iOS","鸿蒙"], tags:["new","hot"], shot:"shots/bangduori.webp",
-      longDesc:"整个邦多利乐队，装进一个文件里。68 个棉花娃娃随你摆放，拖到哪存到哪，关掉再开还在原位；41 首歌点哪首放哪首，不用等。\n安卓装 APK，iPhone 和鸿蒙直接用浏览器打开就行——同一份文件，三端都能玩。\n这一版把三个真毛病都治了：自己导入的歌以前只有最后两首放得出来，现在放哪首都行；底部菜单以前够不着，现在右下角点一下就出来；也不用再从屏幕最底边往上滑，不会误触最近任务了。"
+      longDesc:"整个邦多利乐队，装进一个文件里。52 个棉花娃娃随你摆放，拖到哪存到哪，关掉再开还在原位；36 首歌点哪首放哪首，不用等。\n安卓装 APK，iPhone 和鸿蒙直接用浏览器打开就行——同一份文件，三端都能玩。\n这一版把娃娃全换成了纯娃，界面也全部中文化，看着舒服多了。"
     },
     {
-      id:"qinqinhe", icon:"😘", name:"邦多利·亲亲盒", ver:"v1.1", date:"2026-09-09", size:"APK 2.27MB / 网页 2.83MB",
+      id:"qinqinhe", icon:"😘", name:"邦多利·亲亲盒", ver:"v1.1", date:"2026-09-09", size:"2.83MB",
       desc:"51 个棉花娃娃，点一下就 mua。鸿蒙 3 导入的老毛病这次治好了。",
       plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/qinqinhe.webp",
       longDesc:"亲亲盒的第二只。51 个娃全在里面，香澄放最上面，每个娃的嘴位都对齐了，点起来手感一致。\n鸿蒙 3 上以前点导入没反应的问题，这版修好了。文件也瘦到 2.83MB，流量党放心下。"
     },
     {
-      id:"feidudu", icon:"🍔", name:"肥嘟嘟语音盒", ver:"v2.0", date:"2026-09-21", size:"APK 1.59MB / 网页 1.26MB",
+      id:"feidudu", icon:"🍔", name:"肥嘟嘟语音盒", ver:"v2.0", date:"2026-08-29", size:"1.02MB",
       desc:"47 条语音全塞进文件里，装完就能玩，断网也不耽误。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/feidudu.webp",
       longDesc:"所有语音都打包在文件里，不联网也照放。飞机上、地铁里、老家没信号，点开就有声。\n手表上也能装，抬手腕就能整活。"
     },
     {
-      id:"kaixiahe", icon:"🎮", name:"木子米开黑盒", ver:"v1.5", date:"2026-08-29", size:"APK 1.12MB / 网页 799KB",
+      id:"kaixiahe", icon:"🎮", name:"木子米开黑盒", ver:"v1.5", date:"2026-08-29", size:"533KB",
       desc:"71 条开黑语音，队友听了想报警。全在文件里，不联网也能喊。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/kaixiahe.webp",
       longDesc:"71 条开黑语音全打包好了，整个文件才 533KB——比一张照片还小，随手转发不心疼流量。"
     },
     {
-      id:"mozhiliao", icon:"🦗", name:"莫知了", ver:"v1.0", date:"2026-08-24", size:"APK 2.66MB / 网页 3.47MB",
+      id:"mozhiliao", icon:"🦗", name:"莫知了", ver:"v1.0", date:"2026-08-24", size:"3.47MB",
       desc:"按一下叫一声，夏天的蝉都归你管。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mozhiliao.webp",
       longDesc:"点一下就一声蝉鸣，越点越上头。适合在安静的场合制造一点意外。"
     },
     {
-      id:"mucheng", icon:"🪁", name:"睦从天降", ver:"v1.0", date:"2026-08-24", size:"APK 4.05MB / 网页 5.33MB",
+      id:"mucheng", icon:"🪁", name:"睦从天降", ver:"v1.0", date:"2026-08-24", size:"5.33MB",
       desc:"天上掉睦睦，接住几个算几个。手慢就没了。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mucheng.webp",
       longDesc:"睦睦从天而降，你负责接住。看着简单，手一慢就掉一地。"
     },
     {
-      id:"mijia", icon:"💐", name:"米家亲亲盒", ver:"v1.0", date:"2026-08-28", size:"APK 2.70MB / 网页 3.45MB",
+      id:"mijia", icon:"💐", name:"米家亲亲盒", ver:"v1.0", date:"2026-08-28", size:"3.45MB",
       desc:"亲亲盒的第一只，点一下 mua 一声。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mijia.webp",
       longDesc:"亲亲盒系列的第一只作品，后来那一大家子都是从它这儿长出来的。"
     },
     {
-      id:"ball", icon:"⚽", name:"木子米小球", ver:"v1.0", date:"2026-08-26", size:"APK 1.12MB / 网页 799KB",
+      id:"ball", icon:"⚽", name:"木子米小球", ver:"v1.0", date:"2026-08-26", size:"0.78MB",
       desc:"弹一弹，撞一撞，适合放空的时候点两下。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/ball.webp",
       longDesc:"没有输赢，也没有进度条。就是弹来弹去，专治心里烦。"
     },
     {
-      id:"rainbowring", icon:"🌈", name:"木子米彩虹环", ver:"v5", date:"2026-08-27", size:"APK 1.16MB / 网页 880KB",
+      id:"rainbowring", icon:"🌈", name:"木子米彩虹环", ver:"v5", date:"2026-08-27", size:"0.86MB",
       desc:"一圈一圈转下去，磨到第五版了，手感比前几版顺。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/rainbowring.webp",
       longDesc:"慢慢转的彩虹环。第五版是目前最顺的一版，放手机里当个随手玩的小东西刚好。"
     },
     {
-      id:"tengduzi", icon:"😶", name:"藤都子压抑盒", ver:"v1.0", date:"2026-08-29", size:"APK 1.34MB / 网页 1.69MB",
+      id:"tengduzi", icon:"😶", name:"藤都子压抑盒", ver:"v1.0", date:"2026-08-29", size:"1.69MB",
       desc:"点开之前我不好说，你自己试试。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/tengduzi.webp",
       longDesc:"压抑系的整活盒。适合心情复杂的时候点一下，点完更复杂了。"
     },
     {
-      id:"naochi", icon:"🍚", name:"闹吃与古振兴", ver:"v1.0", date:"2026-08-30", size:"APK 2.30MB / 网页 3.09MB",
+      id:"naochi", icon:"🍚", name:"闹吃与古振兴", ver:"v1.0", date:"2026-08-30", size:"3.09MB",
       desc:"闹吃和古振兴对轰，谁先笑谁输。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/naochi.webp",
       longDesc:"两个角色对着轰，声音越叠越乱。建议戴耳机，不然全家都知道你在干嘛。"
     },
     {
-      id:"tiansuoluo", icon:"👶", name:"天素罗宝宝", ver:"v1.0", date:"2026-09-05", size:"APK 6.59MB / 网页 9.05MB",
+      id:"tiansuoluo", icon:"👶", name:"天素罗宝宝", ver:"v1.0", date:"2026-09-05", size:"9.05MB",
       desc:"天素罗宝宝的小盒子，点开就有声。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/tiansuoluo.webp",
       longDesc:"天素罗宝宝专属整活盒。小巧一个，装着不少乐子。"
     },
     {
-      id:"shekonghe", icon:"😳", name:"邦邦社恐盒", ver:"v1.0", date:"2026-08-29", size:"APK 5.47MB / 网页 1.47MB",
+      id:"shekonghe", icon:"😳", name:"邦邦社恐盒", ver:"v1.0", date:"2026-08-29", size:"1.47MB",
       desc:"给社恐的邦邦人准备的。iOS、鸿蒙都能开。",
       plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/shekonghe.webp",
       longDesc:"社恐专用整活盒——不想说话的时候，让它替你说。iPhone 和鸿蒙都能用。"
     },
     {
-      id:"chibaobao", icon:"🍔", name:"吃汉堡木子米", ver:"v1.0", date:"2026-08-22", size:"APK 1.18MB / 网页 6.57MB",
+      id:"chibaobao", icon:"🍔", name:"吃汉堡木子米", ver:"v1.0", date:"2026-08-22", size:"6.57MB",
       desc:"一切的起点。吃汉堡出红框，后面那些盒子都是从它长出来的。",
       plat:["安卓","iOS","鸿蒙"], tags:["hot"], shot:"shots/chibaobao.webp",
       longDesc:"最早做的那一个。当时只是想做个吃汉堡的小东西，没想到后面做了一整排。"
     }
   ],
   updates: [
-    {date:"2026-09-30", items:[
-      {t:"新增", d:"邦多利最通透的软件 v2.2 上架：17 只娃娃绕着主位不停自转（每只 60 帧真自转，不是一张静态图）。点屏幕就是抽陀螺——点得越密转得越快，转圈不封顶、歌速封在 1.4 倍；弹跳放开，摔得越狠弹得越高、落地带扬尘。最上面「通透模式」点一下变蓝放歌、转速钉住"},
-      {t:"说明", d:"这一款有两个版本都在网盘同一个文件夹里：2D 版 23.2MB 和 3D/WebGL 版 5.6MB（3D 版换的是渲染层，手机上更省内存）。浏览器打开就用，不用装"},
-      {t:"更新", d:"v2.3：修好了拖娃娃换 C 位那一下的卡顿（同一帧的图以前每次都要重新解码一遍，现在只解一次）；打击感加狠了——抖屏幅度跟着屏幕大小走（以前写死 5 像素，大平板上几乎看不出来）、顿帧 90→130 毫秒、挤压和冲击环都加码。顺手把安卓的 APK 版做出来了：2D 版 17.5MB、3D 版 4.1MB，装完点开就玩，不用再找浏览器"}
-    ]},
-    {date:"2026-09-28", items:[
-      {t:"新增", d:"FamilyTime 手机移植版先上架（先行版）：挖土/砍树/抓取/抱抱/建造都能玩，草地和部分道具的画面还在修，安卓装 APK"},
-
-      {t:"新增", d:"邦友的酒 v0.9 上线：点一下抽一鞭子，抽得越密歌放得越带劲、手一停就慢慢闷下去停住；连击上去炸出老虎机的欧耶（转灯/横幅/金币雨），还有冰块叮当声。转速不封顶，快过屏幕刷新率肉眼看它是静止的"},
-      {t:"更新", d:"邦友的酒 v1.0：台词里的日文全换成中文「欧耶」；补上「💾 保存」和「🔄 更新」两个按钮——点保存弹三个网盘的转存链接，跟之前那些作品一套；顺手修好两个网盘链接（邦友的酒和 FamilyTime 的百度盘以前点进去是别的软件）"},
-      {t:"新增", d:"邦友的酒 v1.1：安卓 APK 版上线（1.6MB，装完点开就玩）；并把「真·单文件」修好了——以前 99 张帧图是外链，网盘文件夹里只放 HTML 时别人下载下来只有声音没画面，现在帧图全部内嵌（WebP），单文件 2.0MB"},
-      {t:"更新", d:"看哭 v6.2：自己导入的歌以前只有最后两首放得出来，现在放哪首都行；底部菜单以前够不着，现在右下角点一下就出来"},
-      {t:"优化", d:"单文件版以后只出 80k 一档（66.8MB）——画质最好的那档，32k/48k 两档下架，不用再纠结选哪个"}
-    ]},
     {date:"2026-09-26", items:[
-      {t:"更新", d:"一口气上三个新的：邦多利反应堆·娃娃版（709 个娃娃跟着音乐起伏）、你怎么两清·识图点唱（三首歌三个角色，点谁谁唱）、ykn又三郎（友希那唱《又三郎》，歌词跟着蹦）"},
-      {t:"更新", d:"邦多利反应堆更新到 v3.1，内置 40 首歌"}
+      {t:"更新", d:"一口气上三个新的：邦多利反应堆·娃娃版（709 个娃娃跟着音乐起伏）、你怎么两清·识图点唱（三首歌三个角色，点谁谁唱）、ykn又三郎（友希那唱《又三郎》，歌词跟着蹦）"}
     ]},
     {date:"2026-09-20", items:[
       {t:"更新", d:"你才是挑战者 v2.7 上线：点击对战+黑闪暴击+无尽连击；APK强制竖屏、黑闪概率20%、四重输入兜底老内核也能玩"}
@@ -1630,10 +1150,11 @@ const DATA = {
   ],
   submissions: [
     {name:"下一个语音盒点子", status:"wait", date:"征集中"},
-    {name:"看哭114514亿邦邦人 v6.2", status:"done", date:"2026-09-28"},
+    {name:"看哭20亿邦邦人 v4.5", status:"doing", date:"2026-09"},
     {name:"你才是挑战者 v2.8", status:"wait", date:"待买家反馈"},
     {name:"你才是挑战者 v2.7", status:"done", date:"2026-09-20"},
-    {name:"亲亲盒 v1.1", status:"done", date:"2026-09-09"}
+    {name:"亲亲盒 v1.1", status:"done", date:"2026-09-09"},
+    {name:"看哭20亿邦邦人 v4.4", status:"done", date:"2026-09-11"}
   ]
 };
 /* 网盘 logo（base64 内联，零外部依赖） */
@@ -2631,11 +2152,9 @@ function paintBrand(){
 /* 双站互挂：在 github.io 上指向 pages.dev，反之亦然（一个打不开就换另一个） */
 function paintMirror(){
   const onGH = location.hostname.indexOf("github.io") >= 0;
-  /* ★主站=CF（2026-09-28）：GitHub 那份打开就自动跳主站，
-     所以「备用地址」指 GitHub 时必须带 ?stay=1，否则点过去又被弹回来 = 死循环★ */
   const other = onGH
     ? {u:"https://muzimi67.pages.dev/", n:"muzimi67.pages.dev"}
-    : {u:"https://muzimi67.github.io/?stay=1", n:"muzimi67.github.io"};
+    : {u:"https://muzimi67.github.io/", n:"muzimi67.github.io"};
   document.querySelectorAll("footer .foot-stat").forEach(box => {
     if(box.querySelector("a.mirror")) return;
     const a = document.createElement("a");
