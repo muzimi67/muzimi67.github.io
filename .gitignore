@@ -25,3 +25,5 @@ _tmp_shot/
 _bak_index_*.html
 shot_*.py
 verify_tongtou.py
+verify_jump.py
+verify_*.py

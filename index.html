@@ -4,17 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- ==================== 两站主从：主站 = Cloudflare Pages ====================
-     这份是 GitHub Pages（备用线路）。打开就自动跳到主站，hash 路由原样带过去。
-     · 想在备用站停留（调试/应急）：地址加 ?stay=1，例如 /?stay=1#/apps
-     · 主站打不开时：浏览器返回键退回这一份，内容跟主站完全一样，照常用
+     这份是 GitHub Pages（备用线路）。打开后先探一下主站通不通：
+       · 通   → 跳到主站（hash 原样带过去），搜索排名只认一个域名
+       · 不通 → 留在这一份，两边内容完全一样，照常用
+       · 你已经开始操作（点了/滚了）→ 也不跳，不打断你
+     · 想直接留在备用站（调试/应急）：地址加 ?stay=1，例如 /?stay=1#/apps
+     · 主站打不开时：浏览器返回键退回这一份
      · 页脚的「备用地址」链接也带 ?stay=1，不然点过来又被弹回主站 = 死循环
-     关掉自动跳转：把下面这段自动跳转的 JS 整块删掉即可（或用 ?stay=1 单次绕过）。 -->
+     关掉自动跳转：把下面这段 JS 整块删掉即可（或用 ?stay=1 单次绕过）。 -->
 <script>
 (function () { try {
   var h = location.hostname || "";
   if (h.indexOf("github.io") < 0) return;                       /* 已经在主站 */
   if (/[?&]stay=1/.test(location.search)) return;                /* 调试/应急：留在备用站 */
-  location.replace("https://muzimi67.pages.dev/" + location.hash);
+  var MAIN = "https://muzimi67.pages.dev/";
+  var done = false;
+  function jump() { if (done) return; done = true; location.replace(MAIN + location.hash); }
+  function stay() { done = true; }                               /* 主站不通 / 已被操作：留在本页 */
+  setTimeout(stay, 1800);                                        /* 探测超时上限 */
+  addEventListener("pointerdown", stay, { once: true, passive: true });   /* 用户开始看了就别跳走 */
+  addEventListener("wheel",       stay, { once: true, passive: true });
+  /* 探测主站是否可达：HEAD 只取响应头、不下载正文；?probe= 破缓存 ——
+     否则主站挂了浏览器仍拿缓存的旧响应，会假报「通」、把人送到打不开的站 */
+  fetch(MAIN + "?probe=" + Date.now(), { method: "HEAD", mode: "no-cors", cache: "no-store" })
+    .then(jump, stay);
 } catch (e) {} })();
 </script>
 <title>木子米软件大全 - 作品集与下载</title>
