@@ -1,0 +1,8 @@
+{
+ "status": "ok",
+ "method": "WECHAT",
+ "amount": 5,
+ "url": "weixin://wxpay/bizpayurl?pr=5QQN6blxwSiZdeZ7",
+ "ts": 1790833331320,
+ "nonce": "7db46956"
+}
