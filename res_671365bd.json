@@ -1,0 +1,8 @@
+{
+ "status": "ok",
+ "method": "ALIPAY",
+ "amount": 1,
+ "url": "https://openapi.alipay.com/gateway.do?timestamp=2026-10-02+09%3A36%3A18&app_id=2021004130645479&method=alipay.trade.page.pay&charset=utf-8&format=json&version=1.0&sign_type=RSA2&notify_url=https%3A%2F%2Fplatform.deepseek.com%2Fapi%2Fv1%2Falipay_notify&return_url=https%3A%2F%2Fplatform.deepseek.com%2Ftransactions&sign=DvpvpNZiqIumhuqTDrSmqdcO1TbHVJ7lz8RCwx3ByBNI88OPk3Mr3QrrcIA8Mw%2FqLKehtrkULUP3n0G7BRzA29leZm40QPXVuB1bjaDuiqDgeNq6x37KBAgrG46Rdk38gAxap%2FCyWjvoW5kdaDX2ITJAHfSyAMKPrqINMB7RgMxrsLsfde0J8FlAgudvzIRlQzo%2BoeyCT7PKD3PCSKrX58ZYV3AeqAe5jIcs5oCO0eXiy0LMGCkRlb9LcwW3iQ7DEyuXqdVW3AGKI08p3chxTGOpQmOoJvHtUX%2Ftx60DGThl30ORE4f30aQfVuA%2F7mS6YzZWiBdpY3URibg6w6hx7A%3D%3D&biz_content=%7B%22body%22%3A%22%E6%94%AF%E4%BB%98%E5%AE%9DPC%E7%AB%AF%E6%B5%8B%E8%AF%95%22%2C%22out_trade_no%22%3A%22alipayd3652c0ca28d4a5a81f9bd76b7a4a9e1%22%2C%22product_code%22%3A%22FAST_INSTANT_TRADE_PAY%22%2C%22subject%22%3A%22DeepSeek-API%E6%9C%8D%E5%8A%A1%28hhhpp%2A%2A%2A%2A%2A%2A%2A%2A%2A%2Appp12%40gmail.com%29%22%2C%22total_amount%22%3A1.0%7D",
+ "ts": 1790904978927,
+ "nonce": "671365bd"
+}
