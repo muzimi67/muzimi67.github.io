@@ -9,6 +9,7 @@
 - 全部免费，通过 QQ 群分发抢先版
 
 ## 作品目录
+- [邦多利最通透的软件](https://muzimi67.pages.dev/#/app/tongtou): v2.2 (2026-09-29)
 - [FamilyTime 手机移植版](https://muzimi67.pages.dev/#/app/familytime): 先行版 (2026-09-28)
 - [邦友的酒](https://muzimi67.pages.dev/#/app/youjiu): v1.1 (2026-09-28)
 - [邦多利反应堆·娃娃版](https://muzimi67.pages.dev/#/app/fanyingdui): v3.1 (2026-09-26)

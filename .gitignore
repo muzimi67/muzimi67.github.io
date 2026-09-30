@@ -18,3 +18,10 @@ _i18n.js
 .tg_hook_secret
 shots/m_*.png
 shots/zz_*.png
+jsonld_inject.py
+shot_tongtou.py
+shot_pick.py
+_tmp_shot/
+_bak_index_*.html
+shot_*.py
+verify_tongtou.py
