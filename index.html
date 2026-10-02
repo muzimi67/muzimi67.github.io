@@ -900,6 +900,11 @@ var DS_RES_BASE=[
   'https://fastly.jsdelivr.net/gh/muzimi67/muzimi67.github.io@qr-data/res_'
 ];
 var DS_ORDER_API='https://muzimi67.pages.dev/api/ds-order';
+// 收款码短链前缀（2026-10-02）：二维码只编码 {短链}{nonce}，约 40 字节。
+// 原因：支付宝返回的支付 URL 实测 1028 字符，而 QR 码最大容量只有 366 字节，
+// 直接编码必然抛 "Too long data" -> 桌面端永远显示"二维码渲染失败"。
+// 现在扫码 -> /pay/{nonce} -> Function 302 跳真实支付地址（秒回，且不再受 CDN 缓存拖累）。
+var DS_PAY_BASE='https://muzimi67.pages.dev/pay/';
 var dsCur=10,dsChCur='ALIPAY',dsData=null,dsPollTimer=null,dsCdTimer=null,dsBusy=false,dsExp=0,dsFetching=false;
 function openDs(){document.getElementById('dsModal').classList.add('show');dsCh('ALIPAY');dsAmt(dsCur);dsFetch(function(){dsGrains()})}
 function closeDs(){document.getElementById('dsModal').classList.remove('show');dsStopTimers()}
@@ -967,14 +972,23 @@ function dsFail(msg){
   document.getElementById('dsQr').innerHTML='<div class="ds-loading">'+msg+'</div>';
 }
 function dsWaitRes(nonce){
-  var start=Date.now(),src=0;
+  var start=Date.now(),src=0,tick=0;
   dsPollTimer=setInterval(function(){
-    if(Date.now()-start>40000){
+    var el=(Date.now()-start)/1000;
+    tick++;
+    // 2026-10-02：40s -> 90s。原值太短：守护实测 18s 才出码，
+    // 再叠加 jsdelivr purge 的 30~60s 缓存延迟，很容易在码推上去之前就假超时。
+    if(el>90){
       dsStopTimers();dsResetGo();
       document.getElementById('dsQr').innerHTML='';
       document.getElementById('dsQrBox').style.display='none';
       document.getElementById('dsFallback').style.display='block';
       return
+    }
+    // 等码期间给进度提示，别让用户对着一个静止的"正在生成"怀疑网页挂了
+    if(tick%3===0){
+      var m=document.getElementById('dsQr');
+      if(m&&m.querySelector('.ds-loading'))m.innerHTML='<div class="ds-loading">正在实时生成收款码…已等待 '+Math.floor(el)+' 秒<br>博主电脑要醒着才能出码～</div>';
     }
     var x=new XMLHttpRequest();
     x.open('GET',DS_RES_BASE[src]+nonce+'.json?t='+Date.now(),true);
@@ -1000,8 +1014,11 @@ function dsShow(j){
   dsFetch(function(){dsGrains()});
   if(j.method==='ALIPAY'&&dsMobile()){location.href=j.url;return}
   var box=document.getElementById('dsQr');box.innerHTML='';
+  // 二维码里只放短链，不再放那串 1028 字符的支付 URL（超 QR 码容量 2.8 倍，必渲染失败）
+  if(!j.nonce){dsFail('收款码缺编号，请再点一次生成');return}
+  var qrText=DS_PAY_BASE+j.nonce;
   try{
-    new QRCode(box,{text:j.url,width:210,height:210,correctLevel:QRCode.CorrectLevel.M});
+    new QRCode(box,{text:qrText,width:210,height:210,correctLevel:QRCode.CorrectLevel.M});
     var cv=box.querySelector('canvas');
     if(cv){
       var img=document.createElement('img');

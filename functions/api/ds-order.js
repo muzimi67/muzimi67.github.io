@@ -1,6 +1,6 @@
 // functions/api/ds-order.js
-// DeepSeek 充值「指令中继」：访客 POST -> 写指令到 GitHub ds-cmd 分支 cmd.json -> 本机守护接单
-// Function 只持 GH_PAT（只能写 cmd.json 一个文件）；DeepSeek token 永不出本机
+// DeepSeek 充值「指令中继」：访客 POST -> 写指令到 GitHub ds-cmd 分支 cmd/cmd_{nonce}.json -> 本机守护接单
+// Function 只持 GH_PAT（只能写 ds-cmd 分支）；DeepSeek token 永不出本机
 // 防御：Origin 白名单 + 每 IP 限流 + 参数白名单 + 指令只能带 PAT 写入
 // 结果通道：守护把 res_{nonce}.json 推到 qr-data 分支，前端走 jsdelivr 轮询
 
@@ -8,7 +8,11 @@ const ALLOWED_ORIGINS = ['https://muzimi67.github.io', 'https://muzimi67.pages.d
 const LIMIT = 6;        // 每 IP 每窗口最多下单次数
 const WIN = 60000;      // 60s 窗口
 const hits = new Map(); // ip -> [ts, ...]（单实例内存计数，重启清零，够用）
-const GH_API = 'https://api.github.com/repos/muzimi67/muzimi67.github.io/contents/cmd.json';
+// 2026-10-02：指令从【单文件 cmd.json 覆盖式】改为【cmd/cmd_{nonce}.json 一单一文件】。
+//   原 bug：两人同一分钟先后下单，后一条 PUT 覆盖前一条，先下单的访客永远等不到码（白等到超时）。
+//   新做法：每次下单新建独立文件（文件名带 nonce，永不冲突），守护处理完即删。
+//   附带好处：写入端不用再 GET sha / 处理 409 冲突，创建即成功。
+const GH_API = 'https://api.github.com/repos/muzimi67/muzimi67.github.io/contents/cmd/';
 
 function corsHeaders(origin) {
   return {
@@ -81,29 +85,24 @@ export async function onRequestPost({ request, env }) {
   const nonce = crypto.randomUUID().replace(/-/g, '').slice(0, 8);
   const cmd = { nonce, method, amount: amt, ts: now };
 
-  // ---- GET sha -> PUT cmd.json @ds-cmd（409 sha 冲突重试3次） ----
+  // ---- PUT cmd/cmd_{nonce}.json @ds-cmd（新建独立文件，天然无冲突） ----
   let lastErr = '';
   for (let i = 0; i < 3; i++) {
     try {
-      const g = await fetch(GH_API + '?ref=ds-cmd', { headers: ghHeaders(env.GH_PAT) });
-      if (!g.ok && g.status !== 404) { lastErr = 'gh_get_' + g.status; continue; }
-      let sha = null;
-      if (g.ok) { const gj = await g.json(); sha = gj.sha; }
-      const put = await fetch(GH_API, {
+      const put = await fetch(GH_API + 'cmd_' + nonce + '.json', {
         method: 'PUT',
         headers: ghHeaders(env.GH_PAT),
         body: JSON.stringify({
           message: 'cmd ' + nonce,
           branch: 'ds-cmd',
           content: btoa(JSON.stringify(cmd)),
-          ...(sha ? { sha } : {}),
         }),
       });
       if (put.ok) {
         return json(h, { nonce, status: 'queued' });
       }
       lastErr = 'gh_put_' + put.status;
-      if (put.status === 409) continue;
+      if (put.status === 422) break;   // 文件已存在（nonce 撞了），换一次也没用，重试白费
       break;
     } catch (e) {
       lastErr = 'gh_exc_' + String(e).slice(0, 60);
