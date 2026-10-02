@@ -27,3 +27,8 @@ shot_*.py
 verify_tongtou.py
 verify_jump.py
 verify_*.py
+
+# Cloudflare Pages Functions 编译产物（本地产物，不入库）
+.functions/
+node_modules/
+

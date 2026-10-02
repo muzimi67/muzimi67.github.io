@@ -1,0 +1,25 @@
+// wrangler.jsonc —— Cloudflare Pages 构建配置（2026-10-02 新增）
+//
+// 为什么需要这个文件：
+//   本项目是 GitHub 仓库（muzimi67.github.io）+ Cloudflare Pages（muzimi67.pages.dev）。
+//   Pages 若没有构建配置，默认只把仓库当【纯静态资源目录】发布 —— functions/ 目录
+//   根本不会被编译成 Worker 路由。症状是：/api/* 能命中（旧路由表里注册过），
+//   而新增的 /pay/* 被静态兜底吞掉（返回整份 index.html）。
+//
+//   加上本文件后，Pages 构建时会明确带上 functions/，路由表自动重算，
+//   以后每次 git push 都自动部署，不再需要手动 wrangler pages deploy。
+//
+// 注意：
+//   1) pages_build_output_dir 用仓库根目录 "."，因为 index.html / assets /
+//      burger / shots 等静态文件都直接躺在根目录，没有 build 步骤。
+//   2) 不要在这里写 name / account_id / routes —— Pages 项目由 Dashboard 绑定，
+//      配置文件只负责"构建出什么东西"。
+//   3) compatibility_date 保持跟进更新；改动前先确认不影响现有 Function 运行。
+
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "muzimi67",
+  "pages_build_output_dir": ".",
+  "compatibility_date": "2026-10-02",
+  "compatibility_flags": ["nodejs_compat"]
+}
