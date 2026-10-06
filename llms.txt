@@ -9,6 +9,7 @@
 - 全部免费，通过 QQ 群分发抢先版
 
 ## 作品目录
+- [邦多利对邦](https://muzimi67.pages.dev/#/app/duibang): v1.0 (2026-10-06)
 - [邦高祖小球](https://muzimi67.pages.dev/#/app/bangaozu): v1.8 (2026-10-04)
 - [大肥鱼的酒](https://muzimi67.pages.dev/#/app/dafeiyu): v1.0 (2026-09-30)
 - [邦多利最通透的软件](https://muzimi67.pages.dev/#/app/tongtou): v2.3 (2026-09-30)
