@@ -9,6 +9,9 @@
 - 全部免费，通过 QQ 群分发抢先版
 
 ## 作品目录
+- [全都是借口](https://muzimi67.pages.dev/#/app/jiekou): v1.0 (2026-10-13)
+- [周友的酒三合一](https://muzimi67.pages.dev/#/app/zhouyou3in1): v1.0 (2026-10-14)
+- [舟友的酒](https://muzimi67.pages.dev/#/app/zhouyou): v1.2 (2026-10-13)
 - [邦多利对邦](https://muzimi67.pages.dev/#/app/duibang): v1.0 (2026-10-06)
 - [邦高祖小球](https://muzimi67.pages.dev/#/app/bangaozu): v1.8 (2026-10-04)
 - [大肥鱼的酒](https://muzimi67.pages.dev/#/app/dafeiyu): v1.0 (2026-09-30)
