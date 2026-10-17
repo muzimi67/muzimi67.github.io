@@ -1274,8 +1274,15 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
   </div>
   <script>
     var DN_ALIPAY='https://qr.alipay.com/tsx17830kc0t3k4z4zykmba';
-    /* 爱发电公开主页：填 https://afdian.com/a/你的ID 后，弹窗自动出现「爱发电」通道 */
+    /* 爱发电：公开主页 + 五个固定金额商品（点金额直达对应档位） */
     var AFDIAN_URL='https://afdian.com/a/muzimi';
+    var AFDIAN_ITEMS={
+      5:'https://afdian.com/item/edb422ceca3611f1a11952540025c377',
+      10:'https://afdian.com/item/febfffcaca3611f1ada55254001e7c00',
+      20:'https://afdian.com/item/22bd832cca3a11f1867152540025c377',
+      50:'https://afdian.com/item/38041da4ca3a11f19f5552540025c377',
+      100:'https://afdian.com/item/512fe718ca3a11f1b45052540025c377'
+    };
     var dnChCur='alipay';
     (function(){ if(AFDIAN_URL){var b=document.getElementById('dnChAfdian'); if(b) b.style.display='';} })();
     function openDonate(){
@@ -1300,8 +1307,9 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
       }
       var tip=document.getElementById('dnTip');
       if(dnChCur==='afdian' && AFDIAN_URL){
-        tip.textContent='正在打开爱发电，选 ¥'+v+' 或自定义金额就好啦~';
-        setTimeout(function(){location.href=AFDIAN_URL},160);
+        var u=AFDIAN_ITEMS[v]||AFDIAN_URL;
+        tip.textContent='正在打开爱发电 ¥'+v+' 档位…';
+        setTimeout(function(){location.href=u},160);
         return;
       }
       tip.textContent='正在打开支付宝，输入 ¥'+v+' 就好啦~ 谢谢老板!!!';
