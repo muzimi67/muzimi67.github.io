@@ -1274,14 +1274,14 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
   </div>
   <script>
     var DN_ALIPAY='https://qr.alipay.com/tsx17830kc0t3k4z4zykmba';
-    /* 爱发电：公开主页 + 五个固定金额商品（点金额直达对应档位） */
+    /* 爱发电：五个固定金额商品，点金额直达「订单创建/付款」页（sku 已带数量 1） */
     var AFDIAN_URL='https://afdian.com/a/muzimi';
     var AFDIAN_ITEMS={
-      5:'https://afdian.com/item/edb422ceca3611f1a11952540025c377',
-      10:'https://afdian.com/item/febfffcaca3611f1ada55254001e7c00',
-      20:'https://afdian.com/item/22bd832cca3a11f1867152540025c377',
-      50:'https://afdian.com/item/38041da4ca3a11f19f5552540025c377',
-      100:'https://afdian.com/item/512fe718ca3a11f1b45052540025c377'
+      5:'https://afdian.com/order/create?product_type=1&plan_id=edb422ceca3611f1a11952540025c377&sku=%5B%7B%22sku_id%22%3A%22edbddb48ca3611f1b9cb52540025c377%22%2C%22count%22%3A1%7D%5D&viokrz_ex=0',
+      10:'https://afdian.com/order/create?product_type=1&plan_id=febfffcaca3611f1ada55254001e7c00&sku=%5B%7B%22sku_id%22%3A%22fecb7d50ca3611f18fe65254001e7c00%22%2C%22count%22%3A1%7D%5D&viokrz_ex=0',
+      20:'https://afdian.com/order/create?product_type=1&plan_id=22bd832cca3a11f1867152540025c377&sku=%5B%7B%22sku_id%22%3A%2222c77044ca3a11f1858e52540025c377%22%2C%22count%22%3A1%7D%5D&viokrz_ex=0',
+      50:'https://afdian.com/order/create?product_type=1&plan_id=38041da4ca3a11f19f5552540025c377&sku=%5B%7B%22sku_id%22%3A%22380efb02ca3a11f1abd452540025c377%22%2C%22count%22%3A1%7D%5D&viokrz_ex=0',
+      100:'https://afdian.com/order/create?product_type=1&plan_id=512fe718ca3a11f1b45052540025c377&sku=%5B%7B%22sku_id%22%3A%225139e18cca3a11f1909852540025c377%22%2C%22count%22%3A1%7D%5D&viokrz_ex=0'
     };
     var dnChCur='alipay';
     (function(){ if(AFDIAN_URL){var b=document.getElementById('dnChAfdian'); if(b) b.style.display='';} })();
@@ -1308,7 +1308,7 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
       var tip=document.getElementById('dnTip');
       if(dnChCur==='afdian' && AFDIAN_URL){
         var u=AFDIAN_ITEMS[v]||AFDIAN_URL;
-        tip.textContent='正在打开爱发电 ¥'+v+' 档位…';
+        tip.textContent='正在打开爱发电 ¥'+v+' 支付页…';
         setTimeout(function(){location.href=u},160);
         return;
       }
