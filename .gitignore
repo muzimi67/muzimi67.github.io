@@ -32,3 +32,7 @@ verify_*.py
 .functions/
 node_modules/
 
+
+# 2026-10-17 改版备份（只留本地）
+index.html.bak*
+_upd_idx.py
