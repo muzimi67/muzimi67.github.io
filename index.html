@@ -1182,7 +1182,7 @@ html[data-theme="dark"] .tabbar{box-shadow:4px 4px 0 rgba(0,0,0,.7)}
 }
 
 /* 娃娃画布：垫在内容之后（拖拽命中走 window 坐标，不受层级影响） */
-#snow{position:fixed;inset:0;pointer-events:none;z-index:1}
+#snow{position:fixed;inset:0;pointer-events:none;z-index:3}
 
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
@@ -2148,7 +2148,7 @@ if(S.bg){document.body.classList.add("with-bg");
       rot:(Math.random()-.5)*.55,
       vr:(Math.random()-.5)*.012,
       o:.55+Math.random()*.42,
-      sq:1, sv:0
+      sq:1, sv:0, cool:0
     };
   }
   /* 统一降级：支持则用 rIC，否则 setTimeout 兜底 */
@@ -2157,6 +2157,36 @@ if(S.bg){document.body.classList.add("with-bg");
     else setTimeout(fn,200);
   }
   for(let i=0;i<26;i++)P.push(mkP(false));
+
+  /* ---------- 自动砸「吃汉堡木子米」立绘（2026-10-17） ----------
+     娃娃从立绘正上方落下来撞图：撞到就双双果冻回弹 + 爆星 + 音效。
+     立绘盒子每 100ms 取一次，别每帧强制布局。 */
+  const HERO_IMGS=[...document.querySelectorAll("#burgerStage .burger-img")];
+  let heroRects=[], heroRectAt=0;
+  function refreshHeroRects(now){
+    if(!HERO_IMGS.length || now-heroRectAt<100) return;
+    heroRectAt=now;
+    heroRects=HERO_IMGS.map(el=>el.getBoundingClientRect());
+  }
+  function autoVolley(n){
+    if(!S.snow) return;
+    const st=document.getElementById("burgerStage");
+    if(!st) return;
+    const r=st.getBoundingClientRect();
+    if(r.bottom<0 || r.top>H || r.width<40) return;   /* 立绘不在视口里就不砸 */
+    for(let k=0;k<n;k++){
+      const p=P[Math.floor(Math.random()*P.length)];
+      p.x=r.left+r.width*(0.12+0.76*Math.random());
+      p.y=r.top-40-Math.random()*160;
+      p.v=2.6+Math.random()*1.5;
+      p.o=.92+Math.random()*.08;
+      p.sq=1; p.sv=0; p.cool=0;
+    }
+  }
+  /* 进站两波自动空投；之后每 9 秒补一发，让画面一直有"有人来敲门"的动静 */
+  setTimeout(()=>autoVolley(6),1200);
+  setTimeout(()=>autoVolley(3),3000);
+  setInterval(()=>{ if(!document.hidden) autoVolley(1); },9000);
 
   /* ---------- 音效（懒加载，不预载 71 个） ---------- */
   const SFX_POOL=[];
@@ -2279,9 +2309,36 @@ if(S.bg){document.body.classList.add("with-bg");
   addEventListener("pointercancel",endDrag);
   addEventListener("blur",endDrag);
 
+  /* ---------- 打击火花 ---------- */
+  const SPK=[];
+  function burstSpark(x,y,pw){ SPK.push({x,y,t:0,pw:pw||1}) }
+  function drawSparks(){
+    for(let i=SPK.length-1;i>=0;i--){
+      const s=SPK[i];
+      s.t+=.06;
+      if(s.t>=1){SPK.splice(i,1);continue}
+      const rr=10+s.t*52*s.pw, a=Math.max(0,1-s.t);
+      ctx.save();
+      ctx.globalAlpha=a*.9;
+      ctx.translate(s.x,s.y);
+      ctx.strokeStyle="#ffd60a"; ctx.lineWidth=3;
+      ctx.beginPath(); ctx.arc(0,0,rr,0,Math.PI*2); ctx.stroke();
+      ctx.strokeStyle="#ff4d8d"; ctx.lineWidth=2.5;
+      ctx.beginPath();
+      for(let k=0;k<6;k++){
+        const ang=k*Math.PI/3+s.t*1.2;
+        ctx.moveTo(Math.cos(ang)*rr*.6,Math.sin(ang)*rr*.6);
+        ctx.lineTo(Math.cos(ang)*rr*1.02,Math.sin(ang)*rr*1.02);
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
   /* ---------- 主循环 ---------- */
   (function loop(){
     ctx.clearRect(0,0,W,H);
+    drawSparks();
     if(S.snow)for(const p of P){
       const held = drag && drag.p===p;
       if(!held){
@@ -2293,6 +2350,30 @@ if(S.bg){document.body.classList.add("with-bg");
         if(p.y>H+80) Object.assign(p,mkP(true));
         if(p.x<-100)p.x=W+70;
         if(p.x>W+100)p.x=-70;
+      }
+      /* --- 砸中立绘：娃娃弹开 + 立绘果冻 + 火花 --- */
+      if(S.snow && HERO_IMGS.length){
+        const now=performance.now();
+        refreshHeroRects(now);
+        if(p.cool<now){
+          const cx=p.x, cy=p.y-p.s*0.4;
+          for(let bi=0;bi<heroRects.length;bi++){
+            const r=heroRects[bi];
+            if(!r||r.width<10||r.bottom<-40||r.top>H+40) continue;
+            const hx=r.left+r.width/2, hy=r.top+r.height/2;
+            if(Math.abs(cx-hx)>r.width/2+p.s*.45) continue;
+            if(Math.abs(cy-hy)>r.height/2+p.s*.45) continue;
+            /* 命中 */
+            const nx=(cx-hx)/(Math.abs(cx-hx)+.001);
+            const power=Math.min(1.5,.55+Math.abs(p.v)*.18);
+            p.v=-Math.max(1.2,Math.abs(p.v)*.82+1.2);
+            p.x+=nx*10; p.y-=6;
+            p.sq=1.45; p.sv=-2.4; p.cool=now+700;
+            window.dispatchEvent(new CustomEvent("dollhit",{detail:{i:bi,power:power,dx:nx,dy:-.6}}));
+            burstSpark(p.x,cy,power);
+            break;
+          }
+        }
       }
       /* 果冻弹簧（阻尼谐振子） */
       p.sv+=(1-p.sq)*.2;
@@ -2390,6 +2471,20 @@ if(S.bg){document.body.classList.add("with-bg");
     b.el.style.opacity="";
     b.el.classList.remove("on");
     setTimeout(()=>b.el.classList.add("on"), 60+b.delay);
+  });
+
+  /* 被空气娃娃砸中 → 立绘弹簧质点吃一记冲量，整只 QQ 弹弹 */
+  addEventListener("dollhit",e=>{
+    const d=e.detail||{};
+    const b=bodies[d.i|0];
+    if(!b) return;
+    const pw=Math.max(.4,Math.min(1.6,d.power||1));
+    b.vx+=(d.dx||0)*13*pw;
+    b.vy+=(d.dy||0)*13*pw;
+    b.vr+=(Math.random()-.5)*6*pw;
+    b.press=Math.min(1,b.press+.28*pw);
+    b.jolt=.22;
+    if(Math.random()<.30) hit();   /* 命中音效只偶尔响，别吵 */
   });
 
   function pointer(e){ return e.touches?e.touches[0]||e.changedTouches[0]:e; }
