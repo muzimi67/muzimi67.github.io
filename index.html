@@ -861,8 +861,8 @@ html[data-theme="dark"] .pk-btn small{color:var(--text3)}
 .donate-modal .modal{text-align:center}
 .donate-title{font-size:1.15rem;font-weight:900;line-height:1.55;margin-bottom:.3rem;letter-spacing:-.02em}
 .donate-sub{font-size:.76rem;color:var(--text2);margin-bottom:1rem;line-height:1.7;font-weight:700}
-.donate-amts{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:.7rem}
-@media(max-width:420px){.donate-amts{grid-template-columns:repeat(2,1fr)}}
+.donate-amts{display:grid;grid-template-columns:repeat(5,1fr);gap:.45rem;margin-bottom:.7rem}
+@media(max-width:420px){.donate-amts{grid-template-columns:repeat(3,1fr)}}
 .dn-amt{
   border:2px solid var(--border);background:var(--card);color:var(--text);
   font:inherit;font-weight:900;font-size:.95rem;border-radius:12px;padding:.62rem .3rem;cursor:pointer;
@@ -871,6 +871,11 @@ html[data-theme="dark"] .pk-btn small{color:var(--text3)}
 .dn-amt:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--border)}
 .dn-amt:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--border)}
 .dn-amt.hot{background:var(--yellow);color:#17151f;border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.donate-chs{display:flex;gap:.45rem;justify-content:center;margin:.15rem 0 .65rem}
+.donate-ch{border:2px solid var(--border);background:var(--card);font:inherit;font-weight:900;font-size:.78rem;
+  padding:.42rem .85rem;border-radius:11px;color:var(--text2);box-shadow:2px 2px 0 var(--border);transition:.14s}
+.donate-ch:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--border)}
+.donate-ch.on{border-color:var(--ink);background:var(--yellow);color:#17151f;box-shadow:3px 3px 0 var(--ink)}
 .donate-tip{font-size:.78rem;color:var(--text2);margin-bottom:.8rem;min-height:2.6em;font-weight:800;line-height:1.7}
 .donate-open{
   display:flex;align-items:center;justify-content:center;gap:.45rem;width:100%;
@@ -1247,33 +1252,46 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
   </div>
   <!-- 💛 赞助：网盘区下面的弹跳入口 -->
   <div class="donate-bounce" onclick="openDonate()"><span class="dn-heart">💛</span>喜欢我的游戏？o((>ω< ))o 可以赞助我!!!<span class="dn-heart">💛</span></div>
-  <!-- 💛 赞助弹窗（二维码已移除：手机点金额直跳支付宝，电脑走「打开收款页」） -->
+  <!-- 💛 赞助弹窗：点金额直接跳支付（电脑/手机一致）；爱发电通道填了 AFDIAN_URL 才出现 -->
   <div class="modal-mask donate-modal" id="donateModal" onclick="if(event.target===this)closeDonate()">
     <div class="modal">
       <div class="donate-title">喜欢我的游戏？o((>ω< ))o<br>可以赞助我!!!</div>
-      <div class="donate-sub">手机点金额直接跳支付宝 · 电脑点下面的按钮打开收款页</div>
+      <div class="donate-sub">点金额直接跳支付 · 手机电脑都一样</div>
       <div class="donate-amts">
         <button class="dn-amt" onclick="donateAmt(5,this)">¥5</button>
         <button class="dn-amt" onclick="donateAmt(10,this)">¥10</button>
         <button class="dn-amt" onclick="donateAmt(20,this)">¥20</button>
-        <button class="dn-amt" onclick="donateAmt('custom',this)">自定义</button>
+        <button class="dn-amt" onclick="donateAmt(50,this)">¥50</button>
+        <button class="dn-amt" onclick="donateAmt(100,this)">¥100</button>
       </div>
-      <div class="donate-tip" id="dnTip">选个金额就能赞助啦~ 谢谢老板!!!</div>
-      <a class="donate-open" id="dnOpen" href="https://qr.alipay.com/tsx17830kc0t3k4z4zykmba" target="_blank" rel="noopener">打开支付宝收款页 →</a>
+      <div class="donate-chs">
+        <button class="donate-ch on" data-ch="alipay" onclick="dnPick('alipay')">💙 支付宝</button>
+        <button class="donate-ch" data-ch="afdian" id="dnChAfdian" onclick="dnPick('afdian')" style="display:none">🧡 爱发电</button>
+      </div>
+      <div class="donate-tip" id="dnTip">选个金额，点一下就跳支付~ 谢谢老板!!!</div>
       <button class="close" onclick="closeDonate()">关闭</button>
     </div>
   </div>
   <script>
     var DN_ALIPAY='https://qr.alipay.com/tsx17830kc0t3k4z4zykmba';
-    document.getElementById('dnOpen').href=DN_ALIPAY;
+    /* 爱发电公开主页：填 https://afdian.com/a/你的ID 后，弹窗自动出现「爱发电」通道 */
+    var AFDIAN_URL='https://afdian.com/a/muzimi';
+    var dnChCur='alipay';
+    (function(){ if(AFDIAN_URL){var b=document.getElementById('dnChAfdian'); if(b) b.style.display='';} })();
     function openDonate(){
       document.getElementById('donateModal').classList.add('show');
-      document.getElementById('dnTip').textContent='选个金额就能赞助啦~ 谢谢老板!!!';
+      document.getElementById('dnTip').textContent='选个金额，点一下就跳支付~ 谢谢老板!!!';
       var b=document.querySelectorAll('.dn-amt');
       for(var i=0;i<b.length;i++) b[i].classList.remove('hot');
+      dnPick('alipay');
     }
     function closeDonate(){document.getElementById('donateModal').classList.remove('show')}
-    function dnMobile(){return /Android|iPhone|iPad|HarmonyOS|OpenHarmony|Mobile/i.test(navigator.userAgent)}
+    function dnPick(ch){
+      if(ch==='afdian' && !AFDIAN_URL) ch='alipay';
+      dnChCur=ch;
+      var bs=document.querySelectorAll('.donate-ch');
+      for(var i=0;i<bs.length;i++) bs[i].className='donate-ch'+(bs[i].getAttribute('data-ch')===ch?' on':'');
+    }
     function donateAmt(v,btn){
       if(btn){
         var b=document.querySelectorAll('.dn-amt');
@@ -1281,16 +1299,13 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
         btn.classList.add('hot');
       }
       var tip=document.getElementById('dnTip');
-      if(dnMobile()){
-        tip.textContent=v==='custom'?'正在打开支付宝，输入任意金额，多少都是心意~':'正在打开支付宝，输 ¥'+v+' 就好啦~';
-        setTimeout(function(){location.href=DN_ALIPAY},160);
+      if(dnChCur==='afdian' && AFDIAN_URL){
+        tip.textContent='正在打开爱发电，选 ¥'+v+' 或自定义金额就好啦~';
+        setTimeout(function(){location.href=AFDIAN_URL},160);
         return;
       }
-      tip.textContent=v==='custom'
-        ?'点下面的按钮打开支付宝收款页，输任意金额，多少都是心意~'
-        :'点下面的按钮打开支付宝收款页，输入 ¥'+v+' 就好啦~ 谢谢老板!!!';
-      var o=document.getElementById('dnOpen');
-      o.classList.remove('pulse'); void o.offsetWidth; o.classList.add('pulse');
+      tip.textContent='正在打开支付宝，输入 ¥'+v+' 就好啦~ 谢谢老板!!!';
+      setTimeout(function(){location.href=DN_ALIPAY},160);
     }
   </script>
   <div class="hero-wrap">
@@ -2148,7 +2163,7 @@ if(S.bg){document.body.classList.add("with-bg");
       rot:(Math.random()-.5)*.55,
       vr:(Math.random()-.5)*.012,
       o:.55+Math.random()*.42,
-      sq:1, sv:0, cool:0
+      sq:1, sv:0, cool:0, mode:"fall", tx:0, ty:0
     };
   }
   /* 统一降级：支持则用 rIC，否则 setTimeout 兜底 */
@@ -2311,29 +2326,76 @@ if(S.bg){document.body.classList.add("with-bg");
 
   /* ---------- 打击火花 ---------- */
   const SPK=[];
-  function burstSpark(x,y,pw){ SPK.push({x,y,t:0,pw:pw||1}) }
+  function burstSpark(x,y,pw){ if(SPK.length>48) SPK.shift(); SPK.push({x,y,t:0,pw:pw||1}) }
   function drawSparks(){
     for(let i=SPK.length-1;i>=0;i--){
       const s=SPK[i];
       s.t+=.06;
       if(s.t>=1){SPK.splice(i,1);continue}
-      const rr=10+s.t*52*s.pw, a=Math.max(0,1-s.t);
+      const a=Math.max(0,1-s.t);
+      const rr=(s.flash?16:10)+s.t*(s.flash?92:52)*s.pw;
       ctx.save();
-      ctx.globalAlpha=a*.9;
+      ctx.globalAlpha=a*.95;
       ctx.translate(s.x,s.y);
-      ctx.strokeStyle="#ffd60a"; ctx.lineWidth=3;
+      if(s.flash && s.t<.22){
+        /* 命中白闪 */
+        ctx.globalAlpha=(1-s.t/.22)*.75;
+        ctx.fillStyle="#fff";
+        ctx.beginPath(); ctx.arc(0,0,rr*.55,0,Math.PI*2); ctx.fill();
+        ctx.globalAlpha=a*.95;
+      }
+      /* 冲击环（两层，大特效才有） */
+      ctx.strokeStyle=s.big?"#ff4d8d":"#ffd60a"; ctx.lineWidth=s.big?5:3;
       ctx.beginPath(); ctx.arc(0,0,rr,0,Math.PI*2); ctx.stroke();
-      ctx.strokeStyle="#ff4d8d"; ctx.lineWidth=2.5;
+      if(s.big){
+        ctx.strokeStyle="#fff"; ctx.lineWidth=2.5; ctx.globalAlpha=a*.6;
+        ctx.beginPath(); ctx.arc(0,0,rr*.66,0,Math.PI*2); ctx.stroke();
+        ctx.globalAlpha=a*.95;
+      }
+      /* 星芒：大特效用 10 条、更长 */
+      const rays=s.big?10:6, long=s.big?1.25:1.02;
+      ctx.strokeStyle=s.big?"#ffd60a":"#ff4d8d"; ctx.lineWidth=s.big?4:2.5;
       ctx.beginPath();
-      for(let k=0;k<6;k++){
-        const ang=k*Math.PI/3+s.t*1.2;
-        ctx.moveTo(Math.cos(ang)*rr*.6,Math.sin(ang)*rr*.6);
-        ctx.lineTo(Math.cos(ang)*rr*1.02,Math.sin(ang)*rr*1.02);
+      for(let k=0;k<rays;k++){
+        const ang=k*(Math.PI*2/rays)+s.t*1.2+(s.rot||0);
+        ctx.moveTo(Math.cos(ang)*rr*.58,Math.sin(ang)*rr*.58);
+        ctx.lineTo(Math.cos(ang)*rr*long,Math.sin(ang)*rr*long);
       }
       ctx.stroke();
       ctx.restore();
     }
   }
+
+  /* ---------- 点哪儿哪儿挨打（点击空白处触发，自动找最近 3 只娃娃） ---------- */
+  let strikeCool=0;
+  function bigBurst(x,y){ window.__bursts=(window.__bursts||0)+1;
+    SPK.push({x,y,t:0,pw:1.9,big:1});
+    SPK.push({x,y,t:0,pw:1.3,big:1,rot:.5});
+  }
+  function strikeAt(x,y){
+    if(!S.snow) return;
+    const now=performance.now();
+    if(now<strikeCool) return;
+    strikeCool=now+220; window.__strikes=(window.__strikes||0)+1;
+    SPK.push({x,y,t:0,pw:1.5,flash:1});     /* 即时反馈：点击点先闪一下 */
+    bigBurst(x,y);                         /* 点击点主爆星 */
+    const near=P.filter(p=>p.mode!=="dash")
+                .map(p=>({p,d:Math.hypot(p.x-x,p.y-y)}))
+                .sort((a,b)=>a.d-b.d).slice(0,3);
+    for(const it of near){
+      const p=it.p;
+      if(drag && drag.p===p) continue;
+      p.mode="dash";
+      p.tx=x+(Math.random()-.5)*46;
+      p.ty=y+(Math.random()-.5)*46;
+      p.o=1;
+    }
+  }
+  addEventListener("click",e=>{
+    const t=e.target;
+    if(t&&t.closest&&t.closest("a,button,.app-card,.b-card,.dl-row,input,select,textarea,[onclick]")) return;
+    strikeAt(e.clientX,e.clientY);
+  },{passive:true});
 
   /* ---------- 主循环 ---------- */
   (function loop(){
@@ -2341,7 +2403,27 @@ if(S.bg){document.body.classList.add("with-bg");
     drawSparks();
     if(S.snow)for(const p of P){
       const held = drag && drag.p===p;
-      if(!held){
+      if(!held && p.mode==="dash"){
+        /* 被点击召唤：直线飞向点击点，到了就炸 */
+        const dx=p.tx-p.x, dy=p.ty-p.y, d=Math.hypot(dx,dy)||1;
+        const sp=Math.min(30,14+d*.05);
+        p.x+=dx/d*sp; p.y+=dy/d*sp; p.rot+=.2;
+        if(d<26){
+          p.mode="fall";
+          p.v=-2.3-Math.random()*1.6;
+          p.sq=1.55; p.sv=-2.7;
+          p.cool=performance.now()+600;
+          burstSpark(p.x,p.y,1.1);
+          /* 若正好砸在立绘上，立绘也弹一下 */
+          for(let bi=0;bi<heroRects.length;bi++){
+            const r=heroRects[bi];
+            if(r && p.x>r.left-12 && p.x<r.right+12 && p.y>r.top-12 && p.y<r.bottom+12){
+              window.dispatchEvent(new CustomEvent("dollhit",{detail:{i:bi,power:1.15,dx:(Math.random()<.5?-1:1),dy:-.8}}));
+              break;
+            }
+          }
+        }
+      }else if(!held){
         const dx=p.x-mx, dy=p.y-my, d=Math.hypot(dx,dy);
         if(d<110&&d>.01){p.x+=dx/d*2.4;p.y+=dy/d*2.4}
         p.y+=p.v;
