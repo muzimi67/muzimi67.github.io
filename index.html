@@ -620,7 +620,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 ::-webkit-scrollbar-thumb{background:var(--ink);border-radius:99px;border:3px solid var(--bg);background-clip:content-box}
 html[data-theme="dark"] ::-webkit-scrollbar-thumb{background:rgba(244,242,255,.35)}
 .container{max-width:76rem;margin:0 auto;padding:0 1.1rem}
-.page{display:none;position:relative;z-index:2;animation:fadein .3s ease}
+.page{display:none;position:relative;animation:fadein .3s ease}
 .page.active{display:block}
 @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes risein{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
@@ -1214,6 +1214,10 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
 .more-info{min-width:0}
 .more-info b{display:block;font-size:.86rem;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .more-info span{font-size:.68rem;color:var(--text2);font-weight:700}
+
+/* ===== PayPal 通道（2026-10-18） ===== */
+.pp-box{margin:.55rem auto .1rem;min-height:3.2rem}
+.pp-tip{font-size:.72rem;color:var(--text3);min-height:1.2rem;margin:.2rem 0 .2rem;line-height:1.6;font-weight:700}
 </style>
 </head>
 <body>
@@ -1256,19 +1260,22 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
   <div class="modal-mask donate-modal" id="donateModal" onclick="if(event.target===this)closeDonate()">
     <div class="modal">
       <div class="donate-title">喜欢我的游戏？o((>ω< ))o<br>可以赞助我!!!</div>
-      <div class="donate-sub">点金额直接跳支付 · 手机电脑都一样</div>
+      <div class="donate-sub">支付宝/爱发电点金额直跳 · PayPal 选金额后点按钮</div>
       <div class="donate-amts">
-        <button class="dn-amt" onclick="donateAmt(5,this)">¥5</button>
-        <button class="dn-amt" onclick="donateAmt(10,this)">¥10</button>
-        <button class="dn-amt" onclick="donateAmt(20,this)">¥20</button>
-        <button class="dn-amt" onclick="donateAmt(50,this)">¥50</button>
-        <button class="dn-amt" onclick="donateAmt(100,this)">¥100</button>
+        <button class="dn-amt" data-i="0" onclick="donateAmt(0,this)">¥5</button>
+        <button class="dn-amt" data-i="1" onclick="donateAmt(1,this)">¥10</button>
+        <button class="dn-amt" data-i="2" onclick="donateAmt(2,this)">¥20</button>
+        <button class="dn-amt" data-i="3" onclick="donateAmt(3,this)">¥50</button>
+        <button class="dn-amt" data-i="4" onclick="donateAmt(4,this)">¥100</button>
       </div>
       <div class="donate-chs">
         <button class="donate-ch on" data-ch="alipay" onclick="dnPick('alipay')">💙 支付宝</button>
         <button class="donate-ch" data-ch="afdian" id="dnChAfdian" onclick="dnPick('afdian')" style="display:none">🧡 爱发电</button>
+        <button class="donate-ch" data-ch="paypal" onclick="dnPick('paypal')">🌍 PayPal</button>
       </div>
       <div class="donate-tip" id="dnTip">选个金额，点一下就跳支付~ 谢谢老板!!!</div>
+      <div class="pp-box" id="ppBox" style="display:none"></div>
+      <div class="pp-tip" id="ppTip"></div>
       <button class="close" onclick="closeDonate()">关闭</button>
     </div>
   </div>
@@ -1283,29 +1290,58 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
       50:'https://afdian.com/order/create?product_type=1&plan_id=38041da4ca3a11f19f5552540025c377&sku=%5B%7B%22sku_id%22%3A%22380efb02ca3a11f1abd452540025c377%22%2C%22count%22%3A1%7D%5D&viokrz_ex=0',
       100:'https://afdian.com/order/create?product_type=1&plan_id=512fe718ca3a11f1b45052540025c377&sku=%5B%7B%22sku_id%22%3A%225139e18cca3a11f1909852540025c377%22%2C%22count%22%3A1%7D%5D&viokrz_ex=0'
     };
+    /* PayPal：Client ID 是公开的，Secret 永远只放服务器，绝对不要写进这里 */
+    var PAYPAL_CLIENT_ID='Af_lpRoGgVXerpmV8--kphiG24353Htmau_242z6_rs9c78GEM84brI-780lKKM2F3ZkKhgxOnONfXc6';
+    var CNY=[5,10,20,50,100];
+    var USD=[1,2,5,10,20];
+    var ppSel=5, ppLoading=false, ppRendered=false;
     var dnChCur='alipay';
     (function(){ if(AFDIAN_URL){var b=document.getElementById('dnChAfdian'); if(b) b.style.display='';} })();
     function openDonate(){
       document.getElementById('donateModal').classList.add('show');
-      document.getElementById('dnTip').textContent='选个金额，点一下就跳支付~ 谢谢老板!!!';
       var b=document.querySelectorAll('.dn-amt');
       for(var i=0;i<b.length;i++) b[i].classList.remove('hot');
       dnPick('alipay');
     }
     function closeDonate(){document.getElementById('donateModal').classList.remove('show')}
+    function updateAmtLabels(){
+      var b=document.querySelectorAll('.dn-amt');
+      for(var i=0;i<b.length;i++){
+        b[i].textContent=(dnChCur==='paypal'?'$':'¥')+(dnChCur==='paypal'?USD[i]:CNY[i]);
+      }
+    }
     function dnPick(ch){
       if(ch==='afdian' && !AFDIAN_URL) ch='alipay';
       dnChCur=ch;
       var bs=document.querySelectorAll('.donate-ch');
       for(var i=0;i<bs.length;i++) bs[i].className='donate-ch'+(bs[i].getAttribute('data-ch')===ch?' on':'');
+      var box=document.getElementById('ppBox'), pt=document.getElementById('ppTip'), tip=document.getElementById('dnTip');
+      if(ch==='paypal'){
+        box.style.display='block';
+        tip.textContent='选金额，然后点下面 PayPal 按钮付款（美元）';
+        pt.textContent='';
+        ensurePaypal();
+      }else{
+        box.style.display='none';
+        pt.textContent='';
+        tip.textContent='选个金额，点一下就跳支付~ 谢谢老板!!!';
+      }
+      updateAmtLabels();
     }
-    function donateAmt(v,btn){
+    function donateAmt(i,btn){
       if(btn){
         var b=document.querySelectorAll('.dn-amt');
-        for(var i=0;i<b.length;i++) b[i].classList.remove('hot');
+        for(var j=0;j<b.length;j++) b[j].classList.remove('hot');
         btn.classList.add('hot');
       }
       var tip=document.getElementById('dnTip');
+      if(dnChCur==='paypal'){
+        ppSel=USD[i];
+        tip.textContent='已选 $'+ppSel+' · 点下面 PayPal 按钮付款';
+        ensurePaypal();
+        return;
+      }
+      var v=CNY[i];
       if(dnChCur==='afdian' && AFDIAN_URL){
         var u=AFDIAN_ITEMS[v]||AFDIAN_URL;
         tip.textContent='正在打开爱发电 ¥'+v+' 支付页…';
@@ -1314,6 +1350,38 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
       }
       tip.textContent='正在打开支付宝，输入 ¥'+v+' 就好啦~ 谢谢老板!!!';
       setTimeout(function(){location.href=DN_ALIPAY},160);
+    }
+    function ensurePaypal(){
+      if(window.paypal){ if(!ppRendered) renderPaypal(); return; }
+      if(ppLoading) return;
+      ppLoading=true;
+      var s=document.createElement('script');
+      s.src='https://www.paypal.com/sdk/js?client-id='+encodeURIComponent(PAYPAL_CLIENT_ID)+'&currency=USD&intent=capture&components=buttons';
+      s.onload=function(){ ppLoading=false; renderPaypal(); };
+      s.onerror=function(){ ppLoading=false; document.getElementById('ppTip').textContent='PayPal 加载失败（网络/广告拦截），可以换支付宝或爱发电'; };
+      document.head.appendChild(s);
+    }
+    function renderPaypal(){
+      if(ppRendered || !window.paypal) return;
+      ppRendered=true;
+      try{
+        paypal.Buttons({
+          style:{layout:'vertical',shape:'pill',label:'donate',height:44},
+          createOrder:function(data,actions){
+            return actions.order.create({purchase_units:[{amount:{value:String(ppSel),currency_code:'USD'},description:'Support Muzimi'}]});
+          },
+          onApprove:function(data,actions){
+            return actions.order.capture().then(function(){
+              document.getElementById('ppTip').textContent='收到啦！谢谢老板!!! 💛';
+              document.getElementById('dnTip').textContent='PayPal 付款成功，感谢支持！';
+            });
+          },
+          onCancel:function(){ document.getElementById('ppTip').textContent='已取消，随时可以再来~'; },
+          onError:function(){ document.getElementById('ppTip').textContent='PayPal 出错了，稍后再试或换支付宝/爱发电'; }
+        }).render('#ppBox');
+      }catch(e){
+        document.getElementById('ppTip').textContent='PayPal 初始化失败，换支付宝/爱发电吧';
+      }
     }
   </script>
   <div class="hero-wrap">
