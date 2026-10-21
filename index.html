@@ -1242,8 +1242,8 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
 <!-- 跑马灯：一进站就有"在营业"的热闹感 -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span data-i18n="ticker">🎮 27 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中</span>
-    <span data-i18n="ticker">🎮 27 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中</span>
+    <span data-i18n="ticker">🎮 29 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中</span>
+    <span data-i18n="ticker">🎮 29 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中</span>
   </div>
 </div>
 
@@ -1619,7 +1619,7 @@ const T = {
                 en:"One link for all apps · Save to your own drive to keep it forever"},
   /* hero */
   heroName:    {zh:"木子米<br><span class=\"hl\">软件大全</span>", en:"Muzimi<br><span class=\"hl\">Software</span>", ja:"木子米<br><span class=\"hl\">ソフト大全</span>"},
-  ticker:      {zh:"🎮 27 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中", en:"🎮 27 playful mini apps · all free · Android / iPhone / HarmonyOS · works offline · tap and play", ja:"🎮 27本の遊べるミニアプリ · 全部無料 · Android / iPhone / HarmonyOS · オフラインでも動く · タップして遊ぼう"},
+  ticker:      {zh:"🎮 29 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中", en:"🎮 29 playful mini apps · all free · Android / iPhone / HarmonyOS · works offline · tap and play", ja:"🎮 29本の遊べるミニアプリ · 全部無料 · Android / iPhone / HarmonyOS · オフラインでも動く · タップして遊ぼう"},
   qqFans:      {zh:"QQ粉丝群", en:"QQ Fan Group"},
   qqGroupsN:   {zh:"9 个群可选", en:"9 groups available"},
   biliVideo:   {zh:"视频首发", en:"Videos first"},
@@ -1912,6 +1912,12 @@ const DATA = {
   mainGroup: "575703180",
   /* 网盘真实链接（来自 pan_config.json，2026-09 现网有效） */
   pan: {
+    edgerunnerrun:{ quark:"https://pan.quark.cn/s/e46426cd42b7",
+                    uc:"https://drive.uc.cn/s/e19eba957b8b4",
+                    baidu:"https://pan.baidu.com/s/1rReKLb7sSkJKjBFlwMCaEQ", baiduCode:"6dik" },
+    edgerunnerash:{ quark:"https://pan.quark.cn/s/e46426cd42b7",
+                    uc:"https://drive.uc.cn/s/e19eba957b8b4",
+                    baidu:"https://pan.baidu.com/s/1rReKLb7sSkJKjBFlwMCaEQ", baiduCode:"6dik" },
     bangaozu: { quark:"https://pan.quark.cn/s/9bd80cb7ff2c",
                 uc:"https://drive.uc.cn/s/096723bc30fa4",
                 baidu:"https://pan.baidu.com/s/1nEKy4aOsi4KUhKG-C4EjNQ", baiduCode:"5l0g" },
@@ -1972,6 +1978,18 @@ const DATA = {
     "全都免费，进群先拿新版。"
   ],
   apps: [
+    {
+      id:"edgerunnerrun", icon:"🏃", name:"老登跑起来", ver:"v1.0", date:"2026-10-21", size:"单文件 3.5MB（浏览器打开）",
+      desc:"左右脚必须轮流上线：同一条腿连踩两次，尊严当场打折；跳过义体分期账单、前任来电和亲子鉴定，跑到终点也不保证体面。",
+      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/edgerunnerrun.webp",
+      longDesc:"《边缘行者2》第十集那个「上半身僵直、腿在下面硬挪」的奔跑镜头，被做成了 36 秒的义体压力测试。\n规矩两条：A / D（或屏幕左右键、空格 / ↑）左右交替踩腿，交替才加速、连击八次进超频；同一侧连按两次掉尊严，被账单撞到掉得更多。障碍全是有名字的：义体分期账单、前任来电、亲子鉴定、系统更新 99%、膝盖保修到期、抚养权传票、空枪一把。\n腿是真的两条：角色图自 40% 高度以下的下半身镜像烘焙出第二姿态，按左右键实打实换帧，不是原地抖。跳跃顶点 132px，跨得干净。\n中 / 英 / 日 三语按浏览器语言自动检测，也能在右上角手切；界面、障碍名、结算判词、战报 PNG 里的字全跟着换。\n右上角「保存」直接开网盘转存链接，「更新」开官网；手机端隐藏画布内 HUD，改画布下方的数据面板，触控键 76px。\n角色图、BGM（第十集 02:48 起 24 秒原声）和音效全部 base64 内嵌在一个 HTML 里，拖到哪都能跑，断网也能玩。"
+    },
+    {
+      id:"edgerunnerash", icon:"🏺", name:"妈妈一粒不能少", ver:"v1.0", date:"2026-10-21", size:"单文件 2.4MB（浏览器打开）",
+      desc:"端稳骨灰盒对抗横风：接住金白骨灰，躲开盐、打印机碳粉和亲子鉴定；风向切换前会闪黄预警。",
+      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/edgerunnerash.webp",
+      longDesc:"第九集那段「开罐、撒灰」被做成了逆风接取小游戏：鼠标、手指或 A / D 横移骨灰盒，接住金白色的骨灰，别把盐、打印机碳粉和亲子鉴定一起接回来。\n风是主角：每隔两三秒换一次风向，换之前盒子上方会闪一道黄色箭头；第 20 秒必来一次灵魂级横风（±235），接不住的灰就随风走。完整度 = 接住的灰 / （接住 + 漏掉）；污染按克算，盐 1g、碳粉 2g、亲子鉴定 3g，超过 12g 结算直接换判词。\n中 / 英 / 日 三语自动检测 + 手动切换，结算、成分报告和战报 PNG 一起跟着换语言。\n右上角「保存」开网盘，「更新」开官网；手机端把 HUD 换成下方数据面板，触控横移不挡视野。\n角色立绘、开罐声、横风声和结算音全部内嵌在单个 HTML 里，断网也能玩。"
+    },
     {
       id:"jiekou", icon:"🕺", name:"全都是借口", ver:"v1.0", date:"2026-10-13", size:"安卓 APK 122MB ／ Windows PC 126MB",
       desc:"六只 GIF 娃娃当陀螺在剧院木台上互撞：全场就一首《心似烟火 dj》一直放着，撞一下更响、连撞才悄悄提速；三局两胜。",
