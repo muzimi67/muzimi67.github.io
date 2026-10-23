@@ -6,8 +6,9 @@
 //   根本不会被编译成 Worker 路由。症状是：/api/* 能命中（旧路由表里注册过），
 //   而新增的 /pay/* 被静态兜底吞掉（返回整份 index.html）。
 //
-//   加上本文件后，Pages 构建时会明确带上 functions/，路由表自动重算，
-//   以后每次 git push 都自动部署，不再需要手动 wrangler pages deploy。
+//   加上本文件后，Wrangler Pages 部署会明确带上 functions/，路由表自动重算。
+//   GitHub push 与 Cloudflare Pages 发布是两条流程：是否有 Git 集成自动构建
+//   取决于 Dashboard；当前项目发版 SOP 要求白名单暂存后显式运行 wrangler pages deploy。
 //
 // 注意：
 //   1) pages_build_output_dir 用仓库根目录 "."，因为 index.html / assets /
