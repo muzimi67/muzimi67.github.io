@@ -1746,6 +1746,8 @@ const T = {
   dlQuark:     {zh:"夸克网盘", en:"Quark Drive"},
   dlUC:        {zh:"UC网盘", en:"UC Drive"},
   dlBaidu:     {zh:"百度网盘", en:"Baidu Drive"},
+  dlXunlei:    {zh:"迅雷网盘", en:"Xunlei Drive"},
+  dlMobile:    {zh:"移动云盘", en:"China Mobile Drive"},
   /* 渲染期用词（renderDetail 等） */
   codeLabel:   {zh:"提取码", en:"Code"},
   backAll:     {zh:"← 返回大全", en:"← Back to all apps"},
@@ -1926,7 +1928,9 @@ const DATA = {
                 baidu:"https://pan.baidu.com/s/1nEKy4aOsi4KUhKG-C4EjNQ", baiduCode:"5l0g" },
     all:      { quark:"https://pan.quark.cn/s/7b9e42526033",
                 uc:"https://drive.uc.cn/s/70b29a038c114",
-                baidu:"https://pan.baidu.com/s/1T7noogAjv5x1xGQci8HMIw", baiduCode:"00ct" },
+                baidu:"https://pan.baidu.com/s/1T7noogAjv5x1xGQci8HMIw", baiduCode:"00ct",
+                xunlei:"https://pan.xunlei.com/s/VP4ce0nwc3vWYYxCoRdGPFowA1?pwd=spry",
+                mobile:"https://yun.139.com/shareweb/#/w/i/2yA8wbDNUJHp6" },
     bangduori:{ quark:"https://pan.quark.cn/s/48c50d509ef3",
                 uc:"https://drive.uc.cn/s/516c84da87f74",
                 baidu:"https://pan.baidu.com/s/1W7Ngyk8igVIAtxbRb5vylQ", baiduCode:"xyzh" },
@@ -2244,7 +2248,9 @@ const DL_LOGO = {
   terabox:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#3B5DE7"/><text x="16" y="22" font-size="13" text-anchor="middle" fill="#fff" font-weight="bold">TB</text></svg>'),
   quark:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#6f5cf0"/><text x="16" y="22" font-size="15" text-anchor="middle" fill="#fff" font-weight="bold">夸</text></svg>'),
   uc:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#ff7a1a"/><text x="16" y="22" font-size="15" text-anchor="middle" fill="#fff" font-weight="bold">UC</text></svg>'),
-  baidu:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#2932e1"/><text x="16" y="22" font-size="14" text-anchor="middle" fill="#fff" font-weight="bold">度</text></svg>')
+  baidu:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#2932e1"/><text x="16" y="22" font-size="14" text-anchor="middle" fill="#fff" font-weight="bold">度</text></svg>'),
+  xunlei:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#1e88ff"/><text x="16" y="22" font-size="14" text-anchor="middle" fill="#fff" font-weight="bold">迅</text></svg>'),
+  mobile:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#00a6a6"/><text x="16" y="22" font-size="14" text-anchor="middle" fill="#fff" font-weight="bold">移</text></svg>')
 };
 
 /* ============ 设置三件套（对齐 stand.homes 的 persist store） ============ */
@@ -2957,10 +2963,12 @@ const TERABOX = {"kurumi":"https://1024terabox.com/s/1vRa96CR8sajWSGW2W_SavQ", "
 function tbUrl(key){ return TERABOX[key] || TERABOX.all; }
 function panButtons(pack, key){
   const baiduUrl = pack.baiduCode ? pack.baidu+"?pwd="+pack.baiduCode : pack.baidu;
+  const xl = pack.xunlei || DATA.pan.all.xunlei;
+  const yl = pack.mobile || DATA.pan.all.mobile;
   return `
     <a class="pk-btn" href="${pack.quark}" target="_blank" rel="noopener"><img src="${DL_LOGO.quark}" alt="">${t("dlQuark")}</a>
     <a class="pk-btn" href="${pack.uc}" target="_blank" rel="noopener"><img src="${DL_LOGO.uc}" alt="">${t("dlUC")}</a>
-    <a class="pk-btn" href="${baiduUrl}" target="_blank" rel="noopener"><img src="${DL_LOGO.baidu}" alt="">${t("dlBaidu")}${pack.baiduCode?'<small style="color:var(--text3)">'+pack.baiduCode+'</small>':""}</a>${tbUrl(key)?`<a class="pk-btn" href="${tbUrl(key)}" target="_blank" rel="noopener"><img src="${DL_LOGO.terabox}" alt="">${t("dlTerabox")}</a>`:""}`;
+    <a class="pk-btn" href="${baiduUrl}" target="_blank" rel="noopener"><img src="${DL_LOGO.baidu}" alt="">${t("dlBaidu")}${pack.baiduCode?'<small style="color:var(--text3)">'+pack.baiduCode+'</small>':""}</a>${xl?`<a class="pk-btn" href="${xl}" target="_blank" rel="noopener"><img src="${DL_LOGO.xunlei}" alt="">${t("dlXunlei")}</a>`:""}${yl?`<a class="pk-btn" href="${yl}" target="_blank" rel="noopener"><img src="${DL_LOGO.mobile}" alt="">${t("dlMobile")}</a>`:""}${tbUrl(key)?`<a class="pk-btn" href="${tbUrl(key)}" target="_blank" rel="noopener"><img src="${DL_LOGO.terabox}" alt="">${t("dlTerabox")}</a>`:""}`;
 }
 function renderAllpack(){
   const html=panButtons(DATA.pan.all, "all");
@@ -3057,6 +3065,8 @@ function renderDetail(id){
     {name:t("dlQuark"), type:"quark", url:pack.quark},
     {name:t("dlUC"), type:"uc", url:pack.uc},
     {name:t("dlBaidu"), type:"baidu", url:baiduUrl, code:pack.baiduCode||""},
+    {name:t("dlXunlei"), type:"xunlei", url:pack.xunlei||DATA.pan.all.xunlei},
+    {name:t("dlMobile"), type:"mobile", url:pack.mobile||DATA.pan.all.mobile},
     {name:t("dlTerabox"), type:"terabox", url:tbUrl(a.id)}
   ].filter(d=>d.url).map(d=>`
     <a class="dl-row" href="${d.url}" target="_blank" rel="noopener">
