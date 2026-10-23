@@ -1242,8 +1242,8 @@ html[data-theme="dark"] .hero-name .hl{color:#17151f}
 <!-- 跑马灯：一进站就有"在营业"的热闹感 -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span data-i18n="ticker">🎮 29 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中</span>
-    <span data-i18n="ticker">🎮 29 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中</span>
+    <span data-i18n="ticker">🎮 30 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中</span>
+    <span data-i18n="ticker">🎮 30 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中</span>
   </div>
 </div>
 
@@ -1619,7 +1619,7 @@ const T = {
                 en:"One link for all apps · Save to your own drive to keep it forever"},
   /* hero */
   heroName:    {zh:"木子米<br><span class=\"hl\">软件大全</span>", en:"Muzimi<br><span class=\"hl\">Software</span>", ja:"木子米<br><span class=\"hl\">ソフト大全</span>"},
-  ticker:      {zh:"🎮 29 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中", en:"🎮 29 playful mini apps · all free · Android / iPhone / HarmonyOS · works offline · tap and play", ja:"🎮 29本の遊べるミニアプリ · 全部無料 · Android / iPhone / HarmonyOS · オフラインでも動く · タップして遊ぼう"},
+  ticker:      {zh:"🎮 30 款整活小游戏 · 全部免费 · 安卓 / iPhone / 鸿蒙 · 断网也能玩 · 点开就玩 · 邦多利整活持续上新中", en:"🎮 30 playful mini apps · all free · Android / iPhone / HarmonyOS · works offline · tap and play", ja:"🎮 29本の遊べるミニアプリ · 全部無料 · Android / iPhone / HarmonyOS · オフラインでも動く · タップして遊ぼう"},
   qqFans:      {zh:"QQ粉丝群", en:"QQ Fan Group"},
   qqGroupsN:   {zh:"9 个群可选", en:"9 groups available"},
   biliVideo:   {zh:"视频首发", en:"Videos first"},
@@ -1912,6 +1912,7 @@ const DATA = {
   mainGroup: "575703180",
   /* 网盘真实链接（来自 pan_config.json，2026-09 现网有效） */
   pan: {
+    kurumi: { quark:"https://pan.quark.cn/s/62ca77b54191", uc:"https://drive.uc.cn/s/868172ec211e4", baidu:"https://pan.baidu.com/s/1E0aksQ_Ne_03fyMOWVXWpw", baiduCode:"0f3s" },
     edgerunnerrun:{ quark:"https://pan.quark.cn/s/e46426cd42b7",
                     uc:"https://drive.uc.cn/s/e19eba957b8b4",
                     baidu:"https://pan.baidu.com/s/1rReKLb7sSkJKjBFlwMCaEQ", baiduCode:"6dik" },
@@ -1979,181 +1980,188 @@ const DATA = {
   ],
   apps: [
     {
+      id:"kurumi", icon:"⚡", name:"久留美：强欲黑闪", ver:"v1.0", date:"2026-10-22", size:"单文件 HTML 9.1MB · 离线浏览器游戏",
+      desc:"一巴掌，日元暴涨？粉发久留美被你抽成哭脸、红脸和激光眼，8% 概率打出黑闪；原剧 ED 一直循环。",
+      plat:["安卓","iOS","鸿蒙"], tags:["new","hot"], shot:"shots/kurumi.webp", cover:"assets/covers/kurumi.webp",
+      longDesc:"老实赚钱很枯燥吧？我才不会B计划！！！\n点击或触摸屏幕，左右巴掌交替，脸会甩头、挤压再弹回来。亏钱哭，赚多红脸兴奋，继续赚还能双眼放激光。\n每次点击有 8% 概率触发黑闪，本次收入变成 10 倍；左上角同时显示日元、人民币和美元金额。金额是游戏分数，汇率使用离线参考快照。\n点击播放萌智子的「メス豚」加速短音，原剧 ED 在首次点击后持续循环，音乐不随击打变轻。\n下载一个 HTML 就能离线玩。手机横竖屏有独立适配；安卓、iPhone、鸿蒙可使用浏览器打开。四个网盘同时提供游戏文件和B站封面图。"
+    },
+    {
       id:"edgerunnerrun", icon:"🏃", name:"老登跑起来", ver:"v1.0", date:"2026-10-21", size:"单文件 3.5MB（浏览器打开）",
       desc:"左右脚必须轮流上线：同一条腿连踩两次，尊严当场打折；跳过义体分期账单、前任来电和亲子鉴定，跑到终点也不保证体面。",
-      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/edgerunnerrun.webp",
+      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/edgerunnerrun.webp", cover:"assets/covers/edgerunnerrun.webp",
       longDesc:"《边缘行者2》第十集那个「上半身僵直、腿在下面硬挪」的奔跑镜头，被做成了 36 秒的义体压力测试。\n规矩两条：A / D（或屏幕左右键、空格 / ↑）左右交替踩腿，交替才加速、连击八次进超频；同一侧连按两次掉尊严，被账单撞到掉得更多。障碍全是有名字的：义体分期账单、前任来电、亲子鉴定、系统更新 99%、膝盖保修到期、抚养权传票、空枪一把。\n腿是真的两条：角色图自 40% 高度以下的下半身镜像烘焙出第二姿态，按左右键实打实换帧，不是原地抖。跳跃顶点 132px，跨得干净。\n中 / 英 / 日 三语按浏览器语言自动检测，也能在右上角手切；界面、障碍名、结算判词、战报 PNG 里的字全跟着换。\n右上角「保存」直接开网盘转存链接，「更新」开官网；手机端隐藏画布内 HUD，改画布下方的数据面板，触控键 76px。\n角色图、BGM（第十集 02:48 起 24 秒原声）和音效全部 base64 内嵌在一个 HTML 里，拖到哪都能跑，断网也能玩。"
     },
     {
       id:"edgerunnerash", icon:"🏺", name:"妈妈一粒不能少", ver:"v1.0", date:"2026-10-21", size:"单文件 2.4MB（浏览器打开）",
       desc:"端稳骨灰盒对抗横风：接住金白骨灰，躲开盐、打印机碳粉和亲子鉴定；风向切换前会闪黄预警。",
-      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/edgerunnerash.webp",
+      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/edgerunnerash.webp", cover:"assets/covers/edgerunnerash.webp",
       longDesc:"第九集那段「开罐、撒灰」被做成了逆风接取小游戏：鼠标、手指或 A / D 横移骨灰盒，接住金白色的骨灰，别把盐、打印机碳粉和亲子鉴定一起接回来。\n风是主角：每隔两三秒换一次风向，换之前盒子上方会闪一道黄色箭头；第 20 秒必来一次灵魂级横风（±235），接不住的灰就随风走。完整度 = 接住的灰 / （接住 + 漏掉）；污染按克算，盐 1g、碳粉 2g、亲子鉴定 3g，超过 12g 结算直接换判词。\n中 / 英 / 日 三语自动检测 + 手动切换，结算、成分报告和战报 PNG 一起跟着换语言。\n右上角「保存」开网盘，「更新」开官网；手机端把 HUD 换成下方数据面板，触控横移不挡视野。\n角色立绘、开罐声、横风声和结算音全部内嵌在单个 HTML 里，断网也能玩。"
     },
     {
       id:"jiekou", icon:"🕺", name:"全都是借口", ver:"v1.0", date:"2026-10-13", size:"安卓 APK 122MB ／ Windows PC 126MB",
       desc:"六只 GIF 娃娃当陀螺在剧院木台上互撞：全场就一首《心似烟火 dj》一直放着，撞一下更响、连撞才悄悄提速；三局两胜。",
-      plat:["安卓"], tags:["new"], shot:"shots/jiekou.webp",
+      plat:["安卓"], tags:["new"], shot:"shots/jiekou.webp", cover:"assets/covers/jiekou.webp",
       longDesc:"《全都是借口》是「拿娃娃当陀螺」的第二作，角色和音乐全换了一批：乙骨忧太 / 乙骨忧太·腾空 / 五条悟 / 伏黑甚尔 / 两面宿傩，外加一个实拍蹦跳的跳跳乙骨——全部从 B 站视频里逐帧抠出来的（背景差分、局部自适应阈值，没二次绘制）。\n音乐只有一首《心似烟火 dj》，开局就循环、一直放着不停：撞一次音量往上顶，连着猛撞才慢慢加快转速（封顶 1.35 倍，而且低于一定热度完全不提速，所以零散碰几下听不出变调），停手后按半衰期回落。\n胜负改成三局两胜：先赢两局才算这场结束，赢一局就自动开下一局（2.6 秒），赢够两局回选人、比分清零。\n娃娃是带真实 3D 物理的陀螺：一直自转，被撞会压扁再弹回来，速度越快转得越急、倾得越狠。\n手机上：左半屏按住拖出虚拟摇杆，右半屏点一下冲刺。\n左上角按钮：网盘保存弹出夸克 / UC / 百度转存链接，更新去更新页，原作者跳 B 站空间。\n这一版把「进场后每个角色背后多一个」修掉了：克隆模型时 Awake 会再跑一次建平面，而克隆体本身已经带了模板那张平面，于是多出一张固定缩放的旧平面停在角色背后——改成复用现成的平面。另外整套 JSON（角色索引/manifest）必须无 BOM，否则 Unity 的 JsonUtility 直接解析失败、一个角色都载不进。"
     },
     {
       id:"zhouyou3in1", icon:"🍶", name:"周友的酒三合一", ver:"v1.0", date:"2026-10-14", size:"单文件 4.6MB（浏览器打开）／ 安卓 APK 3.6MB",
       desc:"三只 GIF 娃娃合成一只：点一下，歌起、人转；手停就慢慢闷下去停住；左右滑一下，换人同时把它的歌也换掉——舟友的酒 / 小兔子也绝非善类 / 若不是你突然闯进我生活。",
-      plat:["安卓","鸿蒙"], tags:["new","hot"], shot:"shots/zhouyou3in1.webp",
+      plat:["安卓","鸿蒙"], tags:["new","hot"], shot:"shots/zhouyou3in1.webp", cover:"assets/covers/zhouyou3in1.webp",
       longDesc:"把《舟友的酒》里那三只 GIF 娃娃（舟友的酒 / 小兔子也绝非善类 / 若不是你突然闯进我生活）合成一个盒子，三只已经统一到一样高、脚踩在同一条线上，换谁都不会忽大忽小。\n规矩就一条：点一下，歌起、人转；不点，一点动静都没有。点得越密帧滚得越快、歌播得越带劲，手一停就被拖着慢慢慢下来、声音闷下去，最后真的停住——像抽陀螺。\n左右滑一下换人：换角色的同时换上它自己那首歌，前一首立刻静音，新画面从第一帧重新开始（不会串音、不会带着上一只的转速跳出来）。底下三个圆点告诉你现在是谁。\n三首都是原声内嵌：三只角色各自的那首歌就装在这一个文件里，断网也能放。\n安卓直接装 APK（3.6MB，装完点开就玩），也可以只拿那个 4.6MB 的 HTML 用浏览器打开——195 帧角色图、三首歌全都内嵌在单个文件里，拖到哪都能跑。\n引擎跟《邦友的酒 v1.1》《大肥鱼的酒 v1.0》是同一套：转速驱动帧位、WebAudio 低通随转速打开、转速归零真暂停。"
     },
     {
       id:"zhouyou", icon:"🪀", name:"舟友的酒", ver:"v1.2", date:"2026-10-13", size:"安卓 APK 105MB ／ Windows PC 109MB",
       desc:"三只 GIF 娃娃当陀螺，在剧院木台上互撞：撞得越狠歌越响，被撞下台就少一只，赢家结算时全场增殖。",
-      plat:["安卓"], tags:["new"], shot:"shots/zhouyou.webp",
+      plat:["安卓"], tags:["new"], shot:"shots/zhouyou.webp", cover:"assets/covers/zhouyou.webp",
       longDesc:"《舟友的酒》是一个「拿娃娃当陀螺」的对撞游戏：三只 GIF 娃娃——小兔子也绝非善类 / 舟友的酒 / 若不是你突然闯进我生活——在剧院舞台的木质圆台上互相撞。\n娃娃不是贴图平面，它们是带真实 3D 物理的陀螺：一直自转，被撞会压扁再弹回来，速度越快转得越急、倾得越狠，重撞还会火花四溅。\n歌曲是两边各一首角色歌对撞：碰得越狠，两侧音量一起往上顶，静下来又慢慢回落；一方被推下台立刻判胜负，赢家在结算画面里「增殖」——同一只娃娃铺满整个舞台。\n手机上：左半屏按住拖出虚拟摇杆，右半屏点一下冲刺。\n左上角三个按钮：网盘保存弹出夸克 / UC / 百度三个转存链接（转存到自己网盘就不怕分享失效），更新去更新页，原作者跳 B 站空间。\n安卓装 APK（105MB，装完点开就玩）；Windows 用 PC 版（109MB 压缩包，解压双击 yam.exe）。\n这一版（v1.2）修了安卓上舞台整片不显示的问题：舞台模型是单面壳、而相机正好在壳内部，手机端把背面全剔掉了，画面上只剩天空的渐变——材质渲染面改成双面即恢复。PC 上一直正常，所以这个毛病只在手机上暴露。"
     },
     {
       id:"duibang", icon:"⚔️", name:"邦多利对邦", ver:"v1.0", date:"2026-10-06", size:"安卓 APK 188MB（52 只娃娃）",
       desc:"选三只邦邦娃娃当陀螺，在木质圆台上互相撞，谁被撞下台谁就少一只。左半屏拖摇杆、右半屏点一下冲刺；撞狠了火花四溅还带慢动作。BGM《朋友的酒》/《雨爱》，撞击是「冰冰冰」。",
-      plat:["安卓"], tags:["new"], shot:"shots/duibang.webp",
+      plat:["安卓"], tags:["new"], shot:"shots/duibang.webp", cover:"assets/covers/duibang.webp",
       longDesc:"《邦多利对邦》是 B 站 UP 主「海月十三」的作品，这里是安卓移植版。\n开局从一池子娃娃里点三只当你的队伍，对面随机派三只，然后 3、2、1 开打。木质圆形擂台不停转，靠撞把对方挤下去——掉出台面就少一只，谁先掉光谁输。\n手机上：左半屏按住拖出虚拟摇杆控制移动，右半屏点一下就是冲刺。冲刺撞上去的击飞距离比普通撞远得多，抓到角度能一击把人送下去；平时靠卡位慢慢磨也行。\n这次补了几样原版没有的：撞上去有「冰冰冰」的音效，重击再叠一层低音闷响；撞击会火花四溅，重击还会短暂慢动作顿一下；背景音乐是《朋友的酒》（弦卷心版）和《雨爱》（ykn 版），每次开局随机一首。\n52 只娃娃全部按 5 万面重新减面，模型体积从 2.9GB 压到 100MB，手机上掉帧少了很多。\n左上角三个按钮：网页是本作的展示页，网盘保存弹出夸克 / UC / 百度三个转存链接（转存到自己网盘就不怕分享失效），原作者跳 UP 主的 B 站空间。\n安卓直接装 APK（188MB，装完点开就玩）。"
     },
     {
       id:"bangaozu", icon:"🎱", name:"邦高祖小球", ver:"v1.8", date:"2026-10-04", size:"单文件 23.8MB（浏览器打开）／ 安卓 APK 20.2MB",
       desc:"跳跳小球的二创版：球换成了娃娃，赛道上的方块和跳台全换成 17 只随机娃娃；落地像果冻一样压扁再弹回来，点得越密转得越快；背景是云上坡那支实况。点或按住屏幕跳跃，长按跳得更高。",
-      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/bangaozu.webp",
+      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/bangaozu.webp", cover:"assets/covers/bangaozu.webp",
       longDesc:"《跳跳小球》（Obstacle Race 汉化版）的二创魔改版。\n开局是一只娃娃站在云上坡：点一下（或者按住）就跳，长按跳得更高，落下来会像果冻一样压扁再弹回来，抖三四下才停，起跳时反而拉长。\n点得越密转得越快：连着点，娃娃在空中转圈的角速度一路累加（最高 5 圈每秒），停手就落回一圈每秒；落地那一瞬间还会响一声「ぽぴぱ」拟声——户山香澄那段 popipa 语音自动切成 86 段，落一次地放一段，一直轮着来。\n赛道上的方块障碍和跳台全换成了工程里的 17 只娃娃，随机换皮、各自转圈，跟着父级方块一起被放大缩小（大方块上是大娃娃，小方块上是小娃娃）。\n背景是那支云上坡实况（B 站 BV1nfto6TE7y）压进单文件当动态背景，没有音轨；BGM 是《朋友的酒》，音量跟着游戏里的设置走。\n上面「💾 网盘」和「🔄 更新」两个按钮：点网盘弹出夸克 / UC / 百度三个转存链接（转存到自己网盘就不怕分享失效），点更新去更新页看有没有新版。\n安卓可以直接装 APK（20.2MB，装完点开就玩），也可以只拿那个 23.8MB 的 HTML 用浏览器打开——视频、模型、贴图、语音全都内嵌在单个文件里，拖到哪都能跑。"
     },
     {
       id:"dafeiyu", icon:"🐳", name:"大肥鱼的酒", ver:"v1.0", date:"2026-09-30", size:"单文件 3.0MB（浏览器打开）／ 安卓 APK 2.4MB",
       desc:"点一下敲一记铁盆：点得越密转得越快，邦邦声越密；转速一起就往外喷白米、冒蓝色词元。ChatGPT、Claude、Gemini、Grok、DeepSeek、Meta 的图标会像机关枪一样射过来砸盆，转得越快射得越猛——点一下能把它们反弹得粉碎。",
-      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/dafeiyu.webp",
+      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/dafeiyu.webp", cover:"assets/covers/dafeiyu.webp",
       longDesc:"屏幕上是一只戴着不锈钢盆的蓝发小鱼娘，坐下来抽陀螺式地转。点一下就是敲一记铁盆——点得越密转得越快，铁盆的邦邦声也跟着越密（最高 26 次/秒）；手一停就被拖着慢下来，盆声跟着稀下去，最后停住歪在那儿。85 帧一镜到底的真闭环，一直朝一个方向转，不会转了半圈又倒回来。\n转速一起来，铁盆里就不停往外喷白米粒，米粒会落到地上堆起来，越敲堆得越厚。蓝色的 token、词元不停地从盆里冒出来，左右两侧还竖着两列超大的 3D 大字——左边「token来」，右边「词元来」，粗黑描边、一层层立体挤出来，一个字一个字地弹，故意有一截探出屏幕外。\n更热闹的是：ChatGPT、Claude、Gemini、Grok、DeepSeek、Meta 六家的图标会从四面八方飞过来砸这只盆，转速越快射得越密（最高 25 发/秒，跟机关枪一样），快到跟前还会减速、像被盆吸住。它们一撞上就炸成十六块碎片，撞多了屏幕会震、会闪一下白；你要是点一下，就能把飞得最近的图标反弹得粉碎（二十五块），图标之间在空中撞上也会一起碎。\n角色头顶挂着一块仪表：实时输出速度 t/s，还有「已击败 N 个国外 AI」——数字会跟着你敲的节奏一路往上冲。\n背景音乐是《朋友的酒》完整版，跟着转速变速：转得欢的时候是原速原声，慢下来才慢慢拖闷，最高 1.35 倍。连击上去还有老虎机那一套：边缘转灯、走马灯横幅、金币雨、「欧耶！」，破纪录还有最狠的一版。\n上面有「💾 保存」和「🔄 更新」两个按钮：点保存弹出三个网盘的转存链接（转存到自己网盘就不怕分享失效），点更新去更新页看有没有新版。\n安卓可以直接装 APK，也可以只拿那个 3MB 的 HTML 用浏览器打开——85 帧角色图、敲击采样、整首 BGM 全都内嵌在单个文件里，拖到哪都能跑。\n转速没有上限。快过屏幕刷新率之后，某些转速下肉眼看它完全静止，那是显示器的极限，不是卡了。"
     },
     {
       id:"tongtou", icon:"💎", name:"邦多利最通透的软件", ver:"v2.3", date:"2026-09-30", size:"APK 17.5MB（2D）/ 4.1MB（3D）· 单文件 23.2MB / 5.6MB",
       desc:"点得越密转得越快：转圈没有上限，歌速封在 1.4 倍；17 只娃娃一直自转，拖一个到中间就换 C 位。安卓可以直接装 APK，2D 版和 3D/WebGL 版都在。",
-      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/tongtou.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/tongtou.webp", cover:"assets/covers/tongtou.webp",
       longDesc:"《邦多利最伟大的软件》的升级版：17 只娃娃，16 只绕着中间的主位转，每只都是 60 帧真自转（一圈 60 格），凑近看它是在原地转盘式自转，不是翻跟头。\n点屏幕就是抽陀螺——点得越密转得越快，转速没有上限；快过屏幕刷新率之后肉眼看它像静止一样，那是显示器的极限，不是卡了。歌曲速度封在 1.4 倍，一路听得见在涨但不会失控。弹跳也放开了，摔得越狠弹得越高，落地带扬尘。\n最上面那个「通透模式」点一下：按钮变蓝、自动开始放歌、转速钉住，背景的磨砂去掉。\n两版都给你：2D 版 23.2MB，3D/WebGL 版 5.6MB（同一套页面换 3D 渲染层，手机上更省内存）。安卓可以直接装 APK（2D 版 17.5MB、3D 版 4.1MB，装完点开就玩）；iPhone 和纯血鸿蒙用浏览器打开 HTML 就行，不用装。\n这一版（v2.3）修了拖娃娃换 C 位那一下的卡顿，打击感也加狠了——抖屏幅度跟着屏幕大小走，顿帧和挤压都加码。"
     },
     {
       id:"familytime", icon:"🐺", name:"FamilyTime 手机移植版", ver:"先行版", date:"2026-09-28", size:"APK 61.2MB（安卓）",
       desc:"小狼的《FamilyTime》搬到手机上。挖土、砍树、造东西、抱小狼女孩都能玩；草地和部分道具的画面还在修。",
-      plat:["安卓"], tags:["new"], shot:"shots/familytime.webp",
+      plat:["安卓"], tags:["new"], shot:"shots/familytime.webp", cover:"assets/covers/familytime.webp",
       longDesc:"把 PC 上的《FamilyTime》搬到手机上：点屏幕走路、右下角换工具、挖土砍树盖房子，抱起小狼女孩还能跟她互动。\n现在放的是先行版 —— 玩法链已经通了：挖土、砍树、抓取、抱持、建造都能用，小狼女孩能抓起来也能互动。\n画面还在修：草地还没出画、部分道具只有低模和暗色贴图。安卓装 APK 就能玩。"
     },
     {
       id:"youjiu", icon:"🍶", name:"邦友的酒", ver:"v1.1", date:"2026-09-28", size:"单文件 2.0MB（浏览器打开）／ 安卓 APK 1.6MB",
       desc:"点一下抽一鞭子：抽得越密歌放得越带劲，手一停就慢慢闷下去停住。连击上去炸出老虎机的欧耶，还有冰块叮当声。安卓另有 APK 版，装上点开就玩。",
-      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/youjiu.webp",
+      plat:["安卓","鸿蒙"], tags:["new"], shot:"shots/youjiu.webp", cover:"assets/covers/youjiu.webp",
       longDesc:"《朋友的酒》原声内嵌在里面，点一下就是抽一鞭子：抽得越密陀螺转得越快、歌放得越带劲；手一停它就被拖着慢慢慢下来、声音闷下去，最后停住——像抽陀螺。\n连续点连击就不停，踩准拍子一下算两下。连击上去会炸出老虎机那一套：边缘转灯、走马灯横幅、金币雨、「欧耶！」，破纪录还有最狠的一版；一路随机响冰块撞杯壁的叮当声。\n上面还有「💾 保存」和「🔄 更新」两个按钮：点保存直接弹出三个网盘的转存链接（转存到自己网盘就不怕分享失效），点更新去更新页看有没有新版。\n安卓可以直接装 APK（1.6MB，装完点开就玩），也可以只拿那个 2.0MB 的 HTML 用浏览器打开——v1.1 起 99 张帧图全部内嵌进 HTML，单个文件拖到哪都能跑。\n转速没有上限。快过屏幕刷新率之后，你看到的就不是「转」而是采样混叠——某些转速下肉眼看它完全静止，那是显示器的极限，不是卡了。\n单文件 1.22MB，音频已内嵌，双击就响。"
     },
     {
       id:"fanyingdui", icon:"⚛️", name:"邦多利反应堆·娃娃版", ver:"v3.1", date:"2026-09-26", size:"APK 52.9MB / 单文件 36.1MB",
       desc:"709 个娃娃铺成一座堆芯，音乐一放整座跟着起伏。换一批、弹一下，全看你怎么折腾。",
-      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/fanyingdui.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/fanyingdui.webp", cover:"assets/covers/fanyingdui.webp",
       longDesc:"把娃娃密密麻麻铺成一个反应堆，音乐一起，整座堆芯跟着节奏呼吸——鼓点砸下来就亮得高，安静的地方压下去。\n可以整批换娃娃、点一下把它们弹飞，视角随便拖着转，全屏看更过瘾。内置 40 首歌，点播放就开。\n安卓装 APK，iPhone 和鸿蒙用浏览器打开 HTML，同一份东西三端都能玩。"
     },
     {
       id:"nmlq", icon:"🎹", name:"你怎么两清·识图点唱", ver:"v1.0", date:"2026-09-23", size:"APK 5.86MB / 网页 5.72MB",
       desc:"三首歌、三个角色，点谁谁唱。一首唱完自动接下一首，三首完事从头再来。",
-      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/nmlq.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/nmlq.webp", cover:"assets/covers/nmlq.webp",
       longDesc:"《你怎么两清》《难道非要耗尽》《爱情这场游戏》三首连着排好，每首点一个角色来唱——香澄、友希那、弦卷心，点谁谁开口，唱到一半换人就是重唱。\n屏幕上没有按钮也没有菜单，就一幅画加三个热区：点角色开唱，唱完自动进下一首，第三首唱完回到第一首，一直循环下去。\n安卓装 APK，iPhone 和鸿蒙用浏览器打开 HTML。"
     },
     {
       id:"ykn", icon:"🎤", name:"ykn又三郎", ver:"v1.0", date:"2026-09-20", size:"APK 3.59MB / 网页 5.70MB",
       desc:"友希那唱《又三郎》，歌词一句句跟着蹦。点一下从头重放，循环到你会背。",
-      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/ykn.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/ykn.webp", cover:"assets/covers/ykn.webp",
       longDesc:"整首《又三郎》完整版 3:46，配上友希那的立绘，歌词一句句跳出来，节奏卡得很准。\n播放中点一下就从头上重放，没人管你循环多少遍。安卓装 APK，iPhone 和鸿蒙用浏览器打开 HTML。"
     },
     {
       id:"tiaozhanzhe", icon:"🥊", name:"你才是挑战者", ver:"v2.7", date:"2026-09-20", size:"APK 3.65MB / 网页 4.92MB",
       desc:"点屏幕出拳，把对手打飞。攒满气势会出黑闪暴击，数字大得夸张，越打越上头。",
-      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/tiaozhanzhe.png",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/tiaozhanzhe.png", cover:"assets/covers/tiaozhanzhe.webp",
       longDesc:"一路点过去，把对手打得灰飞烟灭。气势攒满后每拳都有机会出黑闪暴击，连击数字越滚越大，音效跟着点击位置变，越打越上头。\n普通模式可以通关，无尽模式看你能连多少下，横屏竖屏都能玩。这一版修好了安卓平板不竖屏的毛病，老手机的浏览器也点得动。\n安卓装 APK，iPhone 和鸿蒙用浏览器打开就行——同一份文件，三端都能玩。"
     },
     {
       id:"bangduori", icon:"🎸", name:"邦多利·看哭114514亿邦邦人", ver:"v6.3", date:"2026-10-03", size:"APK 77.7MB / 网页 2.60MB / 单文件 66.9MB",
       desc:"68 个棉花娃娃、41 首歌。自己导的歌存多少首都不丢，重开还停在上次那首，速度和音调各管各的。",
-      plat:["安卓","iOS","鸿蒙"], tags:["new","hot"], shot:"shots/bangduori.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:["new","hot"], shot:"shots/bangduori.webp", cover:"assets/covers/bangduori.webp",
       longDesc:"整个邦多利乐队，装进一个文件里。68 个棉花娃娃随你摆放，拖到哪存到哪，关掉再开还在原位；41 首歌点哪首放哪首，不用等。\n安卓装 APK，iPhone 和鸿蒙直接用浏览器打开就行——同一份文件，三端都能玩。\n这一版把存歌的老毛病根治了：以前自己导的歌存到十几首就开始丢，现在换成 App 自己的文件存储，导多少首都在、重启也在，老版本存的歌会自动搬过去；重开 App 回到上次放的那首；速度（0.5~2.8 倍）和音调（0.5~2.8 倍）分成两根滑杆各调各的，变速不变调、变调不变速，点或划娃娃时两个还是一起升；布置里点「重置」以前会把自己换的娃娃图一起还原成默认，现在只重置位置。"
     },
     {
       id:"qinqinhe", icon:"😘", name:"邦多利·亲亲盒", ver:"v1.1", date:"2026-09-09", size:"APK 2.27MB / 网页 2.83MB",
       desc:"51 个棉花娃娃，点一下就 mua。鸿蒙 3 导入的老毛病这次治好了。",
-      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/qinqinhe.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/qinqinhe.webp", cover:"assets/covers/qinqinhe.webp",
       longDesc:"亲亲盒的第二只。51 个娃全在里面，香澄放最上面，每个娃的嘴位都对齐了，点起来手感一致。\n鸿蒙 3 上以前点导入没反应的问题，这版修好了。文件也瘦到 2.83MB，流量党放心下。"
     },
     {
       id:"feidudu", icon:"🍔", name:"肥嘟嘟语音盒", ver:"v2.0", date:"2026-09-21", size:"APK 1.59MB / 网页 1.26MB",
       desc:"47 条语音全塞进文件里，装完就能玩，断网也不耽误。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/feidudu.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/feidudu.webp", cover:"assets/covers/feidudu.webp",
       longDesc:"所有语音都打包在文件里，不联网也照放。飞机上、地铁里、老家没信号，点开就有声。\n手表上也能装，抬手腕就能整活。"
     },
     {
       id:"kaixiahe", icon:"🎮", name:"木子米开黑盒", ver:"v1.5", date:"2026-08-29", size:"APK 1.12MB / 网页 799KB",
       desc:"71 条开黑语音，队友听了想报警。全在文件里，不联网也能喊。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/kaixiahe.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/kaixiahe.webp", cover:"assets/covers/kaixiahe.webp",
       longDesc:"71 条开黑语音全打包好了，整个文件才 533KB——比一张照片还小，随手转发不心疼流量。"
     },
     {
       id:"mozhiliao", icon:"🦗", name:"莫知了", ver:"v1.0", date:"2026-08-24", size:"APK 2.66MB / 网页 3.47MB",
       desc:"按一下叫一声，夏天的蝉都归你管。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mozhiliao.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mozhiliao.webp", cover:"assets/covers/mozhiliao.webp",
       longDesc:"点一下就一声蝉鸣，越点越上头。适合在安静的场合制造一点意外。"
     },
     {
       id:"mucheng", icon:"🪁", name:"睦从天降", ver:"v1.0", date:"2026-08-24", size:"APK 4.05MB / 网页 5.33MB",
       desc:"天上掉睦睦，接住几个算几个。手慢就没了。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mucheng.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mucheng.webp", cover:"assets/covers/mucheng.webp",
       longDesc:"睦睦从天而降，你负责接住。看着简单，手一慢就掉一地。"
     },
     {
       id:"mijia", icon:"💐", name:"米家亲亲盒", ver:"v1.0", date:"2026-08-28", size:"APK 2.70MB / 网页 3.45MB",
       desc:"亲亲盒的第一只，点一下 mua 一声。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mijia.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/mijia.webp", cover:"assets/covers/mijia.webp",
       longDesc:"亲亲盒系列的第一只作品，后来那一大家子都是从它这儿长出来的。"
     },
     {
       id:"ball", icon:"⚽", name:"木子米小球", ver:"v1.0", date:"2026-08-26", size:"APK 1.12MB / 网页 799KB",
       desc:"弹一弹，撞一撞，适合放空的时候点两下。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/ball.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/ball.webp", cover:"assets/covers/ball.webp",
       longDesc:"没有输赢，也没有进度条。就是弹来弹去，专治心里烦。"
     },
     {
       id:"rainbowring", icon:"🌈", name:"木子米彩虹环", ver:"v5", date:"2026-08-27", size:"APK 1.16MB / 网页 880KB",
       desc:"一圈一圈转下去，磨到第五版了，手感比前几版顺。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/rainbowring.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/rainbowring.webp", cover:"assets/covers/rainbowring.webp",
       longDesc:"慢慢转的彩虹环。第五版是目前最顺的一版，放手机里当个随手玩的小东西刚好。"
     },
     {
       id:"tengduzi", icon:"😶", name:"藤都子压抑盒", ver:"v1.0", date:"2026-08-29", size:"APK 1.34MB / 网页 1.69MB",
       desc:"点开之前我不好说，你自己试试。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/tengduzi.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/tengduzi.webp", cover:"assets/covers/tengduzi.webp",
       longDesc:"压抑系的整活盒。适合心情复杂的时候点一下，点完更复杂了。"
     },
     {
       id:"naochi", icon:"🍚", name:"闹吃与古振兴", ver:"v1.0", date:"2026-08-30", size:"APK 2.30MB / 网页 3.09MB",
       desc:"闹吃和古振兴对轰，谁先笑谁输。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/naochi.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/naochi.webp", cover:"assets/covers/naochi.webp",
       longDesc:"两个角色对着轰，声音越叠越乱。建议戴耳机，不然全家都知道你在干嘛。"
     },
     {
       id:"tiansuoluo", icon:"👶", name:"天素罗宝宝", ver:"v1.0", date:"2026-09-05", size:"APK 6.59MB / 网页 9.05MB",
       desc:"天素罗宝宝的小盒子，点开就有声。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/tiansuoluo.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/tiansuoluo.webp", cover:"assets/covers/tiansuoluo.webp",
       longDesc:"天素罗宝宝专属整活盒。小巧一个，装着不少乐子。"
     },
     {
       id:"shekonghe", icon:"😳", name:"邦邦社恐盒", ver:"v1.0", date:"2026-08-29", size:"APK 5.47MB / 网页 1.47MB",
       desc:"给社恐的邦邦人准备的。iOS、鸿蒙都能开。",
-      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/shekonghe.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:[], shot:"shots/shekonghe.webp", cover:"assets/covers/shekonghe.webp",
       longDesc:"社恐专用整活盒——不想说话的时候，让它替你说。iPhone 和鸿蒙都能用。"
     },
     {
       id:"chibaobao", icon:"🍔", name:"吃汉堡木子米", ver:"v1.0", date:"2026-08-22", size:"APK 1.18MB / 网页 6.57MB",
       desc:"一切的起点。吃汉堡出红框，后面那些盒子都是从它长出来的。",
-      plat:["安卓","iOS","鸿蒙"], tags:["hot"], shot:"shots/chibaobao.webp",
+      plat:["安卓","iOS","鸿蒙"], tags:["hot"], shot:"shots/chibaobao.webp", cover:"assets/covers/chibaobao.webp",
       longDesc:"最早做的那一个。当时只是想做个吃汉堡的小东西，没想到后面做了一整排。"
     }
   ],
   updates: [
+    {date:"2026-10-22", items:[{t:"新增", d:"久留美：强欲黑闪上架。点击赚日元，亏钱哭、赚钱红脸和激光，8%黑闪暴击；四盘含HTML和B计划封面。"},{t:"更新", d:"全站游戏更换独立宣传封面，详情页继续保留真实游戏截图。"}]},
     {date:"2026-10-14", items:[
       {t:"新增", d:"周友的酒三合一 v1.0 上架：把《舟友的酒》那三只 GIF 娃娃合成一只盒子——舟友的酒 / 小兔子也绝非善类 / 若不是你突然闯进我生活，三只已统一到一样高、脚踩同一条线"},
       {t:"说明", d:"点一下：歌起、人转；不点一点动静都没有。点得越密帧滚得越快、歌播得越带劲，手停就慢慢闷下去、最后真的停住（转速归零那一刻真暂停）"},
@@ -2942,7 +2950,7 @@ document.querySelectorAll("a.soc-btn.bl").forEach(a=>a.href=DATA.biliSpace);
 
 /* ============ 软件大全打包横幅渲染 ============ */
 /* 百度网盘海外版链接（目录分享，path 挂载 → 覆盖重传链接不变）*/
-const TERABOX = {"all": "https://1024terabox.com/s/1LzjYBc3vjTOnLKYhZuR9SA", "bangduori": "https://1024terabox.com/s/11RnMdCbQzSlrXIotgJF36w", "qinqinhe": "https://1024terabox.com/s/1NDXQn2i4BjCqUkShjMDprw", "mijia": "https://1024terabox.com/s/1MAnzKhQsDeKyfrI0aB2H9w"};
+const TERABOX = {"kurumi":"https://1024terabox.com/s/1vRa96CR8sajWSGW2W_SavQ", "all": "https://1024terabox.com/s/1LzjYBc3vjTOnLKYhZuR9SA", "bangduori": "https://1024terabox.com/s/11RnMdCbQzSlrXIotgJF36w", "qinqinhe": "https://1024terabox.com/s/1NDXQn2i4BjCqUkShjMDprw", "mijia": "https://1024terabox.com/s/1MAnzKhQsDeKyfrI0aB2H9w"};
 function tbUrl(key){ return TERABOX[key] || TERABOX.all; }
 function panButtons(pack, key){
   const baiduUrl = pack.baiduCode ? pack.baidu+"?pwd="+pack.baiduCode : pack.baidu;
@@ -2976,7 +2984,7 @@ function appCardHtml(a,i){
   return `
     <div class="app-card" onclick="location.hash='#/app/${a.id}'" style="animation-delay:${Math.min(i,12)*26}ms">
       <div class="app-cover">
-        ${a.shot?`<img src="${a.shot}" alt="${f(a,"name")}" loading="lazy" draggable="false">`:`<div class="app-cover-fallback">${a.icon||"📦"}</div>`}
+        ${(a.cover||a.shot)?`<img src="${a.cover||a.shot}" alt="${f(a,"name")} 宣传封面" loading="lazy" draggable="false">`:`<div class="app-cover-fallback">${a.icon||"📦"}</div>`}
         <div class="app-cover-shade"></div>
         <div class="cover-badges">${tagHtml(a.tags)}</div>
         <div class="app-cover-icon">${a.icon||"📦"}</div>
@@ -3036,7 +3044,7 @@ function renderDetail(id){
   const others=DATA.apps.filter(x=>x.id!==a.id).slice(0,3);
   const more=others.map(o=>`
     <a class="more-card" href="#/app/${o.id}">
-      ${o.shot?`<img class="more-thumb" src="${o.shot}" alt="" loading="lazy">`:`<div class="more-thumb more-thumb-fb">${o.icon||"📦"}</div>`}
+      ${(o.cover||o.shot)?`<img class="more-thumb" src="${o.cover||o.shot}" alt="" loading="lazy">`:`<div class="more-thumb more-thumb-fb">${o.icon||"📦"}</div>`}
       <div class="more-info"><b>${f(o,"name")}</b><span>${o.date} · ${f(o,"ver")||""}</span></div>
     </a>`).join("");
   /* 链接解析：产品有自己的盘链接就用自己的（DATA.pan[id]），否则用软件大全总链接兜底 */

@@ -9,6 +9,9 @@
 - 全部免费，通过 QQ 群分发抢先版
 
 ## 作品目录
+- [久留美：强欲黑闪](https://muzimi67.pages.dev/#/app/kurumi): v1.0 (2026-10-22)
+- [老登跑起来](https://muzimi67.pages.dev/#/app/edgerunnerrun): v1.0 (2026-10-21)
+- [妈妈一粒不能少](https://muzimi67.pages.dev/#/app/edgerunnerash): v1.0 (2026-10-21)
 - [全都是借口](https://muzimi67.pages.dev/#/app/jiekou): v1.0 (2026-10-13)
 - [周友的酒三合一](https://muzimi67.pages.dev/#/app/zhouyou3in1): v1.0 (2026-10-14)
 - [舟友的酒](https://muzimi67.pages.dev/#/app/zhouyou): v1.2 (2026-10-13)
