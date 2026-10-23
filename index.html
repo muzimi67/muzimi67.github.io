@@ -1005,7 +1005,7 @@ html[data-theme="dark"] .d-ver{color:#17151f}
 .dl-logo{width:2rem;height:2rem;border-radius:8px;flex-shrink:0}
 .dl-row .n{font-weight:900;font-size:.88rem;flex:1}
 .dl-row .go{font-size:.78rem;font-weight:900;color:var(--brand)}
-.save-tip{margin-top:.65rem;font-size:.7rem;line-height:1.7;color:#7a4a00;background:#fff3c4;
+.save-tip{margin:.1rem 0 .65rem;font-size:.7rem;line-height:1.7;color:#7a4a00;background:#fff3c4;
   border:2px dashed #b45309;border-radius:11px;padding:.6rem .75rem;font-weight:700}
 html[data-theme="dark"] .save-tip{background:rgba(255,214,10,.12);color:#ffd60a;border-color:rgba(255,214,10,.5)}
 .group-banner{margin-top:.1rem;text-align:center}
@@ -1171,7 +1171,7 @@ html[data-theme="dark"] .tabbar{box-shadow:4px 4px 0 rgba(0,0,0,.7)}
   nav .nav-links{display:none}
   body{padding-bottom:5.6rem}
   footer{padding-bottom:6.4rem}
-  .d-side{position:static}
+  .d-side{position:static;order:-1}
   .hero-name{font-size:2.55rem}
   .page-head{padding:1.9rem 0 .9rem}
   .page-head h1{font-size:1.65rem}
@@ -3076,8 +3076,8 @@ function renderDetail(id){
     <div class="d-side">
       <div class="panel">
         <h3>⬇️ ${t("getTitle")}</h3>
-        ${dls}
         <div class="save-tip">${t("saveTip")}</div>
+        ${dls}
       </div>
       <div class="panel group-banner">
         <p>${t("groupBanner")}</p>
