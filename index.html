@@ -996,6 +996,7 @@ html[data-theme="dark"] .d-ver{color:#17151f}
 .d-side{position:sticky;top:5.4rem;align-self:start;display:flex;flex-direction:column;gap:.9rem}
 .panel{border-radius:var(--radius);border:2px solid var(--border);background:var(--card);padding:1.15rem;box-shadow:var(--shadow-sm)}
 .panel h3{font-size:.92rem;font-weight:900;margin-bottom:.85rem;display:flex;align-items:center;gap:.45rem;letter-spacing:-.01em}
+.dl-summary{margin:-.55rem 0 .7rem;font-size:.7rem;line-height:1.5;color:var(--text2);font-weight:700}
 .dl-row{
   display:flex;align-items:center;gap:.7rem;padding:.8rem .85rem;border:2px solid var(--border);border-radius:13px;
   margin-bottom:.5rem;transition:.15s;background:var(--card);
@@ -3077,6 +3078,7 @@ function renderDetail(id){
     <div class="d-side">
       <div class="panel">
         <h3>⬇️ ${t("getTitle")}</h3>
+        <p class="dl-summary">${f(a,"ver")} · ${f(a,"size")}</p>
         <div class="save-tip">${t("saveTip")}</div>
         ${dls}
       </div>
