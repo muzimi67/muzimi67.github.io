@@ -1916,6 +1916,12 @@ const DATA = {
   mainGroup: "575703180",
   /* 网盘真实链接（来自 pan_config.json，2026-09 现网有效） */
   pan: {
+    silao_wheel: { quark:"https://pan.quark.cn/s/d4199451247f",
+                  uc:"https://drive.uc.cn/s/db8d38c78a954",
+                  baidu:"https://pan.baidu.com/s/12L5jrz4aIrOmKIEJXKDgcA", baiduCode:"ymhc" },
+    silao_book:  { quark:"https://pan.quark.cn/s/d4199451247f",
+                  uc:"https://drive.uc.cn/s/db8d38c78a954",
+                  baidu:"https://pan.baidu.com/s/12L5jrz4aIrOmKIEJXKDgcA", baiduCode:"ymhc" },
     kurumi: { quark:"https://pan.quark.cn/s/62ca77b54191", uc:"https://drive.uc.cn/s/868172ec211e4", baidu:"https://pan.baidu.com/s/1E0aksQ_Ne_03fyMOWVXWpw", baiduCode:"0f3s" },
     edgerunnerrun:{ quark:"https://pan.quark.cn/s/e46426cd42b7",
                     uc:"https://drive.uc.cn/s/e19eba957b8b4",
@@ -1989,6 +1995,18 @@ const DATA = {
     "全都免费，进群先拿新版。"
   ],
   apps: [
+    {
+      id:"silao_wheel", icon:"\u{1F3A1}", name:"思老凤乐队·台词转盘", ver:"v1.0", date:"2026-10-27", size:"单文件 4.9MB（浏览器打开）",
+      desc:"转到哪句就听哪句：灭霸、浩克、蜘蛛侠的乐队吵架现场，转盘一停，人和那句话一起出来，原声同步播。",
+      plat:["安卓","iOS","鸿蒙"], tags:["new","hot"], shot:"shots/silao_wheel.webp",
+      longDesc:"B站这条《思老凤乐队的故事》把复仇者联盟塞进了 MyGO 的乐队吵架剧本：灭霸要组乐队，浩克是丰川班纳，蜘蛛侠负责接演出和忘谱子。\n我们把整条片子拆成 6 个角色、53 句台词，原声一段段切出来，对齐到每一帧。转盘一转，停在哪句就播哪句，那一秒的画面和角色同时出来——像把整部片子塞进一台老虎机。\n点中间「转」或按空格开始；结果层能重播、看历史；手机竖屏也能玩。一个 HTML 双击就开，不用装、不用网。"
+    },
+    {
+      id:"silao_book", icon:"\u{1F4D6}", name:"思老凤乐队·台词手册", ver:"v1.0", date:"2026-10-27", size:"单文件 1.4MB（浏览器打开）",
+      desc:"6 个角色、53 句台词，按角色分册；点一下听原声，能搜、能收藏、能抽卡复习，还能导出台词卡。",
+      plat:["安卓","iOS","鸿蒙"], tags:["new"], shot:"shots/silao_book.webp",
+      longDesc:"同一套素材的另一半：按角色分册的台词手册。6 个角色、53 句台词，每句都能点开听原声，画面就是他开口那一秒的截图。\n顶部搜索能搜台词/角色；点 ♥ 收藏（存在本机）；「复习」随机抽一句先猜是谁，点卡片揭晓；「做成卡片」直接导出 1080×1440 的台词卡，发群发动态都行。\n素材来自 B站二创短片，非官方，版权归原作者。"
+    },
     {
       id:"baowan", icon:"\u{1F4A5}", name:"爆丸小子", ver:"v1.0", date:"2026-10-24", size:"APK 0.83MB / 网页 0.87MB",
       desc:"点一下就是一整套反应：蛋蛋特写闪回 62 毫秒、接着喷血抖屏 460 毫秒，点击没有上限，连点就是一串。竖屏全屏，素材取自《学生会也有洞！》第一话，左上水印已抹掉。",
@@ -2177,6 +2195,7 @@ const DATA = {
     }
   ],
   updates: [
+    {date:"2026-10-27", items:[{t:"新增", d:"思老凤乐队·台词转盘 + 台词手册上架：B站 144 万播放的二创短片拆成 6 角色 53 句台词，原声切片 + 逐帧对齐；转盘抽台词、手册按角色归档，三盘同步。"}]},
     {date:"2026-10-22", items:[{t:"新增", d:"久留美：强欲黑闪上架。点击赚日元，亏钱哭、赚钱红脸和激光，8%黑闪暴击；四盘含HTML和B计划封面。"},{t:"更新", d:"全站游戏更换独立宣传封面，详情页继续保留真实游戏截图。"}]},
     {date:"2026-10-21", items:[{t:"新增", d:"边缘行者2 二创两款：老登跑起来（左右脚必须轮流踩）、妈妈一粒不能少（端稳骨灰盒对抗横风）。"}]},
     {date:"2026-10-14", items:[
