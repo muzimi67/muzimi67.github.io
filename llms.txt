@@ -22,7 +22,7 @@
 - [邦高祖小球](https://muzimi67.pages.dev/#/app/bangaozu): v1.8 (2026-10-04)
 - [大肥鱼的酒](https://muzimi67.pages.dev/#/app/dafeiyu): v1.0 (2026-09-30)
 - [邦多利最通透的软件](https://muzimi67.pages.dev/#/app/tongtou): v2.3 (2026-09-30)
-- [朝北汪汪](https://muzimi67.pages.dev/#/app/familytime): v1.1.1 安卓版 (2026-11-08)
+- [朝北汪汪](https://muzimi67.pages.dev/#/app/familytime): v1.1.2 安卓版 (2026-11-09)
 - [邦友的酒](https://muzimi67.pages.dev/#/app/youjiu): v1.1 (2026-09-28)
 - [邦多利反应堆·娃娃版](https://muzimi67.pages.dev/#/app/fanyingdui): v3.1 (2026-09-26)
 - [你怎么两清·识图点唱](https://muzimi67.pages.dev/#/app/nmlq): v1.0 (2026-09-23)
