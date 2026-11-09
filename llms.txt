@@ -9,6 +9,9 @@
 - 全部免费，通过 QQ 群分发抢先版
 
 ## 作品目录
+- [思老凤乐队·台词转盘](https://muzimi67.pages.dev/#/app/silao_wheel): v1.0 (2026-10-27)
+- [思老凤乐队·台词手册](https://muzimi67.pages.dev/#/app/silao_book): v1.0 (2026-10-27)
+- [爆丸小子](https://muzimi67.pages.dev/#/app/baowan): v1.0 (2026-10-24)
 - [久留美：强欲黑闪](https://muzimi67.pages.dev/#/app/kurumi): v1.0 (2026-10-22)
 - [老登跑起来](https://muzimi67.pages.dev/#/app/edgerunnerrun): v1.0 (2026-10-21)
 - [妈妈一粒不能少](https://muzimi67.pages.dev/#/app/edgerunnerash): v1.0 (2026-10-21)
@@ -19,7 +22,7 @@
 - [邦高祖小球](https://muzimi67.pages.dev/#/app/bangaozu): v1.8 (2026-10-04)
 - [大肥鱼的酒](https://muzimi67.pages.dev/#/app/dafeiyu): v1.0 (2026-09-30)
 - [邦多利最通透的软件](https://muzimi67.pages.dev/#/app/tongtou): v2.3 (2026-09-30)
-- [FamilyTime 手机移植版](https://muzimi67.pages.dev/#/app/familytime): 先行版 (2026-09-28)
+- [朝北汪汪](https://muzimi67.pages.dev/#/app/familytime): v1.1.1 安卓版 (2026-11-08)
 - [邦友的酒](https://muzimi67.pages.dev/#/app/youjiu): v1.1 (2026-09-28)
 - [邦多利反应堆·娃娃版](https://muzimi67.pages.dev/#/app/fanyingdui): v3.1 (2026-09-26)
 - [你怎么两清·识图点唱](https://muzimi67.pages.dev/#/app/nmlq): v1.0 (2026-09-23)
