@@ -3132,7 +3132,7 @@ document.querySelectorAll("a.soc-btn.bl").forEach(a=>a.href=DATA.biliSpace);
 
 /* ============ 软件大全打包横幅渲染 ============ */
 /* 百度网盘海外版链接（目录分享，path 挂载 → 覆盖重传链接不变）*/
-const TERABOX = {"kurumi":"https://1024terabox.com/s/1vRa96CR8sajWSGW2W_SavQ", "all": "https://1024terabox.com/s/1LzjYBc3vjTOnLKYhZuR9SA", "bangduori": "https://1024terabox.com/s/11RnMdCbQzSlrXIotgJF36w", "qinqinhe": "https://1024terabox.com/s/1NDXQn2i4BjCqUkShjMDprw", "mijia": "https://1024terabox.com/s/1MAnzKhQsDeKyfrI0aB2H9w"};
+const TERABOX = {"ykncorn":"https://1024terabox.com/s/1nAICMglHb7TBsbFC_5UHBw", "kurumi":"https://1024terabox.com/s/1vRa96CR8sajWSGW2W_SavQ", "all": "https://1024terabox.com/s/1LzjYBc3vjTOnLKYhZuR9SA", "bangduori": "https://1024terabox.com/s/11RnMdCbQzSlrXIotgJF36w", "qinqinhe": "https://1024terabox.com/s/1NDXQn2i4BjCqUkShjMDprw", "mijia": "https://1024terabox.com/s/1MAnzKhQsDeKyfrI0aB2H9w"};
 /* ykn吃苞米：未核实的 TeraBox/139 不回落总盘（2026-11-13） */
 function tbUrl(key){ return key === "familytime" ? (DATA.pan.familytime.terabox || "") : (key === "ykncorn" ? (TERABOX[key] || "") : (TERABOX[key] || TERABOX.all)); }
 function panButtons(pack, key){
