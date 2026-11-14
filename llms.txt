@@ -9,6 +9,7 @@
 - 全部免费，通过 QQ 群分发抢先版
 
 ## 作品目录
+- [ykn吃苞米](https://muzimi67.pages.dev/#/app/ykncorn): v1.0 (2026-11-13)
 - [思老凤乐队·台词转盘](https://muzimi67.pages.dev/#/app/silao_wheel): v1.0 (2026-10-27)
 - [思老凤乐队·台词手册](https://muzimi67.pages.dev/#/app/silao_book): v1.0 (2026-10-27)
 - [爆丸小子](https://muzimi67.pages.dev/#/app/baowan): v1.0 (2026-10-24)
